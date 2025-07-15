@@ -1086,14 +1086,8 @@
                         filteredData[rowIndex][field] = value;
                         
                         // Update original data
-                        const originalIndex = studentsData.findIndex(s => 
-                            s.name === filteredData[rowIndex].name && 
-                            s.level === filteredData[rowIndex].level
-                        );
-                        
-                        if (originalIndex !== -1) {
-                            studentsData[originalIndex][field] = value;
-                        }
+              // ✅ NEW: write directly to studentsData at the same index
+  studentsData[rowIndex][field] = value;
                         
                         // Update metrics when data changes
                         updateDisplayedMetrics();
