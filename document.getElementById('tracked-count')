@@ -896,7 +896,17 @@ studentsData.forEach(student => {
         levelTotals[level] += pubs;
     }
 });
+document.getElementById('postdoc-avg-pubs').textContent =
+  levelCounts['PostDoc'] > 0 ? (levelTotals['PostDoc'] / levelCounts['PostDoc']).toFixed(1) + ' avg' : '0.0 avg';
 
+document.getElementById('grad-avg-pubs').textContent =
+  levelCounts['Graduate'] > 0 ? (levelTotals['Graduate'] / levelCounts['Graduate']).toFixed(1) + ' avg' : '0.0 avg';
+
+document.getElementById('undergrad-avg-pubs').textContent =
+  levelCounts['Undergraduate'] > 0 ? (levelTotals['Undergraduate'] / levelCounts['Undergraduate']).toFixed(1) + ' avg' : '0.0 avg';
+
+document.getElementById('highschool-avg-pubs').textContent =
+  levelCounts['High School'] > 0 ? (levelTotals['High School'] / levelCounts['High School']).toFixed(1) + ' avg' : '0.0 avg';
 document.getElementById('postdoc-avg-pubs').textContent = levelCounts['PostDoc'] > 0 ? (levelTotals['PostDoc'] / levelCounts['PostDoc']).toFixed(1) + ' avg' : '0.0 avg';
 document.getElementById('grad-avg-pubs').textContent = levelCounts['Graduate'] > 0 ? (levelTotals['Graduate'] / levelCounts['Graduate']).toFixed(1) + ' avg' : '0.0 avg';
 document.getElementById('undergrad-avg-pubs').textContent = levelCounts['Undergraduate'] > 0 ? (levelTotals['Undergraduate'] / levelCounts['Undergraduate']).toFixed(1) + ' avg' : '0.0 avg';
