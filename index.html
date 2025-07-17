@@ -356,13 +356,13 @@
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="total-authorships">60</div>
+               <div class="stat-number" id="total-authorships">0</div>
                 <div class="stat-label">Total Authorships</div>
                 <div class="breakdown" id="authorship-breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-avg-pubs">1.5 avg</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-avg-pubs">1.3 avg</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-avg-pubs">0.3 avg</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="highschool-avg-pubs">0.1 avg</span></div>
+                    <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-avg-pubs">0.0 avg</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-avg-pubs">0.0 avg</span></div>
+                    <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-avg-pubs">0.0 avg</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span id="highschool-avg-pubs">0.0 avg</span></div>
                 </div>
             </div>
             <div class="stat-card">
@@ -866,6 +866,41 @@
             document.getElementById('tracking-rate').textContent = `${trackingRate}%`;
             document.getElementById('tracked-count').textContent = `${metrics.tracked}/${metrics.total}`;
             
+            // Update publications
+const totalPublications = studentsData.reduce((sum, s) => sum + (s.publications || 0), 0);
+const avgPublications = studentsData.length > 0 ? (totalPublications / studentsData.length).toFixed(2) : '0.00';
+
+document.getElementById('total-publications').textContent = totalPublications;
+document.getElementById('avg-publications').textContent = avgPublications;
+            document.getElementById('total-authorships').textContent = totalPublications;
+
+const levels = ['PostDoc', 'Graduate', 'Undergraduate', 'High School'];
+const levelCounts = {
+    'PostDoc': 0,
+    'Graduate': 0,
+    'Undergraduate': 0,
+    'High School': 0
+};
+const levelTotals = {
+    'PostDoc': 0,
+    'Graduate': 0,
+    'Undergraduate': 0,
+    'High School': 0
+};
+
+studentsData.forEach(student => {
+    const level = student.level;
+    const pubs = student.publications || 0;
+    if (levels.includes(level)) {
+        levelCounts[level]++;
+        levelTotals[level] += pubs;
+    }
+});
+
+document.getElementById('postdoc-avg-pubs').textContent = levelCounts['PostDoc'] > 0 ? (levelTotals['PostDoc'] / levelCounts['PostDoc']).toFixed(1) + ' avg' : '0.0 avg';
+document.getElementById('grad-avg-pubs').textContent = levelCounts['Graduate'] > 0 ? (levelTotals['Graduate'] / levelCounts['Graduate']).toFixed(1) + ' avg' : '0.0 avg';
+document.getElementById('undergrad-avg-pubs').textContent = levelCounts['Undergraduate'] > 0 ? (levelTotals['Undergraduate'] / levelCounts['Undergraduate']).toFixed(1) + ' avg' : '0.0 avg';
+document.getElementById('highschool-avg-pubs').textContent = levelCounts['High School'] > 0 ? (levelTotals['High School'] / levelCounts['High School']).toFixed(1) + ' avg' : '0.0 avg';
             // Update comparison table
             updateComparisonTable(metrics, stemRates);
         }
@@ -1051,16 +1086,13 @@
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Set up event listeners
-        document.getElementById('levelFilter').addEventListener('change', filterData);
-        document.getElementById('statusFilter').addEventListener('change', filterData);
-        document.getElementById('searchFilter').addEventListener('input', filterData);
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('levelFilter').addEventListener('change', filterData);
+    document.getElementById('statusFilter').addEventListener('change', filterData);
+    document.getElementById('searchFilter').addEventListener('input', filterData);
 
-        // Load data and update metrics
-        loadSampleData();
-        updateMetrics();
-    });
+    loadSampleData();  // Metrics will now update *after* data loads
+});
 
     function updateMetrics() {
         const totalPublications = studentsData.reduce((sum, student) => sum + (student.publications || 0), 0);
