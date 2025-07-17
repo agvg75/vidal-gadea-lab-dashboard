@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vidal-Gadea Lab Student Mentoring Dashboard</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -82,6 +81,19 @@
             letter-spacing: 0.5px;
         }
 
+        .breakdown {
+            margin-top: 10px;
+            font-size: 10pt;
+            color: #555;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px 0;
+            padding: 2px 0;
+        }
+
         .charts-section {
             padding: 30px;
             background: white;
@@ -99,6 +111,7 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            min-height: 300px;
         }
 
         .chart-container h3 {
@@ -106,9 +119,86 @@
             color: #333;
         }
 
-        .chart-canvas {
-            position: relative;
-            height: 250px;
+        .chart-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .chart-postdoc { background: #28a745; }
+        .chart-graduate { background: linear-gradient(45deg, #28a745 70%, #dc3545 15%, #ffc107 15%); }
+        .chart-undergraduate { background: linear-gradient(45deg, #28a745 77%, #dc3545 10%, #ffc107 13%); }
+        .chart-highschool { background: linear-gradient(45deg, #28a745 82%, #dc3545 5%, #6c757d 13%); }
+
+        .comparison-section {
+            background: white;
+            padding: 20px 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .comparison-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .comparison-table-container {
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+            background: white;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+            font-size: 11pt;
+        }
+
+        .our-lab {
+            background: #e8f5e8;
+            font-weight: bold;
+            color: #2c5530;
+        }
+
+        .comparison-table a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .comparison-table a:hover {
+            text-decoration: underline;
+        }
+
+        .comparison-note {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
         }
 
         .controls {
@@ -182,6 +272,10 @@
             font-size: 11pt;
         }
 
+        th:nth-child(1) { width: 50%; }
+        th:nth-child(2) { width: 25%; }
+        th:nth-child(3) { width: 25%; }
+
         td {
             padding: 12px;
             border-bottom: 1px solid #e9ecef;
@@ -202,104 +296,13 @@
         .level-highschool { background-color: #f8d7da; }
 
         .status-current { color: #28a745; font-weight: bold; }
-        .status-graduated { color: #007bff; }
-        .status-former { color: #6c757d; }
+        .status-alumni { color: #007bff; }
 
-        .stem-yes { color: #28a745; font-weight: bold; }
-        .stem-no { color: #dc3545; }
-
-        .summary {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .summary h3 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .summary p {
-            margin-bottom: 8px;
+        .loading-message {
+            text-align: center;
+            padding: 20px;
             color: #666;
-            line-height: 1.5;
-        }
-
-        .comparison-section {
-            background: white;
-            padding: 20px 30px;
-            margin: 20px 0;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        .comparison-section h3 {
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.3em;
-        }
-
-        .comparison-table-container {
-            overflow-x: auto;
-            margin-bottom: 15px;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 10pt;
-            background: white;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 12px 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        .comparison-table th {
-            background: #667eea;
-            color: white;
-            font-weight: bold;
-            font-size: 11pt;
-        }
-
-        .our-lab {
-            background: #e8f5e8;
-            font-weight: bold;
-            color: #2c5530;
-        }
-
-        .comparison-table a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .comparison-table a:hover {
-            text-decoration: underline;
-        }
-
-        .comparison-note {
-            text-align: center;
             font-style: italic;
-            color: #666;
-            margin-top: 10px;
-        }
-
-        .breakdown {
-            margin-top: 10px;
-            font-size: 10pt;
-            color: #555;
-        }
-
-        .breakdown-item {
-            display: flex;
-            justify-content: space-between;
-            margin: 3px 0;
-            padding: 2px 0;
         }
     </style>
 </head>
@@ -312,32 +315,32 @@
         
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number" id="total-students">189</div>
+                <div class="stat-number" id="total-students">192</div>
                 <div class="stat-label">Total Students Mentored</div>
                 <div class="breakdown" id="total-breakdown">
                     <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-count">2</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-count">19</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-count">22</span></div>
                     <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-count">97</span></div>
                     <div class="breakdown-item"><span>High School:</span><span id="highschool-count">71</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="current-students">13</div>
+                <div class="stat-number" id="current-students">16</div>
                 <div class="stat-label">Current Students</div>
                 <div class="breakdown" id="current-breakdown">
-                    <div class="breakdown-item"><span>Graduate:</span><span id="current-grad">3</span></div>
+                    <div class="breakdown-item"><span>Graduate:</span><span id="current-grad">2</span></div>
                     <div class="breakdown-item"><span>Undergraduate:</span><span id="current-undergrad">10</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="current-highschool">0</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span id="current-highschool">4</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="stem-rate">87%</div>
+                <div class="stat-number" id="stem-rate">91%</div>
                 <div class="stat-label">STEM Career Success Rate</div>
                 <div class="breakdown" id="stem-breakdown">
                     <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-stem">100%</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-stem">94%</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-stem">92%</span></div>
                     <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-stem">90%</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="highschool-stem">82%</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span id="highschool-stem">96%</span></div>
                 </div>
             </div>
             <div class="stat-card">
@@ -370,10 +373,10 @@
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="tracking-rate">85%</div>
+                <div class="stat-number" id="tracking-rate">74%</div>
                 <div class="stat-label">Students Tracked Post-Lab</div>
                 <div class="breakdown" id="tracking-breakdown">
-                    <div class="breakdown-item"><span>Known outcomes:</span><span id="tracked-count">160/189</span></div>
+                    <div class="breakdown-item"><span>Known outcomes:</span><span id="tracked-count">142/192</span></div>
                     <div class="breakdown-item"><span>vs National avg:</span><span>45-60%</span></div>
                 </div>
             </div>
@@ -396,7 +399,7 @@
                     <tbody>
                         <tr>
                             <td>Students Mentored (10 years)</td>
-                            <td class="our-lab" id="comparison-total">189</td>
+                            <td class="our-lab" id="comparison-total">192</td>
                             <td>45-65</td>
                             <td>25-40</td>
                             <td>35-50</td>
@@ -412,7 +415,7 @@
                         </tr>
                         <tr>
                             <td>STEM Career Success Rate</td>
-                            <td class="our-lab" id="comparison-stem">87%</td>
+                            <td class="our-lab" id="comparison-stem">91%</td>
                             <td>65-75%</td>
                             <td>60-70%</td>
                             <td>62-72%</td>
@@ -436,7 +439,7 @@
                         </tr>
                         <tr>
                             <td>Student Tracking Rate</td>
-                            <td class="our-lab" id="comparison-tracking">85%</td>
+                            <td class="our-lab" id="comparison-tracking">74%</td>
                             <td>45-60%</td>
                             <td>40-55%</td>
                             <td>42-58%</td>
@@ -444,7 +447,7 @@
                         </tr>
                         <tr>
                             <td>Conference Presentations per Student</td>
-                            <td class="our-lab" id="comparison-presentations">1.8</td>
+                            <td class="our-lab" id="comparison-presentations">1.4</td>
                             <td>1.2-1.6</td>
                             <td>0.8-1.3</td>
                             <td>1.0-1.4</td>
@@ -461,27 +464,31 @@
             <div class="charts-grid">
                 <div class="chart-container">
                     <h3>PostDoc Outcomes</h3>
-                    <div class="chart-canvas">
-                        <canvas id="postdocChart"></canvas>
+                    <div class="chart-placeholder chart-postdoc">
+                        100% STEM<br>Career Success
                     </div>
+                    <p><small>2 PostDocs - All in STEM careers</small></p>
                 </div>
                 <div class="chart-container">
                     <h3>Graduate Student Outcomes</h3>
-                    <div class="chart-canvas">
-                        <canvas id="gradChart"></canvas>
+                    <div class="chart-placeholder chart-graduate">
+                        92% STEM<br>Success Rate
                     </div>
+                    <p><small>22 Graduates: 18 STEM, 1 Non-STEM, 3 Continuing</small></p>
                 </div>
                 <div class="chart-container">
                     <h3>Undergraduate Outcomes</h3>
-                    <div class="chart-canvas">
-                        <canvas id="undergradChart"></canvas>
+                    <div class="chart-placeholder chart-undergraduate">
+                        90% STEM<br>Success Rate
                     </div>
+                    <p><small>97 Undergraduates: 77 STEM, 10 Non-STEM, 10 Continuing</small></p>
                 </div>
                 <div class="chart-container">
                     <h3>High School Student Outcomes</h3>
-                    <div class="chart-canvas">
-                        <canvas id="highSchoolChart"></canvas>
+                    <div class="chart-placeholder chart-highschool">
+                        96% STEM<br>Success Rate
                     </div>
+                    <p><small>71 High School: 58 STEM, 3 Non-STEM, 10 Unknown</small></p>
                 </div>
             </div>
         </div>
@@ -503,24 +510,13 @@
                 <select id="statusFilter">
                     <option value="">All Status</option>
                     <option value="Current">Current</option>
-                    <option value="Graduated">Graduated</option>
-                    <option value="Former">Former</option>
-                </select>
-            </div>
-            
-            <div class="filter-group">
-                <label for="stemFilter">STEM Career:</label>
-                <select id="stemFilter">
-                    <option value="">All</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    <option value="Continuing">Continuing</option>
+                    <option value="Alumni">Alumni</option>
                 </select>
             </div>
             
             <div class="filter-group">
                 <label for="searchFilter">Search:</label>
-                <input type="text" id="searchFilter" placeholder="Search names, positions, research...">
+                <input type="text" id="searchFilter" placeholder="Search names...">
             </div>
 
             <div class="btn-group">
@@ -538,15 +534,10 @@
                         <th>Name</th>
                         <th>Level</th>
                         <th>Status</th>
-                        <th>Current Position</th>
-                        <th>STEM Career?</th>
-                        <th>Publications</th>
-                        <th>Posters</th>
-                        <th>Talks</th>
-                        <th>Research/Notes</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
+                    <tr><td colspan="3" class="loading-message">Click "Load Sample Data" to display all 192 students</td></tr>
                 </tbody>
             </table>
         </div>
@@ -556,205 +547,8 @@
         // Global variables
         let studentsData = [];
         let filteredData = [];
-        let charts = {};
 
-        // Dynamic metrics calculation functions
-        function calculateMetrics() {
-            const metrics = {
-                total: studentsData.length,
-                byLevel: { 'PostDoc': 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0 },
-                current: { total: 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0, 'PostDoc': 0 },
-                stem: { total: 0, byLevel: {} },
-                publications: { total: 0, byLevel: {} },
-                posters: { total: 0, byLevel: {} },
-                tracked: 0
-            };
-
-            // Initialize counters
-            Object.keys(metrics.byLevel).forEach(level => {
-                metrics.stem.byLevel[level] = { total: 0, stem: 0 };
-                metrics.publications.byLevel[level] = { total: 0, sum: 0 };
-                metrics.posters.byLevel[level] = { total: 0, sum: 0 };
-            });
-
-            // Calculate metrics from actual data
-            studentsData.forEach(student => {
-                const level = student.level;
-                
-                // Count by level
-                if (metrics.byLevel[level] !== undefined) {
-                    metrics.byLevel[level]++;
-                }
-                
-                // Count current students
-                if (student.status && (student.status.toLowerCase().includes('current') || 
-                    student.status.toLowerCase().includes('continuing'))) {
-                    metrics.current.total++;
-                    if (metrics.current[level] !== undefined) {
-                        metrics.current[level]++;
-                    }
-                }
-                
-                // Count STEM careers (only for graduated/former students with known outcomes)
-                if (student.status && student.stem && 
-                    (student.status.toLowerCase().includes('graduated') || student.status.toLowerCase().includes('former')) &&
-                    student.stem.toLowerCase() !== 'continuing') {
-                    
-                    metrics.stem.byLevel[level].total++;
-                    if (student.stem.toLowerCase() === 'yes') {
-                        metrics.stem.byLevel[level].stem++;
-                        metrics.stem.total++;
-                    }
-                }
-                
-                // Count publications
-                const pubs = parseInt(student.publications) || 0;
-                metrics.publications.total += pubs;
-                metrics.publications.byLevel[level].total++;
-                metrics.publications.byLevel[level].sum += pubs;
-                
-                // Count posters
-                const posters = parseInt(student.posters) || 0;
-                metrics.posters.total += posters;
-                metrics.posters.byLevel[level].total++;
-                metrics.posters.byLevel[level].sum += posters;
-                
-                // Count tracked students (those with known current positions or STEM status)
-                if (student.currentPosition || student.stem) {
-                    metrics.tracked++;
-                }
-            });
-
-            return metrics;
-        }
-
-        function updateDisplayedMetrics() {
-            const metrics = calculateMetrics();
-            
-            // Update main statistics
-            document.getElementById('total-students').textContent = metrics.total;
-            document.getElementById('current-students').textContent = metrics.current.total;
-            
-            // Update breakdown counts
-            document.getElementById('postdoc-count').textContent = metrics.byLevel['PostDoc'];
-            document.getElementById('grad-count').textContent = metrics.byLevel['Graduate'];
-            document.getElementById('undergrad-count').textContent = metrics.byLevel['Undergraduate'];
-            document.getElementById('highschool-count').textContent = metrics.byLevel['High School'];
-            
-            // Update current student counts
-            document.getElementById('current-grad').textContent = metrics.current['Graduate'];
-            document.getElementById('current-undergrad').textContent = metrics.current['Undergraduate'];
-            document.getElementById('current-highschool').textContent = metrics.current['High School'];
-            
-            // Calculate and update STEM success rates
-            const stemRates = {};
-            let overallStemTotal = 0;
-            let overallStemSuccess = 0;
-            
-            Object.keys(metrics.stem.byLevel).forEach(level => {
-                const data = metrics.stem.byLevel[level];
-                if (data.total > 0) {
-                    stemRates[level] = Math.round((data.stem / data.total) * 100);
-                    overallStemTotal += data.total;
-                    overallStemSuccess += data.stem;
-                } else {
-                    stemRates[level] = 0;
-                }
-            });
-            
-            const overallStemRate = overallStemTotal > 0 ? Math.round((overallStemSuccess / overallStemTotal) * 100) : 0;
-            
-            document.getElementById('stem-rate').textContent = `${overallStemRate}%`;
-            document.getElementById('postdoc-stem').textContent = `${stemRates['PostDoc']}%`;
-            document.getElementById('grad-stem').textContent = `${stemRates['Graduate']}%`;
-            document.getElementById('undergrad-stem').textContent = `${stemRates['Undergraduate']}%`;
-            document.getElementById('highschool-stem').textContent = `${stemRates['High School']}%`;
-            
-            // Update publications (use specified lab totals, not calculated sum)
-            document.getElementById('total-pubs').textContent = '20';
-            document.getElementById('total-articles').textContent = '20';
-            
-            // Keep the specified authorship total
-            document.getElementById('total-authorships').textContent = '60';
-            
-            // Update authorships (use specified totals and averages)
-            document.getElementById('total-authorships').textContent = '60';
-            document.getElementById('postdoc-avg-pubs').textContent = '1.5 avg';
-            document.getElementById('grad-avg-pubs').textContent = '1.3 avg'; 
-            document.getElementById('undergrad-avg-pubs').textContent = '0.3 avg';
-            document.getElementById('highschool-avg-pubs').textContent = '0.1 avg';
-            
-            // Update posters (use specified totals and averages)
-            document.getElementById('total-posters').textContent = '270';
-            document.getElementById('postdoc-avg-posters').textContent = '5.5 avg';
-            document.getElementById('grad-avg-posters').textContent = '7.1 avg';
-            document.getElementById('undergrad-avg-posters').textContent = '1.2 avg';
-            document.getElementById('highschool-avg-posters').textContent = '0.2 avg';
-            
-            // Update tracking rate
-            const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
-            document.getElementById('tracking-rate').textContent = `${trackingRate}%`;
-            document.getElementById('tracked-count').textContent = `${metrics.tracked}/${metrics.total}`;
-            
-            // Update comparison table
-            updateComparisonTable(metrics, stemRates);
-        }
-
-        function updateComparisonTable(metrics, stemRates) {
-            document.getElementById('comparison-total').textContent = metrics.total;
-            
-            // Use lab-specified publications per graduate student (20 publications / 19 grad students = 1.05, but keeping your specified 1.3)
-            document.getElementById('comparison-grad-pubs').textContent = '1.3';
-            
-            // Overall STEM rate
-            let overallStemTotal = 0;
-            let overallStemSuccess = 0;
-            Object.keys(metrics.stem.byLevel).forEach(level => {
-                const data = metrics.stem.byLevel[level];
-                overallStemTotal += data.total;
-                overallStemSuccess += data.stem;
-            });
-            const overallStemRate = overallStemTotal > 0 ? Math.round((overallStemSuccess / overallStemTotal) * 100) : 0;
-            document.getElementById('comparison-stem').textContent = `${overallStemRate}%`;
-            
-            document.getElementById('comparison-undergrads').textContent = metrics.byLevel['Undergraduate'];
-            document.getElementById('comparison-highschool').textContent = metrics.byLevel['High School'];
-            
-            const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
-            document.getElementById('comparison-tracking').textContent = `${trackingRate}%`;
-            
-            // Calculate presentations per student (using specified 270 posters)
-            const presPerStudent = metrics.total > 0 ? (270 / metrics.total).toFixed(1) : '1.8';
-            document.getElementById('comparison-presentations').textContent = presPerStudent;
-        }
-
-        // Corrected data based on user specifications
-        const correctedStats = {
-            totalStudents: 189,
-            currentStudents: 13,
-            stemRate: 87,
-            publications: 20,
-            posters: 270,
-            trackingRate: 85,
-            distribution: {
-                PostDoc: 2,
-                Graduate: 19,
-                Undergraduate: 97,
-                'High School': 71
-            },
-            currentDistribution: {
-                Graduate: 3,
-                Undergraduate: 10
-            },
-            stemRates: {
-                PostDoc: 100,
-                Graduate: 94,
-                Undergraduate: 90,
-                'High School': 82
-            }
-        };
-
-        // Complete student data (ALL 189 students from Excel files)
+        // Function to get student data - ALL 192 students
         function initSampleData() {
             return [
                 {"name":"Carola Städele","level":"PostDoc","degree":"PhD","status":"Former","currentPosition":"Group Leader University of Göttingen Germany","stem":"Yes","posters":7,"talks":2,"publications":2,"research":"Several awards. Now group leader in Germany"},
@@ -952,97 +746,174 @@
             ];
         }
 
-        // Initialize charts
-        function initCharts() {
-            const chartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { font: { size: 10 } }
-                    }
-                }
+        // Dynamic metrics calculation functions
+        function calculateMetrics() {
+            const metrics = {
+                total: studentsData.length,
+                byLevel: { 'PostDoc': 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0 },
+                current: { total: 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0, 'PostDoc': 0 },
+                stem: { total: 0, byLevel: {} },
+                publications: { total: 0, byLevel: {} },
+                posters: { total: 0, byLevel: {} },
+                tracked: 0
             };
 
-            // PostDoc chart (100% STEM)
-            charts.postdoc = new Chart(document.getElementById('postdocChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['STEM Career'],
-                    datasets: [{
-                        data: [2],
-                        backgroundColor: ['#28a745'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: chartOptions
+            // Initialize counters
+            Object.keys(metrics.byLevel).forEach(level => {
+                metrics.stem.byLevel[level] = { total: 0, stem: 0 };
+                metrics.publications.byLevel[level] = { total: 0, sum: 0 };
+                metrics.posters.byLevel[level] = { total: 0, sum: 0 };
             });
 
-            // Graduate chart (94% STEM)
-            charts.graduate = new Chart(document.getElementById('gradChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['STEM Career', 'Non-STEM', 'Continuing'],
-                    datasets: [{
-                        data: [15, 1, 3], // Approximate based on 94% success
-                        backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: chartOptions
+            // Calculate metrics from actual data
+            studentsData.forEach(student => {
+                const level = student.level;
+                
+                // Count by level
+                if (metrics.byLevel[level] !== undefined) {
+                    metrics.byLevel[level]++;
+                }
+                
+                // Count current students
+                if (student.status && (student.status.toLowerCase().includes('current') || 
+                    student.status.toLowerCase().includes('continuing'))) {
+                    metrics.current.total++;
+                    if (metrics.current[level] !== undefined) {
+                        metrics.current[level]++;
+                    }
+                }
+                
+                // Count STEM careers (only for graduated/former students with known outcomes)
+                if (student.status && student.stem && 
+                    (student.status.toLowerCase().includes('graduated') || student.status.toLowerCase().includes('former')) &&
+                    student.stem.toLowerCase() !== 'continuing') {
+                    
+                    metrics.stem.byLevel[level].total++;
+                    if (student.stem.toLowerCase() === 'yes') {
+                        metrics.stem.byLevel[level].stem++;
+                        metrics.stem.total++;
+                    }
+                }
+                
+                // Count publications
+                const pubs = parseInt(student.publications) || 0;
+                metrics.publications.total += pubs;
+                metrics.publications.byLevel[level].total++;
+                metrics.publications.byLevel[level].sum += pubs;
+                
+                // Count posters
+                const posters = parseInt(student.posters) || 0;
+                metrics.posters.total += posters;
+                metrics.posters.byLevel[level].total++;
+                metrics.posters.byLevel[level].sum += posters;
+                
+                // Count tracked students (those with known current positions or STEM status)
+                if (student.currentPosition || student.stem) {
+                    metrics.tracked++;
+                }
             });
 
-            // Undergraduate chart (90% STEM)
-            charts.undergraduate = new Chart(document.getElementById('undergradChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['STEM Career', 'Non-STEM', 'Continuing'],
-                    datasets: [{
-                        data: [77, 10, 10], // Approximate based on 90% success
-                        backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: chartOptions
-            });
+            return metrics;
+        }
 
-            // High School chart (82% STEM)
-            charts.highSchool = new Chart(document.getElementById('highSchoolChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['STEM Career', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [58, 8, 5], // Approximate based on 82% success
-                        backgroundColor: ['#28a745', '#dc3545', '#6c757d'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: chartOptions
+        function updateDisplayedMetrics() {
+            const metrics = calculateMetrics();
+            
+            // Update main statistics
+            document.getElementById('total-students').textContent = metrics.total;
+            document.getElementById('current-students').textContent = metrics.current.total;
+            
+            // Update breakdown counts
+            document.getElementById('postdoc-count').textContent = metrics.byLevel['PostDoc'];
+            document.getElementById('grad-count').textContent = metrics.byLevel['Graduate'];
+            document.getElementById('undergrad-count').textContent = metrics.byLevel['Undergraduate'];
+            document.getElementById('highschool-count').textContent = metrics.byLevel['High School'];
+            
+            // Update current student counts
+            document.getElementById('current-grad').textContent = metrics.current['Graduate'];
+            document.getElementById('current-undergrad').textContent = metrics.current['Undergraduate'];
+            document.getElementById('current-highschool').textContent = metrics.current['High School'];
+            
+            // Calculate and update STEM success rates
+            const stemRates = {};
+            let overallStemTotal = 0;
+            let overallStemSuccess = 0;
+            
+            Object.keys(metrics.stem.byLevel).forEach(level => {
+                const data = metrics.stem.byLevel[level];
+                if (data.total > 0) {
+                    stemRates[level] = Math.round((data.stem / data.total) * 100);
+                    overallStemTotal += data.total;
+                    overallStemSuccess += data.stem;
+                } else {
+                    stemRates[level] = 0;
+                }
             });
+            
+            const overallStemRate = overallStemTotal > 0 ? Math.round((overallStemSuccess / overallStemTotal) * 100) : 0;
+            
+            document.getElementById('stem-rate').textContent = `${overallStemRate}%`;
+            document.getElementById('postdoc-stem').textContent = `${stemRates['PostDoc']}%`;
+            document.getElementById('grad-stem').textContent = `${stemRates['Graduate']}%`;
+            document.getElementById('undergrad-stem').textContent = `${stemRates['Undergraduate']}%`;
+            document.getElementById('highschool-stem').textContent = `${stemRates['High School']}%`;
+            
+            // Update tracking rate
+            const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
+            document.getElementById('tracking-rate').textContent = `${trackingRate}%`;
+            document.getElementById('tracked-count').textContent = `${metrics.tracked}/${metrics.total}`;
+            
+            // Update comparison table
+            updateComparisonTable(metrics, stemRates);
+        }
+
+        function updateComparisonTable(metrics, stemRates) {
+            document.getElementById('comparison-total').textContent = metrics.total;
+            document.getElementById('comparison-grad-pubs').textContent = '1.3';
+            
+            let overallStemTotal = 0;
+            let overallStemSuccess = 0;
+            Object.keys(metrics.stem.byLevel).forEach(level => {
+                const data = metrics.stem.byLevel[level];
+                overallStemTotal += data.total;
+                overallStemSuccess += data.stem;
+            });
+            const overallStemRate = overallStemTotal > 0 ? Math.round((overallStemSuccess / overallStemTotal) * 100) : 0;
+            document.getElementById('comparison-stem').textContent = `${overallStemRate}%`;
+            
+            document.getElementById('comparison-undergrads').textContent = metrics.byLevel['Undergraduate'];
+            document.getElementById('comparison-highschool').textContent = metrics.byLevel['High School'];
+            
+            const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
+            document.getElementById('comparison-tracking').textContent = `${trackingRate}%`;
+            
+            const presPerStudent = metrics.total > 0 ? (270 / metrics.total).toFixed(1) : '1.4';
+            document.getElementById('comparison-presentations').textContent = presPerStudent;
         }
 
         // Filter data based on controls
         function filterData() {
             const levelFilter = document.getElementById('levelFilter').value;
             const statusFilter = document.getElementById('statusFilter').value;
-            const stemFilter = document.getElementById('stemFilter').value;
             const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
 
             filteredData = studentsData.filter(student => {
                 const matchesLevel = !levelFilter || student.level === levelFilter;
-                const matchesStatus = !statusFilter || student.status === statusFilter;
-                const matchesStem = !stemFilter || student.stem === stemFilter;
-                const matchesSearch = !searchFilter || 
-                    student.name.toLowerCase().includes(searchFilter) ||
-                    (student.currentPosition && student.currentPosition.toLowerCase().includes(searchFilter)) ||
-                    (student.research && student.research.toLowerCase().includes(searchFilter));
+                
+                let matchesStatus = true;
+                if (statusFilter) {
+                    if (statusFilter === 'Current') {
+                        matchesStatus = student.status && (student.status.toLowerCase().includes('current') || 
+                            student.status.toLowerCase().includes('continuing'));
+                    } else if (statusFilter === 'Alumni') {
+                        matchesStatus = student.status && !(student.status.toLowerCase().includes('current') || 
+                            student.status.toLowerCase().includes('continuing'));
+                    }
+                }
+                
+                const matchesSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
 
-                return matchesLevel && matchesStatus && matchesStem && matchesSearch;
+                return matchesLevel && matchesStatus && matchesSearch;
             });
 
             renderTable();
@@ -1053,21 +924,26 @@
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
 
+            if (filteredData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" class="loading-message">No students match the current filters</td></tr>';
+                return;
+            }
+
             filteredData.forEach((student, index) => {
                 const row = document.createElement('tr');
                 row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
                 row.setAttribute('data-index', index);
 
+                let displayStatus = 'Alumni';
+                if (student.status && (student.status.toLowerCase().includes('current') || 
+                    student.status.toLowerCase().includes('continuing'))) {
+                    displayStatus = 'Current';
+                }
+
                 row.innerHTML = `
                     <td contenteditable="true" data-field="name">${student.name}</td>
                     <td contenteditable="true" data-field="level">${student.level}</td>
-                    <td contenteditable="true" data-field="status" class="status-${student.status.toLowerCase()}">${student.status}</td>
-                    <td contenteditable="true" data-field="currentPosition">${student.currentPosition || ''}</td>
-                    <td contenteditable="true" data-field="stem" class="stem-${(student.stem || '').toLowerCase()}">${student.stem || ''}</td>
-                    <td contenteditable="true" data-field="publications">${student.publications || 0}</td>
-                    <td contenteditable="true" data-field="posters">${student.posters || 0}</td>
-                    <td contenteditable="true" data-field="talks">${student.talks || 0}</td>
-                    <td contenteditable="true" data-field="research" class="notes">${student.research || ''}</td>
+                    <td contenteditable="true" data-field="status" class="status-${displayStatus.toLowerCase()}">${displayStatus}</td>
                 `;
 
                 tbody.appendChild(row);
@@ -1079,17 +955,30 @@
                     const row = this.parentElement;
                     const rowIndex = parseInt(row.getAttribute('data-index'));
                     const field = this.getAttribute('data-field');
-                    const value = this.innerText;
+                    const value = this.innerText.trim();
 
-                    // Update the data
                     if (filteredData[rowIndex]) {
-                        filteredData[rowIndex][field] = value;
+                        if (field === 'status') {
+                            if (value === 'Current') {
+                                filteredData[rowIndex][field] = 'Current';
+                            } else if (value === 'Alumni') {
+                                filteredData[rowIndex][field] = filteredData[rowIndex][field] || 'Graduated';
+                            } else {
+                                filteredData[rowIndex][field] = value;
+                            }
+                        } else {
+                            filteredData[rowIndex][field] = value;
+                        }
                         
-                        // Update original data
-              // ✅ NEW: write directly to studentsData at the same index
-  studentsData[rowIndex][field] = value;
+                        const originalIndex = studentsData.findIndex(s => 
+                            s.name === filteredData[rowIndex].name && 
+                            s.level === filteredData[rowIndex].level
+                        );
                         
-                        // Update metrics when data changes
+                        if (originalIndex !== -1) {
+                            studentsData[originalIndex][field] = filteredData[rowIndex][field];
+                        }
+                        
                         updateDisplayedMetrics();
                     }
                 });
@@ -1101,7 +990,7 @@
             studentsData = initSampleData();
             filteredData = [...studentsData];
             renderTable();
-            updateDisplayedMetrics(); // Update metrics when loading data
+            updateDisplayedMetrics();
         }
 
         // Add new row
@@ -1120,18 +1009,13 @@
             
             studentsData.push(newStudent);
             filterData();
-            updateDisplayedMetrics(); // Update metrics when new student added
+            updateDisplayedMetrics();
         }
 
-        // Save to localStorage
+        // Save function
         function saveTable() {
-            updateDisplayedMetrics(); // Update metrics when saving
-            try {
-                alert('Changes saved successfully! Note: In a real implementation, this would save to a database.');
-            } catch (error) {
-                console.error('Error saving data:', error);
-                alert('Error saving data. Please try again.');
-            }
+            updateDisplayedMetrics();
+            alert('Changes saved successfully! Note: In a real implementation, this would save to a database.');
         }
 
         // Export to CSV
@@ -1157,22 +1041,20 @@
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'vidal_gadea_lab_students_corrected.csv';
+            a.download = 'vidal_gadea_lab_students.csv';
             a.click();
             window.URL.revokeObjectURL(url);
         }
 
-        // Initialize the application
-        window.addEventListener('load', () => {
-            initCharts();
-            loadSampleData();
-            updateDisplayedMetrics(); // Ensure metrics are calculated on load
-            
+        // Initialize the application when page loads
+        document.addEventListener('DOMContentLoaded', function() {
             // Set up event listeners
             document.getElementById('levelFilter').addEventListener('change', filterData);
             document.getElementById('statusFilter').addEventListener('change', filterData);
-            document.getElementById('stemFilter').addEventListener('change', filterData);
             document.getElementById('searchFilter').addEventListener('input', filterData);
+            
+            // Auto-load sample data when page loads
+            loadSampleData();
         });
     </script>
 </body>
