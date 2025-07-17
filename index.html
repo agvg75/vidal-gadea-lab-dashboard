@@ -312,7 +312,10 @@
             <h1>Lab Student Mentoring Dashboard</h1>
             <p>Comprehensive tracking of student outcomes and achievements (2015-2025)</p>
         </div>
-        
+        <div id="metrics" style="font-size: 16px; margin: 10px 0; padding-left: 15px;">
+  <strong>Total Student Authorships:</strong> <span id="total-publications">0</span><br>
+  <strong>Avg Publications per Student:</strong> <span id="avg-publications">0.00</span>
+</div>
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number" id="total-students">192</div>
@@ -1012,7 +1015,7 @@
             updateDisplayedMetrics();
         }
 
-        // Save function
+            // Save function
         function saveTable() {
             updateDisplayedMetrics();
             alert('Changes saved successfully! Note: In a real implementation, this would save to a database.');
@@ -1045,17 +1048,27 @@
             a.click();
             window.URL.revokeObjectURL(url);
         }
+    </script>
 
-        // Initialize the application when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set up event listeners
-            document.getElementById('levelFilter').addEventListener('change', filterData);
-            document.getElementById('statusFilter').addEventListener('change', filterData);
-            document.getElementById('searchFilter').addEventListener('input', filterData);
-            
-            // Auto-load sample data when page loads
-            loadSampleData();
-        });
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set up event listeners
+        document.getElementById('levelFilter').addEventListener('change', filterData);
+        document.getElementById('statusFilter').addEventListener('change', filterData);
+        document.getElementById('searchFilter').addEventListener('input', filterData);
+
+        // Load data and update metrics
+        loadSampleData();
+        updateMetrics();
+    });
+
+    function updateMetrics() {
+        const totalPublications = studentsData.reduce((sum, student) => sum + (student.publications || 0), 0);
+        const averagePublications = totalPublications / studentsData.length;
+
+        document.getElementById('total-publications').innerText = totalPublications;
+        document.getElementById('avg-publications').innerText = averagePublications.toFixed(2);
+    }
     </script>
 </body>
 </html>
