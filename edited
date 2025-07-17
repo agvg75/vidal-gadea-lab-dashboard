@@ -1101,7 +1101,9 @@ document.getElementById('highschool-avg-pubs').textContent = levelCounts['High S
     document.getElementById('statusFilter').addEventListener('change', filterData);
     document.getElementById('searchFilter').addEventListener('input', filterData);
 
-    loadSampleData();  // Metrics will now update *after* data loads
+    window.onload = () => {
+    loadSampleData();
+}; // Metrics will now update *after* data loads
 });
 
     function updateMetrics() {
