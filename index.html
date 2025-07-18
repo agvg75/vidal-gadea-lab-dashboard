@@ -806,17 +806,17 @@
                 
                 // Count posters
                - // Count posters
-- const posters = parseInt(student.posters) || 0;
-- metrics.posters.total += posters;
-- metrics.posters.byLevel[level].total++;
-- metrics.posters.byLevel[level].sum += posters;
-+ // Count all abstracts (posters + talks)
-+ const posters = parseInt(student.posters) || 0;
-+ const talks   = parseInt(student.talks)   || 0;
-+ const abstracts = posters + talks;
-+ metrics.posters.total += abstracts;
-+ metrics.posters.byLevel[level].total++;
-+ metrics.posters.byLevel[level].sum   += abstracts;
+const posters = parseInt(student.posters) || 0;
+metrics.posters.total += posters;
+metrics.posters.byLevel[level].total++;
+metrics.posters.byLevel[level].sum += posters;
+// Count all abstracts (posters + talks)
+const posters = parseInt(student.posters) || 0;
+const talks   = parseInt(student.talks)   || 0;
+const abstracts = posters + talks;
+metrics.posters.total += abstracts;
+metrics.posters.byLevel[level].total++;
+metrics.posters.byLevel[level].sum   += abstracts;
                 
                 // Count tracked students (those with known current positions or STEM status)
                 if (student.currentPosition || student.stem) {
@@ -976,107 +976,117 @@ document.getElementById('highschool-avg-pubs').textContent = levelCounts['High S
             document.getElementById('comparison-presentations').textContent = presPerStudent;
         }
 
-        // Filter data based on controls
-        function filterData() {
-            const levelFilter = document.getElementById('levelFilter').value;
-            const statusFilter = document.getElementById('statusFilter').value;
-            const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
+ // ── Filter data based on controls ──
+  function filterData() {
+    const levelFilter  = document.getElementById('levelFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
 
-            filteredData = studentsData.filter(student => {
-                const matchesLevel = !levelFilter || student.level === levelFilter;
-                
-                let matchesStatus = true;
-                if (statusFilter) {
-                    if (statusFilter === 'Current') {
-                        matchesStatus = student.status && (student.status.toLowerCase().includes('current') || 
-                            student.status.toLowerCase().includes('continuing'));
-                    } else if (statusFilter === 'Alumni') {
-                        matchesStatus = student.status && !(student.status.toLowerCase().includes('current') || 
-                            student.status.toLowerCase().includes('continuing'));
-                    }
-                }
-                
-                const matchesSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
+    filteredData = studentsData.filter(student => {
+      const matchesLevel = !levelFilter || student.level === levelFilter;
 
-                return matchesLevel && matchesStatus && matchesSearch;
-            });
+      let matchesStatus = true;
+      if (statusFilter) {
+        const st = student.status?.toLowerCase() || '';
+        if (statusFilter === 'Current') {
+          matchesStatus = st.includes('current') || st.includes('continuing');
+        } else { // Alumni
+          matchesStatus = !(st.includes('current') || st.includes('continuing'));
+        }
+      }
 
-            renderTable();
+      const matchesSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
+      return matchesLevel && matchesStatus && matchesSearch;
+    });
+
+    renderTable();
+  }
+
+  // ── Render the table ──
+  function renderTable() {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    if (filteredData.length === 0) {
+      tbody.innerHTML = 
+        '<tr><td colspan="3" class="loading-message">No students match the current filters</td></tr>';
+      return;
+    }
+
+    filteredData.forEach((student, idx) => {
+      const row = document.createElement('tr');
+      row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
+      row.dataset.index = idx;
+
+      const st = student.status?.toLowerCase() || '';
+      const displayStatus = (st.includes('current') || st.includes('continuing'))
+        ? 'Current'
+        : 'Alumni';
+
+      row.innerHTML = `
+        <td contenteditable="true" data-field="name">${student.name}</td>
+        <td contenteditable="true" data-field="level">${student.level}</td>
+        <td contenteditable="true" data-field="status" class="status-${displayStatus.toLowerCase()}">
+          ${displayStatus}
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    // Re-attach blur listeners after each render
+    document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
+      cell.addEventListener('blur', function() {
+        const row       = this.parentElement;
+        const idx       = +row.dataset.index;
+        const field     = this.dataset.field;
+        const newValue  = this.innerText.trim();
+        const student   = filteredData[idx];
+
+        if (!student) return;
+
+        // Normalize status values
+        if (field === 'status') {
+          if (newValue === 'Current')        student.status = 'Current';
+          else if (newValue === 'Alumni')    student.status = 'Alumni';
+          else                                 student.status = newValue;
+        } else {
+          student[field] = newValue;
         }
 
-        // Render the table
-        function renderTable() {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
-
-            if (filteredData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="3" class="loading-message">No students match the current filters</td></tr>';
-                return;
-            }
-
-            filteredData.forEach((student, index) => {
-                const row = document.createElement('tr');
-                row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
-                row.setAttribute('data-index', index);
-
-                let displayStatus = 'Alumni';
-                if (student.status && (student.status.toLowerCase().includes('current') || 
-                    student.status.toLowerCase().includes('continuing'))) {
-                    displayStatus = 'Current';
-                }
-
-                row.innerHTML = `
-                    <td contenteditable="true" data-field="name">${student.name}</td>
-                    <td contenteditable="true" data-field="level">${student.level}</td>
-                    <td contenteditable="true" data-field="status" class="status-${displayStatus.toLowerCase()}">${displayStatus}</td>
-                `;
-
-                tbody.appendChild(row);
-            });
-
-            // Add event listeners for editable cells
-            document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
-                cell.addEventListener('blur', function() {
-                    const row = this.parentElement;
-                    const rowIndex = parseInt(row.getAttribute('data-index'));
-                    const field = this.getAttribute('data-field');
-                    const value = this.innerText.trim();
-
-                    if (filteredData[rowIndex]) {
-                        if (field === 'status') {
-                            if (value === 'Current') {
-                                filteredData[rowIndex][field] = 'Current';
-                            } else if (value === 'Alumni') {
-                                filteredData[rowIndex][field] = filteredData[rowIndex][field] || 'Graduated';
-                            } else {
-                                filteredData[rowIndex][field] = value;
-                            }
-                        } else {
-                            filteredData[rowIndex][field] = value;
-                        }
-                        
-                        const originalIndex = studentsData.findIndex(s => 
-                            s.name === filteredData[rowIndex].name && 
-                            s.level === filteredData[rowIndex].level
-                        );
-                        
-                        if (originalIndex !== -1) {
-                            studentsData[originalIndex][field] = filteredData[rowIndex][field];
-                        }
-                        
-                        updateDisplayedMetrics();
-                    }
-                });
-            });
+        // Mirror change back into the master array
+        const origIdx = studentsData.findIndex(s =>
+          s.name  === student.name &&
+          s.level === student.level
+        );
+        if (origIdx > -1) {
+          studentsData[origIdx][field] = student[field];
         }
 
-        // Load sample data
-        function loadSampleData() {
-            studentsData = initSampleData();
-            filteredData = [...studentsData];
-            renderTable();
-            updateDisplayedMetrics();
-        }
+        updateDisplayedMetrics();
+      });
+    });
+  }
+
+  // ── Load (or reload) your data ──
+  function loadSampleData() {
+    studentsData = initSampleData();
+    filteredData = [...studentsData];
+    renderTable();
+    updateDisplayedMetrics();
+  }
+
+  // ── When the page is ready, wire up filters & bootstrap ──
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('levelFilter')
+            .addEventListener('change', filterData);
+    document.getElementById('statusFilter')
+            .addEventListener('change', filterData);
+    document.getElementById('searchFilter')
+            .addEventListener('input',  filterData);
+
+    // Initial load
+    loadSampleData();
+  });
 
         // Add new row
         function addRow() {
@@ -1130,21 +1140,106 @@ document.getElementById('highschool-avg-pubs').textContent = levelCounts['High S
             a.click();
             window.URL.revokeObjectURL(url);
         }
-    </script>
+ // ── Filter data based on controls ──
+  function filterData() {
+    const levelFilter  = document.getElementById('levelFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
 
-    <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('levelFilter').addEventListener('change', filterData);
-    document.getElementById('statusFilter').addEventListener('change', filterData);
-    document.getElementById('searchFilter').addEventListener('input', filterData);
+    filteredData = studentsData.filter(student => {
+      const matchesLevel = !levelFilter || student.level === levelFilter;
+      let matchesStatus = true;
+      if (statusFilter) {
+        const st = student.status?.toLowerCase() || '';
+        matchesStatus = statusFilter === 'Current'
+          ? (st.includes('current') || st.includes('continuing'))
+          : !(st.includes('current') || st.includes('continuing'));
+      }
+      const matchesSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
+      return matchesLevel && matchesStatus && matchesSearch;
+    });
 
-    window.onload = () => {
+    renderTable();
+  }
+
+  // ── Render the table ──
+  function renderTable() {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    if (filteredData.length === 0) {
+      tbody.innerHTML =
+        '<tr><td colspan="3" class="loading-message">No students match the current filters</td></tr>';
+      return;
+    }
+    filteredData.forEach((student, idx) => {
+      const row = document.createElement('tr');
+      row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
+      row.dataset.index = idx;
+
+      const st = student.status?.toLowerCase() || '';
+      const displayStatus = (st.includes('current') || st.includes('continuing'))
+        ? 'Current'
+        : 'Alumni';
+
+      row.innerHTML = `
+        <td contenteditable="true" data-field="name">${student.name}</td>
+        <td contenteditable="true" data-field="level">${student.level}</td>
+        <td contenteditable="true" data-field="status" class="status-${displayStatus.toLowerCase()}">
+          ${displayStatus}
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    // Re-attach edit listeners
+    document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
+      cell.addEventListener('blur', function() {
+        const row     = this.parentElement;
+        const idx     = +row.dataset.index;
+        const field   = this.dataset.field;
+        const value   = this.innerText.trim();
+        const student = filteredData[idx];
+        if (!student) return;
+
+        if (field === 'status') {
+          student.status = (value === 'Current' || value === 'Alumni') ? value : value;
+        } else {
+          student[field] = value;
+        }
+
+        const origIdx = studentsData.findIndex(s =>
+          s.name === student.name && s.level === student.level
+        );
+        if (origIdx > -1) {
+          studentsData[origIdx][field] = student[field];
+        }
+
+        updateDisplayedMetrics();
+      });
+    });
+  }
+
+  // ── Load (or reload) your data ──
+  function loadSampleData() {
+    studentsData  = initSampleData();
+    filteredData  = [...studentsData];
+    renderTable();
+    updateDisplayedMetrics();
+  }
+
+  // ── When the page is ready, wire up filters & bootstrap ──
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('levelFilter')
+            .addEventListener('change', filterData);
+    document.getElementById('statusFilter')
+            .addEventListener('change', filterData);
+    document.getElementById('searchFilter')
+            .addEventListener('input',  filterData);
+
+    // Initial load
     loadSampleData();
-updateDisplayedMetrics();
-}; // Metrics will now update *after* data loads
-});
-
-    function updateMetrics() {
+  });
+        function updateMetrics() {
         const totalPublications = studentsData.reduce((sum, student) => sum + (student.publications || 0), 0);
         const averagePublications = totalPublications / studentsData.length;
 
