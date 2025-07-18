@@ -896,21 +896,21 @@ const avgPublications = studentsData.length > 0 ? (totalPublications / studentsD
 document.getElementById('total-publications').textContent = totalPublications;
 document.getElementById('avg-publications').textContent = avgPublications;
             document.getElementById('total-authorships').textContent = totalPublications;
-+  // ── Update Conference Abstracts (posters + talks) ──
-+  document.getElementById('total-posters').textContent = metrics.posters.total;
-+  ['PostDoc','Graduate','Undergraduate','High School'].forEach(level => {
-+    const lvl = metrics.posters.byLevel[level];
-+    const avg = lvl.total > 0
-+      ? (lvl.sum / lvl.total).toFixed(1) + ' avg'
-+      : '0.0 avg';
-+    const idMap = {
-+      'PostDoc'      : 'postdoc-avg-posters',
-+      'Graduate'     : 'grad-avg-posters',
-+      'Undergraduate': 'undergrad-avg-posters',
-+      'High School'  : 'highschool-avg-posters'
-+    };
-+    document.getElementById(idMap[level]).textContent = avg;
-+  });
+// ── Update Conference Abstracts (posters + talks) ──
+document.getElementById('total-posters').textContent = metrics.posters.total;
+ ['PostDoc','Graduate','Undergraduate','High School'].forEach(level => {
+    const lvl = metrics.posters.byLevel[level];
+    const avg = lvl.total > 0
+      ? (lvl.sum / lvl.total).toFixed(1) + ' avg'
+      : '0.0 avg';
+    const idMap = {
+      'PostDoc'      : 'postdoc-avg-posters',
+      'Graduate'     : 'grad-avg-posters',
+      'Undergraduate': 'undergrad-avg-posters',
+      'High School'  : 'highschool-avg-posters'
+    };
+    document.getElementById(idMap[level]).textContent = avg;
+  });
 const levels = ['PostDoc', 'Graduate', 'Undergraduate', 'High School'];
 const levelCounts = {
     'PostDoc': 0,
