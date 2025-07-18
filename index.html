@@ -829,7 +829,8 @@
 
         function updateDisplayedMetrics() {
             const metrics = calculateMetrics();
-            
+            console.log('🛠 studentsData:', studentsData);
+console.log('🛠 metrics:', metrics);
             // Update main statistics
             document.getElementById('total-students').textContent = metrics.total;
             document.getElementById('current-students').textContent = metrics.current.total;
