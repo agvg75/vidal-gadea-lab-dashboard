@@ -805,10 +805,18 @@
                 metrics.publications.byLevel[level].sum += pubs;
                 
                 // Count posters
-                const posters = parseInt(student.posters) || 0;
-                metrics.posters.total += posters;
-                metrics.posters.byLevel[level].total++;
-                metrics.posters.byLevel[level].sum += posters;
+               - // Count posters
+- const posters = parseInt(student.posters) || 0;
+- metrics.posters.total += posters;
+- metrics.posters.byLevel[level].total++;
+- metrics.posters.byLevel[level].sum += posters;
++ // Count all abstracts (posters + talks)
++ const posters = parseInt(student.posters) || 0;
++ const talks   = parseInt(student.talks)   || 0;
++ const abstracts = posters + talks;
++ metrics.posters.total += abstracts;
++ metrics.posters.byLevel[level].total++;
++ metrics.posters.byLevel[level].sum   += abstracts;
                 
                 // Count tracked students (those with known current positions or STEM status)
                 if (student.currentPosition || student.stem) {
@@ -831,7 +839,21 @@
             document.getElementById('grad-count').textContent = metrics.byLevel['Graduate'];
             document.getElementById('undergrad-count').textContent = metrics.byLevel['Undergraduate'];
             document.getElementById('highschool-count').textContent = metrics.byLevel['High School'];
-            
+            // ── Insert Conference Abstracts update here ──
+document.getElementById('total-posters').textContent = metrics.posters.total;
+['PostDoc','Graduate','Undergraduate','High School'].forEach(level => {
+  const lvl = metrics.posters.byLevel[level];
+  const avg = lvl.total > 0
+    ? (lvl.sum / lvl.total).toFixed(1) + ' avg'
+    : '0.0 avg';
+  const idMap = {
+    'PostDoc'      : 'postdoc-avg-posters',
+    'Graduate'     : 'grad-avg-posters',
+    'Undergraduate': 'undergrad-avg-posters',
+    'High School'  : 'highschool-avg-posters'
+  };
+  document.getElementById(idMap[level]).textContent = avg;
+});
             // Update current student counts
             document.getElementById('current-grad').textContent = metrics.current['Graduate'];
             document.getElementById('current-undergrad').textContent = metrics.current['Undergraduate'];
@@ -873,7 +895,21 @@ const avgPublications = studentsData.length > 0 ? (totalPublications / studentsD
 document.getElementById('total-publications').textContent = totalPublications;
 document.getElementById('avg-publications').textContent = avgPublications;
             document.getElementById('total-authorships').textContent = totalPublications;
-
++  // ── Update Conference Abstracts (posters + talks) ──
++  document.getElementById('total-posters').textContent = metrics.posters.total;
++  ['PostDoc','Graduate','Undergraduate','High School'].forEach(level => {
++    const lvl = metrics.posters.byLevel[level];
++    const avg = lvl.total > 0
++      ? (lvl.sum / lvl.total).toFixed(1) + ' avg'
++      : '0.0 avg';
++    const idMap = {
++      'PostDoc'      : 'postdoc-avg-posters',
++      'Graduate'     : 'grad-avg-posters',
++      'Undergraduate': 'undergrad-avg-posters',
++      'High School'  : 'highschool-avg-posters'
++    };
++    document.getElementById(idMap[level]).textContent = avg;
++  });
 const levels = ['PostDoc', 'Graduate', 'Undergraduate', 'High School'];
 const levelCounts = {
     'PostDoc': 0,
