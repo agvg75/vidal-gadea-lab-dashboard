@@ -1523,15 +1523,31 @@
 
         // Calculate metrics including combined abstracts (posters + talks)
         function calculateMetrics() {
-            const metrics = {
-                total: studentsData.length,
-                byLevel: { 'PostDoc': 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0 },
-                current: { total: 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0, 'PostDoc': 0 },
-                stem: { total: 0, byLevel: {} },
-                publications: { total: 0, byLevel: {} },
-                abstracts: { total: 0, byLevel: {} },
-                tracked: 0
-            };
+           const metrics = {
+    total: studentsData.length,
+    byLevel: { 'PostDoc': 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0 },
+    current: { total: 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0, 'PostDoc': 0 },
+    stem: { total: 0, byLevel: {} },
+    publications: { 
+        total: 0, 
+        byLevel: {
+            'PostDoc': { total: 0, sum: 0 },
+            'Graduate': { total: 0, sum: 0 },
+            'Undergraduate': { total: 0, sum: 0 },
+            'High School': { total: 0, sum: 0 }
+        } 
+    },
+    abstracts: { 
+        total: 0, 
+        byLevel: {
+            'PostDoc': { total: 0, sum: 0 },
+            'Graduate': { total: 0, sum: 0 },
+            'Undergraduate': { total: 0, sum: 0 },
+            'High School': { total: 0, sum: 0 }
+        } 
+    },
+    tracked: 0
+};
 
             // Initialize counters
             Object.keys(metrics.byLevel).forEach(level => {
@@ -1570,19 +1586,25 @@
                     }
                 }
                 
-                // Count publications
-                const pubs = parseInt(student.publications) || 0;
-                metrics.publications.total += pubs;
-                metrics.publications.byLevel[level].total++;
-                metrics.publications.byLevel[level].sum += pubs;
-                
-                // Count abstracts (posters + talks combined)
-                const posters = parseInt(student.posters) || 0;
-                const talks = parseInt(student.talks) || 0;
-                const abstracts = posters + talks;
-                metrics.abstracts.total += abstracts;
-                metrics.abstracts.byLevel[level].total++;
-                metrics.abstracts.byLevel[level].sum += abstracts;
+           // Count publications
+const pubs = parseInt(student.publications) || 0;
+metrics.publications.total += pubs;
+
+if (metrics.publications.byLevel[level]) {
+    metrics.publications.byLevel[level].total++;
+    metrics.publications.byLevel[level].sum += pubs;
+}
+
+// Count abstracts (posters + talks combined)
+const posters = parseInt(student.posters) || 0;
+const talks = parseInt(student.talks) || 0;
+const abstracts = posters + talks;
+metrics.abstracts.total += abstracts;
+
+if (metrics.abstracts.byLevel[level]) {
+    metrics.abstracts.byLevel[level].total++;
+    metrics.abstracts.byLevel[level].sum += abstracts;
+}
                 
                 // Count tracked students (those with known current positions or STEM status)
                 if (student.currentPosition || student.stem) {
@@ -1667,15 +1689,21 @@
                 document.getElementById(idMap[level]).textContent = avg;
             });
 
-         // Hard-coded correct abstract count (205)
-            const actualAbstractsTotal = 205;
-            
-            // Update abstract averages by level
-            levels.forEach(level => {
-                const data = metrics.abstracts.byLevel[level];
-                const avg = data.total > 0 ? (data.sum / data.total).toFixed(1) + ' avg' : '0.0 avg';
-                // We're not updating IDs here since we removed them from HTML
-            });
+        // Update conference abstracts total
+document.getElementById('total-abstracts').textContent = metrics.abstracts.total;
+
+// Update abstract averages by level
+levels.forEach(level => {
+    const data = metrics.abstracts.byLevel[level];
+    const avg = data.total > 0 ? (data.sum / data.total).toFixed(1) + ' avg' : '0.0 avg';
+    const abstractIdMap = {
+        'PostDoc': 'postdoc-avg-abstracts',
+        'Graduate': 'grad-avg-abstracts',
+        'Undergraduate': 'undergrad-avg-abstracts',
+        'High School': 'highschool-avg-abstracts'
+    };
+    document.getElementById(abstractIdMap[level]).textContent = avg;
+});
             
             // Update comparison table
             updateComparisonTable(metrics, stemRates);
@@ -1705,9 +1733,10 @@
             const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
             document.getElementById('comparison-tracking').textContent = `${trackingRate}%`;
             
-            // Use actual abstract count for comparison
-            const actualAbstractsPerStudent = metrics.total > 0 ? (205 / metrics.total).toFixed(1) : '0.0';
-            document.getElementById('comparison-abstracts').textContent = actualAbstractsPerStudent;
+            // Calculate average abstracts per student
+const actualAbstractsPerStudent = metrics.total > 0 ? 
+    (metrics.abstracts.total / metrics.total).toFixed(1) : '0.0';
+document.getElementById('comparison-abstracts').textContent = actualAbstractsPerStudent;
         }
 
         // Filter data based on controls
