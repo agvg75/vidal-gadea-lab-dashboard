@@ -5,23 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vidal-Gadea Lab Student Mentoring Dashboard</title>
    <style>
-  /* 1) Define ISU brand colors */
   :root {
-    --isu-red:    #CC0000;  /* Brand Red */
-    --isu-black:  #000000;  /* Brand Black */
-    --isu-white:  #FFFFFF;  /* Brand White */
-    --isu-yellow: #F6A917;  /* Accessible Yellow */
-    --isu-blue:   #56758f;  /* Secondary Blue */
+    --isu-red:    #CC0000;
+    --isu-black:  #000000;
+    --isu-white:  #FFFFFF;
+    --isu-yellow: #F6A917;
+    --isu-blue:   #56758f;
   }
 
-  /* 2) Reset */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  /* 3) Page background & text */
   body {
     font-family: Arial, sans-serif;
     font-size: 11pt;
@@ -31,7 +28,6 @@
     padding: 20px;
   }
 
-  /* 4) Dashboard container */
   .dashboard {
     max-width: 1400px;
     margin: 0 auto;
@@ -41,7 +37,6 @@
     overflow: hidden;
   }
 
-  /* 5) Header styling */
   .header {
     background: var(--isu-red);
     color: var(--isu-white);
@@ -58,7 +53,6 @@
     opacity: 0.9;
   }
 
-  /* 6) Stats grid */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -104,7 +98,6 @@
     padding: 2px 0;
   }
 
-  /* 7) Charts */
   .charts-section {
     padding: 30px;
     background: var(--isu-white);
@@ -127,7 +120,6 @@
     color: var(--isu-black);
   }
 
-  /* 8) Placeholder circles */
   .chart-placeholder {
     width: 200px;
     height: 200px;
@@ -142,178 +134,178 @@
     font-size: 14px;
   }
 
-        .chart-postdoc { background: #28a745; }
-        .chart-graduate { background: linear-gradient(45deg, #28a745 70%, #dc3545 15%, #ffc107 15%); }
-        .chart-undergraduate { background: linear-gradient(45deg, #28a745 77%, #dc3545 10%, #ffc107 13%); }
-        .chart-highschool { background: linear-gradient(45deg, #28a745 82%, #dc3545 5%, #6c757d 13%); }
+  .chart-postdoc { background: #28a745; }
+  .chart-graduate { background: linear-gradient(45deg, #28a745 70%, #dc3545 15%, #ffc107 15%); }
+  .chart-undergraduate { background: linear-gradient(45deg, #28a745 77%, #dc3545 10%, #ffc107 13%); }
+  .chart-highschool { background: linear-gradient(45deg, #28a745 82%, #dc3545 5%, #6c757d 13%); }
 
-        .comparison-section {
-            background: white;
-            padding: 20px 30px;
-            margin: 20px 0;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
+  .comparison-section {
+    background: white;
+    padding: 20px 30px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  }
 
-        .comparison-section h3 {
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.3em;
-        }
+  .comparison-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3em;
+  }
 
-        .comparison-table-container {
-            overflow-x: auto;
-            margin-bottom: 15px;
-        }
+  .comparison-table-container {
+    overflow-x: auto;
+    margin-bottom: 15px;
+  }
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 10pt;
-            background: white;
-        }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    background: white;
+  }
 
-        .comparison-table th,
-        .comparison-table td {
-            padding: 12px 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 12px 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
 
-        .comparison-table th {
-            background:#CC0000; 
-            color: white;
-            font-weight: bold;
-            font-size: 11pt;
-        }
+  .comparison-table th {
+    background:#CC0000; 
+    color: white;
+    font-weight: bold;
+    font-size: 11pt;
+  }
 
-        .our-lab {
-            background: #e8f5e8;
-            font-weight: bold;
-            color: #2c5530;
-        }
+  .our-lab {
+    background: #e8f5e8;
+    font-weight: bold;
+    color: #2c5530;
+  }
 
-        .comparison-table a {
-            color: #CC0000; 
-            text-decoration: none;
-            font-weight: bold;
-        }
+  .comparison-table a {
+    color: #CC0000; 
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-        .comparison-table a:hover {
-            text-decoration: underline;
-        }
+  .comparison-table a:hover {
+    text-decoration: underline;
+  }
 
-        .comparison-note {
-            text-align: center;
-            font-style: italic;
-            color: #666;
-            margin-top: 10px;
-        }
+  .comparison-note {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+  }
 
-        .controls {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-        }
+  .controls {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+  }
 
-        .filter-group {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
+  .filter-group {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
 
-        .filter-group label {
-            display: inline-block;
-            margin-right: 8px;
-            font-weight: bold;
-            color: #333;
-        }
+  .filter-group label {
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: bold;
+    color: #333;
+  }
 
-        .filter-group select, .filter-group input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 11pt;
-            font-family: Arial, sans-serif;
-        }
+  .filter-group select, .filter-group input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-family: Arial, sans-serif;
+  }
 
-        .btn-group {
-            margin-top: 15px;
-        }
+  .btn-group {
+    margin-top: 15px;
+  }
 
-        .btn-group button {
-            background:#CC0000; 
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-right: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 11pt;
-            font-family: Arial, sans-serif;
-            transition: background 0.3s ease;
-        }
+  .btn-group button {
+    background:#CC0000; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 11pt;
+    font-family: Arial, sans-serif;
+    transition: background 0.3s ease;
+  }
 
-        .btn-group button:hover {
-            background: #CC0000; 
-        }
+  .btn-group button:hover {
+    background: #aa0000; 
+  }
 
-        .table-container {
-            padding: 20px 30px 30px 30px;
-            overflow-x: auto;
-        }
+  .table-container {
+    padding: 20px 30px 30px 30px;
+    overflow-x: auto;
+  }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  }
 
-        th {
-            background:#CC0000; 
-            color: white;
-            padding: 15px 12px;
-            text-align: left;
-            font-weight: bold;
-            font-size: 11pt;
-        }
+  th {
+    background:#CC0000; 
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 11pt;
+  }
 
-        th:nth-child(1) { width: 50%; }
-        th:nth-child(2) { width: 25%; }
-        th:nth-child(3) { width: 25%; }
+  th:nth-child(1) { width: 50%; }
+  th:nth-child(2) { width: 25%; }
+  th:nth-child(3) { width: 25%; }
 
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e9ecef;
-            font-size: 11pt;
-        }
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 11pt;
+  }
 
-        td[contenteditable="true"] {
-            cursor: text;
-        }
+  td[contenteditable="true"] {
+    cursor: text;
+  }
 
-        td[contenteditable="true"]:hover {
-            background: #f8f9fa;
-        }
+  td[contenteditable="true"]:hover {
+    background: #f8f9fa;
+  }
 
-        .level-postdoc { background-color: #fff3cd; }
-        .level-graduate { background-color: #d4edda; }
-        .level-undergraduate { background-color: #d1ecf1; }
-        .level-highschool { background-color: #f8d7da; }
+  .level-postdoc { background-color: #fff3cd; }
+  .level-graduate { background-color: #d4edda; }
+  .level-undergraduate { background-color: #d1ecf1; }
+  .level-highschool { background-color: #f8d7da; }
 
-        .status-current { color: #28a745; font-weight: bold; }
-        .status-alumni { color: #007bff; }
+  .status-current { color: #28a745; font-weight: bold; }
+  .status-alumni { color: #007bff; }
 
-        .loading-message {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-style: italic;
-        }
+  .loading-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+  }
     </style>
 </head>
 <body>
@@ -323,73 +315,73 @@
             <p>Comprehensive tracking of student outcomes and achievements (2015-2025)</p>
         </div>
         <div id="metrics" style="font-size: 16px; margin: 10px 0; padding-left: 15px;">
-            <strong>Total Student Authorships:</strong> <span id="total-publications">66</span><br>
-            <strong>Avg Publications per Student:</strong> <span id="avg-publications">0.34</span>
+            <strong>Total Student Authorships:</strong> <span>84</span><br>
+            <strong>Avg Publications per Student:</strong> <span>0.43</span>
         </div>
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number" id="total-students">192</div>
+                <div class="stat-number">195</div>
                 <div class="stat-label">Total Students Mentored</div>
-                <div class="breakdown" id="total-breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-count">2</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-count">22</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-count">97</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="highschool-count">71</span></div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>PostDocs:</span><span>2</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span>24</span></div>
+                    <div class="breakdown-item"><span>Undergraduates:</span><span>100</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>69</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="current-students">16</div>
+                <div class="stat-number">19</div>
                 <div class="stat-label">Current Students</div>
-                <div class="breakdown" id="current-breakdown">
-                    <div class="breakdown-item"><span>Graduate:</span><span id="current-grad">2</span></div>
-                    <div class="breakdown-item"><span>Undergraduate:</span><span id="current-undergrad">10</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="current-highschool">4</span></div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>Graduate:</span><span>2</span></div>
+                    <div class="breakdown-item"><span>Undergraduate:</span><span>13</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>4</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="stem-rate">91%</div>
+                <div class="stat-number">91%</div>
                 <div class="stat-label">STEM Career Success Rate</div>
-                <div class="breakdown" id="stem-breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-stem">100%</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-stem">92%</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-stem">90%</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="highschool-stem">96%</span></div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>PostDocs:</span><span>100%</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span>92%</span></div>
+                    <div class="breakdown-item"><span>Undergraduates:</span><span>90%</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>96%</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="total-pubs">20</div>
+                <div class="stat-number">29</div>
                 <div class="stat-label">Peer-Reviewed Publications</div>
-                <div class="breakdown" id="pub-breakdown">
-                    <div class="breakdown-item"><span>Peer-reviewed:</span><span id="total-articles">20</span></div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>Peer-reviewed:</span><span>29</span></div>
                     <div class="breakdown-item"><span>Preprints:</span><span>6</span></div>
-                    <div class="breakdown-item"><span>In prep/review:</span><span>4</span></div>
+                    <div class="breakdown-item"><span>In prep/review:</span><span>6</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="total-authorships">66</div>
-                <div class="stat-label">Total Authorships</div>
-                <div class="breakdown" id="authorship-breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-avg-pubs">1.5 avg</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-avg-pubs">1.3 avg</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-avg-pubs">0.3 avg</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="highschool-avg-pubs">0.1 avg</span></div>
+                <div class="stat-number">84</div>
+                <div class="stat-label">Total Student Authorships</div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>PostDocs:</span><span>2.0 avg</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span>2.8 avg</span></div>
+                    <div class="breakdown-item"><span>Undergraduates:</span><span>0.2 avg</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>0.1 avg</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">205</div>
+                <div class="stat-number">228</div>
                 <div class="stat-label">Conference Abstracts</div>
-                <div class="breakdown" id="abstract-breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span id="postdoc-avg-abstracts">5.5 avg</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span id="grad-avg-abstracts">7.3 avg</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span id="undergrad-avg-abstracts">1.3 avg</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span id="highschool-avg-abstracts">0.2 avg</span></div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>PostDocs:</span><span>5.5 avg</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span>7.3 avg</span></div>
+                    <div class="breakdown-item"><span>Undergraduates:</span><span>1.3 avg</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>0.3 avg</span></div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="tracking-rate">74%</div>
+                <div class="stat-number">74%</div>
                 <div class="stat-label">Students Tracked Post-Lab</div>
-                <div class="breakdown" id="tracking-breakdown">
-                    <div class="breakdown-item"><span>Known outcomes:</span><span id="tracked-count">142/192</span></div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>Known outcomes:</span><span>144/195</span></div>
                     <div class="breakdown-item"><span>vs National avg:</span><span>45-60%</span></div>
                 </div>
             </div>
@@ -412,7 +404,7 @@
                     <tbody>
                         <tr>
                             <td>Students Mentored (10 years)</td>
-                            <td class="our-lab" id="comparison-total">192</td>
+                            <td class="our-lab">195</td>
                             <td>45-65</td>
                             <td>25-40</td>
                             <td>35-50</td>
@@ -420,7 +412,7 @@
                         </tr>
                         <tr>
                             <td>Publications per Graduate Student</td>
-                            <td class="our-lab" id="comparison-grad-pubs">1.3</td>
+                            <td class="our-lab">2.8</td>
                             <td>1.1-1.8</td>
                             <td>0.8-1.4</td>
                             <td>1.0-1.5</td>
@@ -428,7 +420,7 @@
                         </tr>
                         <tr>
                             <td>STEM Career Success Rate</td>
-                            <td class="our-lab" id="comparison-stem">91%</td>
+                            <td class="our-lab">91%</td>
                             <td>65-75%</td>
                             <td>60-70%</td>
                             <td>62-72%</td>
@@ -436,7 +428,7 @@
                         </tr>
                         <tr>
                             <td>Undergraduate Research Participation</td>
-                            <td class="our-lab" id="comparison-undergrads">97</td>
+                            <td class="our-lab">100</td>
                             <td>15-25</td>
                             <td>10-20</td>
                             <td>12-22</td>
@@ -444,7 +436,7 @@
                         </tr>
                         <tr>
                             <td>High School Students Mentored</td>
-                            <td class="our-lab" id="comparison-highschool">71</td>
+                            <td class="our-lab">69</td>
                             <td>5-15</td>
                             <td>3-10</td>
                             <td>4-12</td>
@@ -452,7 +444,7 @@
                         </tr>
                         <tr>
                             <td>Student Tracking Rate</td>
-                            <td class="our-lab" id="comparison-tracking">74%</td>
+                            <td class="our-lab">74%</td>
                             <td>45-60%</td>
                             <td>40-55%</td>
                             <td>42-58%</td>
@@ -460,7 +452,7 @@
                         </tr>
                         <tr>
                             <td>Conference Abstracts per Student</td>
-                            <td class="our-lab" id="comparison-abstracts">1.8</td>
+                            <td class="our-lab">1.2</td>
                             <td>1.2-1.6</td>
                             <td>0.8-1.3</td>
                             <td>1.0-1.4</td>
@@ -487,21 +479,21 @@
                     <div class="chart-placeholder chart-graduate">
                         92% STEM<br>Success Rate
                     </div>
-                    <p><small>22 Graduates: 18 STEM, 1 Non-STEM, 3 Continuing</small></p>
+                    <p><small>24 Graduates: 20 STEM, 1 Non-STEM, 3 Continuing</small></p>
                 </div>
                 <div class="chart-container">
                     <h3>Undergraduate Outcomes</h3>
                     <div class="chart-placeholder chart-undergraduate">
                         90% STEM<br>Success Rate
                     </div>
-                    <p><small>97 Undergraduates: 77 STEM, 10 Non-STEM, 10 Continuing</small></p>
+                    <p><small>100 Undergraduates: 80 STEM, 10 Non-STEM, 10 Continuing</small></p>
                 </div>
                 <div class="chart-container">
                     <h3>High School Student Outcomes</h3>
                     <div class="chart-placeholder chart-highschool">
                         96% STEM<br>Success Rate
                     </div>
-                    <p><small>71 High School: 58 STEM, 3 Non-STEM, 10 Unknown</small></p>
+                    <p><small>69 High School: 58 STEM, 3 Non-STEM, 8 Unknown</small></p>
                 </div>
             </div>
         </div>
@@ -547,396 +539,213 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    <!-- Student data rows will be populated by JavaScript -->
+                    <tr><td colspan="3" class="loading-message">Loading student data...</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        // Global variables
-        let studentsData = [];
+        const studentsData = [
+            {"name":"Carola Städele","level":"PostDoc","status":"Former","stem":"Yes"},
+            {"name":"Jessica Adams","level":"PostDoc","status":"Former","stem":"Yes"},
+            {"name":"Mackenzie Jones","level":"Graduate","status":"Current","stem":"Continuing"},
+            {"name":"Damiano Marchiafava","level":"Graduate","status":"Current","stem":"Continuing"},
+            {"name":"Aalimah Akinosho","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Adina Fazyl","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Shifat Niha","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Tope Awe","level":"Graduate","status":"Paused","stem":"Yes"},
+            {"name":"Chance Bainbridge","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kiley Hughes","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Anjelica Rodriguez","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Casey Gahrs","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Abigail Benson","level":"Graduate","status":"Graduated","stem":"No"},
+            {"name":"Monica Tamrazi","level":"Graduate","status":"Former","stem":"Yes"},
+            {"name":"Rajit Roy","level":"Graduate","status":"Graduated","stem":"Yes"},
+            {"name":"Daniel Nuccio","level":"Graduate","status":"Former","stem":"Yes"},
+            {"name":"Mary McKeays","level":"Graduate","status":"Former","stem":"Yes"},
+            {"name":"Eliana Fernandez","level":"Graduate","status":"Former","stem":"Yes"},
+            {"name":"Gaston Rissi","level":"Graduate","status":"Former","stem":"Yes"},
+            {"name":"Brittani Rivera","level":"Graduate","status":"Transferred","stem":"Yes"},
+            {"name":"Parham Jazireian","level":"Graduate","status":"Transferred","stem":"Yes"},
+            {"name":"Margarita Gomez","level":"Graduate","status":"Transferred","stem":"Yes"},
+            {"name":"Ploy Freebairn","level":"Graduate","status":"Transferred","stem":"Yes"},
+            {"name":"Dana Niswonger","level":"Graduate","status":"Transferred","stem":"Yes"},
+            {"name":"Erin Cheeseman","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Florence Ofurum","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Grace Ruscheinski","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Nevyn Laframboise","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Kamden Malinowski","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Rene Wilderman","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Keke Velez","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Harrison Weidenmiller","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Austeja Wingate","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Hope Fransen","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Avinaash Muthukuman","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Paige Batchelor","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Patrick Jackson","level":"Undergraduate","status":"Current","stem":"Continuing"},
+            {"name":"Mary Gardner","level":"Undergraduate","status":"Former","stem":"Yes"},
+            {"name":"Anabelle Dunaway","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Tyler Stark","level":"Undergraduate","status":"Former","stem":"Yes"},
+            {"name":"Celia Beron","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Erinda Aidoo","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Austin Alhlert","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Victoria Andriulis","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Blake Bracht","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Srishti Goel","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Janelle Jackson","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Jocelyn McDonald","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Andrew Schuler","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Samantha Vemuri","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Lucas Barickman","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Moe Khalil","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Zach Benefield","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Emily Berry","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Carlee Chihak","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kori Cucciarone","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Victoria Edelman","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Allison Fritz","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Yasmine Giliana","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Evan Gustafson","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kayla Haines","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Bryce Hendren","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Jake Kaindl","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Alex Kew","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Bill Milanick","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Shawn Mohammed","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Dana Niswonger","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Jacinta Nunez","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Pari Patel","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Vidhi Rakholia","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Trevor Rickert","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Brian Rodemoyer","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Andrew Rodriguez","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Lauren Rustio","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Erin Sawilchik","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Brianne Sutter","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kaitlyn Termine","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kevin Tragesser","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Ranija Turner","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Hannah Watson","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Madison Westbrook","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Jennifer Miller","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Emily Harris","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Emily Killian","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Teagan Zack","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Gina Quiriconi","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Brooke Willis","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Boyowa Mene-Okotie","level":"Undergraduate","status":"Former","stem":"No"},
+            {"name":"Alysia Thorn","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Lindsay Brettmann","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Lindsay Becker","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Lea Kressin","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kristi Ward","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Grace Hwang","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Erin Elbel","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Elvira Marquez","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Thomas Maple","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Adhishri Parikh","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Roberto Guajardo","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Adora Akahome","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kristen Bartlett","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Natalie Burrell","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Michael Cisneros","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Adam Conley","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Belle De Dianous","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Peter DeVries","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Emily Easmus","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Adriana Garcia","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Sarah Hannah","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Joshua Hernandez","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Annemarie Hyer","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Ian Kenny","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Umme Ahsan","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Braidy Megeff","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Matt Mert","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Yigit Mert","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Kehinde Owoyemi","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Taiyelolu Owoyemi","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Samantha Padia","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Jonathan Schuller","level":"Undergraduate","status":"Graduated","stem":"No"},
+            {"name":"Ashka Shah","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Kaitlyn Donovan","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Dayton Oblinger","level":"Undergraduate","status":"Graduated","stem":"Unknown"},
+            {"name":"Sabrina Kollbaum","level":"Undergraduate","status":"Graduated","stem":"Yes"},
+            {"name":"Anushi Kiribamune","level":"High School","status":"Current","stem":"Continuing"},
+            {"name":"Sumitra Paramatmuni","level":"High School","status":"Current","stem":"Continuing"},
+            {"name":"Noelle Woith","level":"High School","status":"Current","stem":"Continuing"},
+            {"name":"Vidushi Shukla","level":"High School","status":"Current","stem":"Continuing"},
+            {"name":"Nick Leonard","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Akash Komandur","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Laura Kelly","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Alex Kullman","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Neha Gutta","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Calis Lim","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Hannah Ahmed","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Peyton Carlock","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Lavanya Sathyamurthy","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Jack Sauser","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Peter Waller","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Ananya Kommalapati","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Rahul Darbhakul","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Lucy Ryan","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Matthew Trisnadi","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Shannon Lu","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Virginia Wang","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Nicholas Truong","level":"High School","status":"Graduated","stem":"No"},
+            {"name":"Denzel Namadurai","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Mira Malavia","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Katie Elbert","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Britany Ziemer","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Sruthi Singaraju","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Claudia Gallardo","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Alyson Ficca","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Nikhil Salmayan","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Rohan Agarwal","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Eesha Alaparthi","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Alexander Albert","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Akash Anbu","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Blake Thomson","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Rachel Bolden","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Lydia Brown","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"James Bundy","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Casey Clubb","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Samaya Danthurthy","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Maanasa Devebhaktuni","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Jacqueline Espinoza","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Joshua Gantert","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Harshith Gorla","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Julian Hawley","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Avery Hedican","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Julianna Heptinstall","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Jaleh Johnson","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"David Kim","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Nikitha Lakshiminarayanan","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Ayesha Mahmood","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Devnanda Manjunadth","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Amanda Mala","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Manaswini Mannam","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Zach Mohammed","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"P Nivita","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Saispurthi Palavalli","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Yami Panchal","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Irene Park","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"JuWon Park","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Akshaya Raghavan","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Aila Rahman","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Nikith Rao","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Alanya Schippert","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Neal Shah","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Neehar Shah","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"B Showri","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Evan Tsubaki","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Rosie Socrates","level":"High School","status":"Graduated","stem":"Yes"},
+            {"name":"Summer Will","level":"High School","status":"Graduated","stem":"Unknown"},
+            {"name":"Shahan Yalavarthi","level":"High School","status":"Graduated","stem":"Unknown"}
+        ];
+
         let filteredData = [];
 
-        // Function to get student data - ALL 192 students
-        function initSampleData() {
-            return [
-                {"name":"Carola Städele","level":"PostDoc","degree":"PhD","status":"Former","currentPosition":"Group Leader University of Göttingen Germany","stem":"Yes","posters":7,"talks":2,"publications":2,"research":"Several awards. Now group leader in Germany"},
-                {"name":"Jessica Adams","level":"PostDoc","degree":"PhD","status":"Former","currentPosition":"Lab Manager University of Tennessee, Knoxville","stem":"Yes","posters":4,"talks":0,"publications":1,"research":"Postdoc alumna"},
-                {"name":"Mackenzie Jones","level":"Graduate","degree":"MS","status":"Current","currentPosition":"MS Candidate","stem":"Continuing","posters":3,"talks":1,"publications":1,"research":"Neuronal pathology of Duchenne muscular dystrophy"},
-                {"name":"Damiano Marchiafava","level":"Graduate","degree":"PhD","status":"Current","currentPosition":"PhD Candidate","stem":"Continuing","posters":12,"talks":2,"publications":2,"research":"Human DMD muscle cells calcium dynamics. Multiple 2023-2024 presentations including ASCB meeting"},
-                {"name":"Aalimah Akinosho","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Lab Technician Loyola University Chicago Medical Center","stem":"Yes","posters":4,"talks":4,"publications":3,"research":"Magnetocaloric vs magnetomechanic studies transgenerational inheritance. 3 publications 4+ poster presentations, SACNAS president"},
-                {"name":"Adina Fazyl","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Research Scientist Kazakhstan","stem":"Yes","posters":20,"talks":3,"publications":3,"research":"DMD isoform expression muscle plasticity. 3 publications. Image of Research Awardee"},
-                {"name":"Shifat Niha","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Lab Instructor Alabama State University","stem":"Yes","posters":6,"talks":4,"publications":1,"research":"DMD neuronal function dystrophin expression. "},
-                {"name":"Tope Awe","level":"Graduate","degree":"PhD","status":"Paused","currentPosition":"PhD Candidate","stem":"Yes","posters":10,"talks":3,"publications":2,"research":"AMsh glia sensory modulation, magnetic coding projects. Multiple 2021-2024 presentations"},
-                {"name":"Chance Bainbridge","level":"Graduate","degree":"PhD","status":"Graduated","currentPosition":"Postdoctoral Fellow at University of Rochester Medical Center","stem":"Yes","posters":17,"talks":2,"publications":5,"research":"Magnetic orientation C. elegans behavior. 2018 Weigel Grant 2018 R. Omar Rilett Trust 2018 IBANGS Young Investigator Travel Grant multiple awards"},
-                {"name":"Kiley Hughes","level":"Graduate","degree":"PhD","status":"Graduated","currentPosition":"Postdoctoral Fellow at Scripps Research Institute","stem":"Yes","posters":15,"talks":7,"publications":4,"research":"DMD pathophysiology neuromuscular disorders. Multiple 2018-2022 presentations. 2018 Weigel Grant 2018 R. Omar Riley Trust 2018 IBANGS Travel Grant"},
-                {"name":"Anjelica Rodriguez","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Lab Manager at University of Wisconsin-Madison","stem":"Yes","posters":9,"talks":1,"publications":1,"research":"Several awards lab management role"},
-                {"name":"Casey Gahrs","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Research Associate II at A2 Biotherapeutics Inc. LA CA","stem":"Yes","posters":15,"talks":3,"publications":1,"research":"Biotech industry. Multiple 2016-2019 presentations including marbled crayfish work. 2018 Rilett; 2018 Weigel; IBANGS Young Investigator Travel Award; multiple additional awards"},
-                {"name":"Abigail Benson","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Law student at Lewis & Clark Law School Portland OR","stem":"No","posters":9,"talks":2,"publications":1,"research":"2018 Weigel grant 2018 Outstanding M.S. Teaching Assistant Award 2018 IBANGS Young Investigator Travel grant 2018 R. Omar Rilett Trust"},
-                {"name":"Monica Tamrazi","level":"Graduate","degree":"MS","status":"Former","currentPosition":"Assistant Director Huntington Learning Center","stem":"Yes","posters":5,"talks":2,"publications":0,"research":"Health sector"},
-                {"name":"Rajit Roy","level":"Graduate","degree":"MS","status":"Graduated","currentPosition":"Research Assistant at University of Mass. Boston MA","stem":"Yes","posters":1,"talks":1,"publications":1,"research":"Gap junction genes crayfish research"},
-                {"name":"Daniel Nuccio","level":"Graduate","degree":"MS","status":"Former","currentPosition":"Biology PhD student NorthWestern University","stem":"Yes","posters":2,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Mary McKeays","level":"Graduate","degree":"PhD","status":"Former","currentPosition":"PhD student (different lab)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Continued in different lab"},
-                {"name":"Eliana Fernandez","level":"Graduate","degree":"MS","status":"Visiting student: Argentina","currentPosition":"Academia: Argentina","stem":"Yes","posters":2,"talks":1,"publications":2,"research":"International visiting student"},
-                {"name":"Gaston Rissi","level":"Graduate","degree":"MS","status":"Visiting Student: Uruguay","currentPosition":"Biotech Industry (Italy)","stem":"Yes","posters":2,"talks":1,"publications":0,"research":"International visiting student"},
-                {"name":"Brittani Rivera","level":"Graduate","degree":"MS","status":"Transferred","currentPosition":"Biology Instructor Heartland Community College","stem":"Yes","posters":1,"talks":1,"publications":0,"research":"Biology Teacher"},
-                {"name":"Parham Jazireian","level":"Graduate","degree":"PhD","status":"Transferred","currentPosition":"Joined different lab","stem":"Yes","posters":3,"talks":2,"publications":0,"research":"n/a"},
-                {"name":"Margarita Gomez","level":"Graduate","degree":"MS","status":"Transferred","currentPosition":"Joined different lab","stem":"Yes","posters":1,"talks":1,"publications":0,"research":"n/a"},
-                {"name":"Ploy Freebairn","level":"Graduate","degree":"MS","status":"Transferred","currentPosition":"Industry: Rivian","stem":"Yes","posters":2,"talks":2,"publications":1,"research":"Magnetic transduction"},
-                {"name":"Dana Niswonger","level":"Graduate","degree":"MS","status":"Transferred","currentPosition":"Completed","stem":"Yes","posters":1,"talks":1,"publications":1,"research":"Duchenne muscular dystrophy"},
-                {"name":"Erin Cheeseman","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":1,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Florence Ofurum","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Grace Ruscheinski","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":1,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Nevyn Laframboise","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Kamden Malinowski","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Rene Wilderman","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":1,"talks":0,"publications":0,"research":"Current lab member"},
- 		{"name":"Keke Velez","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-		{"name":"Harrison Weidenmiller","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-		{"name":"Austeja Wingate","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Hope Fransen","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":1,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Avinaash Muthukuman","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Paige Batchelor","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":1,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Patrick Jackson","level":"Undergraduate","degree":"BS","status":"Current","currentPosition":"Undergraduate Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Mary Gardner","level":"Undergraduate","degree":"BS","status":"Former","currentPosition":"Undergraduate Researcher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Anabelle Dunaway","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Undergraduate Researcher","stem":"","posters":1,"talks":0,"publications":0,"research":"Recent graduate. Won ISU FIREbird Award"},
-                {"name":"Tyler Stark","level":"Undergraduate","degree":"BS","status":"Former","currentPosition":"Undergraduate Researcher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"n/a"},
-                {"name":"Celia Beron","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Postdoc at Harvard University (Sabatini lab)","stem":"Yes","posters":4,"talks":2,"publications":2,"research":"Completed PhD in Neuroscience at Harvard now Harvard postdoc. Burrowing behavior magnetotaxis research"},
-                {"name":"Erinda Aidoo","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Researcher at Yale School of Medicine","stem":"Yes","posters":8,"talks":1,"publications":0,"research":"Steroid targets in DMD honors thesis Yale medical internship. Won poster awards and FIREbird award. Multiple 2022-2024 presentations including NexSTEM Alliance"},
-                {"name":"Austin Alhlert","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Zookeeper Bloomington Zoo","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Animal care profession"},
-                {"name":"Victoria Andriulis","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Senior Clinical Research Associate IQVIA","stem":"Yes","posters":0,"talks":1,"publications":1,"research":"Clinical research career pharmaceutical industry"},
-                {"name":"Blake Bracht","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Pilot Plant Engineer Clever Carnivore","stem":"Yes","posters":5,"talks":0,"publications":0,"research":"Biotechnology/food tech engineering"},
-                {"name":"Srishti Goel","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical Student SIU School of Medicine","stem":"Yes","posters":4,"talks":0,"publications":0,"research":"Medical school at Southern Illinois University"},
-                {"name":"Janelle Jackson","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical Technologist Rosalind Franklin University of Medicine and Science","stem":"Yes","posters":2,"talks":0,"publications":1,"research":"MS degree Medical Technology"},
-                {"name":"Jocelyn McDonald","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"MS. student at ISU","stem":"Yes","posters":6,"talks":0,"publications":0,"research":"MS program at Illinois State"},
-                {"name":"Andrew Schuler","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School (UIC—Peoria)","stem":"Yes","posters":5,"talks":0,"publications":3,"research":"MD program at University of Illinois College of Medicine"},
-                {"name":"Samantha Vemuri","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Student at Delaware Valley University - Physician Assistant Studies","stem":"Yes","posters":2,"talks":0,"publications":1,"research":"MS at LSU Shreveport now PA program"},
-                {"name":"Lucas Barickman","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School (Switzerland)","stem":"Yes","posters":20,"talks":0,"publications":1,"research":"International medical education. Multiple 2015-2018 presentations including magnetotaxis research"},
-                {"name":"Moe Khalil","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"MD/PhD Graduate Medical College of Wisconsin","stem":"Yes","posters":5,"talks":1,"publications":0,"research":"Completed MD/PhD program. Angelman syndrome model honors thesis"},
-                {"name":"Zach Benefield","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School","stem":"Yes","posters":5,"talks":0,"publications":1,"research":"Completed Honors thesis co-authored one publication (under review). Medical career path"},
-                {"name":"Emily Berry","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Science Teacher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Science education career"},
-                {"name":"Carlee Chihak","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Chemist Camlin Fine Sciences","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Chemistry industry"},
-                {"name":"Kori Cucciarone","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical Lab Technologist","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Medical laboratory profession"},
-                {"name":"Victoria Edelman","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Science Teacher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Science education"},
-                {"name":"Allison Fritz","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Science Teacher","stem":"Yes","posters":3,"talks":0,"publications":0,"research":"Science education"},
-                {"name":"Yasmine Giliana","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical Sales Representative","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Medical sales industry"},
-                {"name":"Evan Gustafson","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Master of Public Health program","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Public health career"},
-                {"name":"Kayla Haines","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Science Teacher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Science education"},
-                {"name":"Bryce Hendren","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Nurse (RN)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Healthcare nursing"},
-                {"name":"Jake Kaindl","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Lab Tech Central Clinical Labs Inc.","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Clinical laboratory work"},
-                {"name":"Alex Kew","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Science Teacher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Science education"},
-                {"name":"Bill Milanick","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Ph.D. program Ohio Wesleyan University","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Graduate school"},
-                {"name":"Shawn Mohammed","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Research Technician Washington University","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Research career"},
-                {"name":"Dana Niswonger","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"M.S. degree completed","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Graduate degree completed"},
-                {"name":"Jacinta Nunez","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"COVID field technician (public health)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Public health work"},
-                {"name":"Pari Patel","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Pharmaceutical industry","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Pharmaceutical industry"},
-                {"name":"Vidhi Rakholia","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Nurse Technician","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Healthcare nursing"},
-                {"name":"Trevor Rickert","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Biology PhD at ISU","stem":"Yes","posters":2,"talks":0,"publications":0,"research":"Graduate studies"},
-                {"name":"Brian Rodemoyer","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Ph.D. program Univ. of South Florida","stem":"Yes","posters":1,"talks":0,"publications":1,"research":"Graduate school"},
-                {"name":"Andrew Rodriguez","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Medical career"},
-                {"name":"Lauren Rustio","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"STEM industry job","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"STEM industry"},
-                {"name":"Erin Sawilchik","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical Assistant North Georgia Endocrinology","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Medical field"},
-                {"name":"Brianne Sutter","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Employed in STEM field","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"STEM employment"},
-                {"name":"Kaitlyn Termine","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Medical education"},
-                {"name":"Kevin Tragesser","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School","stem":"Yes","posters":2,"talks":0,"publications":0,"research":"Medical career"},
-                {"name":"Ranija Turner","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Science Teacher","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Science education"},
-                {"name":"Hannah Watson","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Dental School","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Dental education"},
-                {"name":"Madison Westbrook","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Nurse","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Healthcare nursing"},
-                {"name":"Jennifer Miller","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Transferred to Biology program at Univ. of Michigan","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Wisc. Univ. Bio"},
-                {"name":"Emily Harris","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Career in Chemistry","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Chemistry field"},
-                {"name":"Emily Killian","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Public Health program St. Louis University","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Public health"},
-                {"name":"Teagan Zack","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"no information available","stem":"Yes","posters":0,"talks":3,"publications":0,"research":"Recent graduate"},
-                {"name":"Gina Quiriconi","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Business Administration degree (non-STEM)","stem":"No","posters":0,"talks":0,"publications":0,"research":"Business career path"},
-                {"name":"Brooke Willis","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Sales (outside STEM)","stem":"No","posters":2,"talks":0,"publications":0,"research":"Non-STEM sales career"},
-                {"name":"Boyowa Mene-Okotie","level":"Undergraduate","degree":"BS","status":"Former","currentPosition":"n/a","stem":"No","posters":0,"talks":0,"publications":0,"research":"N/A"},
-                {"name":"Alysia Thorn","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"M.A. at ASU (Criminal Justice) (non-STEM)","stem":"No","posters":0,"talks":0,"publications":0,"research":"Criminal justice field"},
-                {"name":"Lindsay Brettmann","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"UT Southwestern Medical School (M.D. program)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"UT Austin alumna now medical school"},
-                {"name":"Lindsay Becker","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Stanford University Biology PhD","stem":"Yes","posters":1,"talks":2,"publications":0,"research":"UT Austin alumna now Stanford PhD"},
-                {"name":"Lea Kressin","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Boston University (Ph.D. program)","stem":"Yes","posters":1,"talks":2,"publications":0,"research":"UT Austin alumna now Boston U PhD"},
-                {"name":"Kristi Ward","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Texas Tech Univ. Health Sciences (M.D. program)","stem":"Yes","posters":1,"talks":2,"publications":1,"research":"UT Austin alumna now medical school"},
-                {"name":"Grace Hwang","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"University of Houston (Pharmacy School)","stem":"Yes","posters":1,"talks":1,"publications":1,"research":"UT Austin alumna now pharmacy school"},
-                {"name":"Erin Elbel","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Columbia University (Medical School)","stem":"Yes","posters":1,"talks":2,"publications":0,"research":"UT Austin alumna now Columbia medical school"},
-                {"name":"Elvira Marquez","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"High School Chemistry Teacher","stem":"Yes","posters":0,"talks":1,"publications":0,"research":"UT Austin alumna science education"},
-                {"name":"Thomas Maple","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"UT Southwestern Medical School (M.D. program)","stem":"Yes","posters":1,"talks":1,"publications":0,"research":"UT Austin alumna now medical school"},
-                {"name":"Adhishri Parikh","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"UT Austin Business School (MBA)","stem":"No","posters":1,"talks":1,"publications":2,"research":"UT Austin alumna business career"},
-                {"name":"Roberto Guajardo","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Education","stem":"Yes","posters":1,"talks":1,"publications":0,"research":"UT Austin alumna status unknown"},
-                {"name":"Adora Akahome","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Nursing School","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Nurse"},
-                {"name":"Kristen Bartlett","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical Assistant Midwest Express Clinic","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Healthcare profession"},
-                {"name":"Natalie Burrell","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"M.S. degree program","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Graduate studies"},
-                {"name":"Michael Cisneros","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":3,"talks":0,"publications":1,"research":"Former lab member with publication"},
-                {"name":"Adam Conley","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Nurse","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Healthcare nursing career"},
-                {"name":"Belle De Dianous","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School (prospective)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Pre-medical track"},
-                {"name":"Peter DeVries","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Quality Assurance Manager at The Vegan Copacker","stem":"No","posters":3,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Emily Easmus","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":2,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Adriana Garcia","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Research Assistant at Illinois State University","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Sarah Hannah","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Joshua Hernandez","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":1,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Annemarie Hyer","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Masters Genetic Counselling Indiana University ","stem":"Yes","posters":0,"talks":2,"publications":0,"research":"DMD steroid research"},
-                {"name":"Ian Kenny","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Umme Ahsan","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School (prospective)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Pre-medical track"},
-                {"name":"Braidy Megeff","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Honors thesis"},
-                {"name":"Matt Mert","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Sales Support Engineer at Ferrum","stem":"No","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Yigit Mert","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Kehinde Owoyemi","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"M.S. degree completed","stem":"Yes","posters":2,"talks":0,"publications":0,"research":"Graduate degree completed"},
-                {"name":"Taiyelolu Owoyemi","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Graduate School","stem":"Yes","posters":2,"talks":0,"publications":0,"research":"Graduate studies"},
-                {"name":"Samantha Padia","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":4,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Jonathan Schuller","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Electrical Foreman at Meany Inc.","stem":"No","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Ashka Shah","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"PhD candidate at University of Chicago","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"Former lab member"},
-                {"name":"Kaitlyn Donovan","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Student at Illinois State University-Mennonite College of Nursing","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Former lab member"},
-                {"name":"Dayton Oblinger","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"","stem":"","posters":0,"talks":0,"publications":0,"research":"Magnetic isolation techniques"},
-                {"name":"Sabrina Kollbaum","level":"Undergraduate","degree":"BS","status":"Graduated","currentPosition":"Medical School","stem":"Yes","posters":1,"talks":0,"publications":1,"research":"Completed honors thesis co-authored one publication (under review)"},
-                {"name":"Anushi Kiribamune","level":"High School","degree":"","status":"Current","currentPosition":"High School Researcher","stem":"Continuing","posters":0,"talks":1,"publications":1,"research":"Current lab member"},
-                {"name":"Sumitra Paramatmuni","level":"High School","degree":"","status":"Current","currentPosition":"High School Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Noelle Woith","level":"High School","degree":"","status":"Current","currentPosition":"High School Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Vidushi Shukla","level":"High School","degree":"","status":"Current","currentPosition":"High School Researcher","stem":"Continuing","posters":0,"talks":0,"publications":0,"research":"Current lab member"},
-                {"name":"Nick Leonard","level":"High School","degree":"","status":"Graduated","currentPosition":"High School Graduate","stem":"Yes","posters":0,"talks":0,"publications":1,"research":"First-author peer-reviewed publication on C. elegans tracking system - rare achievement for high school student"},
-                {"name":"Akash Komandur","level":"High School","degree":"","status":"Graduated","currentPosition":"","stem":"","posters":0,"talks":0,"publications":1,"research":"First-author peer-reviewed publication on mechanoreceptor pezo-1 - rare achievement for high school student"},
-                {"name":"Laura Kelly","level":"High School","degree":"","status":"Graduated","currentPosition":"Florida PhD program","stem":"Yes","posters":3,"talks":0,"publications":1,"research":"UBC undergraduate then Florida PhD program"},
-                {"name":"Alex Kullman","level":"High School","degree":"","status":"Graduated","currentPosition":"","stem":"","posters":2,"talks":0,"publications":1,"research":"Summer researcher with publication"},
-                {"name":"Neha Gutta","level":"High School","degree":"","status":"Graduated","currentPosition":"University of Missouri-Kansas City School of Medicine","stem":"Yes","posters":1,"talks":0,"publications":1,"research":"Summer researcher year-round member"},
-                {"name":"Calis Lim","level":"High School","degree":"","status":"Graduated","currentPosition":"Organic Chemistry Peer Led Team Learning Leader at The Student Success Center","stem":"Yes","posters":1,"talks":0,"publications":1,"research":"Summer researcher year-round member"},
-                {"name":"Hannah Ahmed","level":"High School","degree":"","status":"Graduated","currentPosition":"M.S. Health Systems Management Student at Rush University","stem":"Yes","posters":0,"talks":1,"publications":0,"research":"Former high school researcher"},
-                {"name":"Peyton Carlock","level":"High School","degree":"","status":"Graduated","currentPosition":"High School graduate","stem":"Yes","posters":1,"talks":1,"publications":0,"research":"Year-round lab member"},
-                {"name":"Lavanya Sathyamurthy","level":"High School","degree":"","status":"Graduated","currentPosition":"Unknown","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Year-round lab member"},
-                {"name":"Jack Sauser","level":"High School","degree":"","status":"Graduated","currentPosition":"Machine Learning Engineering @ GoHealth","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Former high school researcher"},
-                {"name":"Peter Waller","level":"High School","degree":"","status":"Graduated","currentPosition":"B.S. student at Purdue University","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Now undergraduate at major university"},
-                {"name":"Ananya Kommalapati","level":"High School","degree":"","status":"Graduated","currentPosition":"M.S. student at UIUC","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Now graduate student at University of Illinois"},
-                {"name":"Rahul Darbhakul","level":"High School","degree":"","status":"Graduated","currentPosition":"High School graduate","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"High school graduate"},
-                {"name":"Lucy Ryan","level":"High School","degree":"","status":"Graduated","currentPosition":"Bryn Mawr College (undergraduate)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"UT Austin high school program alumna"},
-                {"name":"Matthew Trisnadi","level":"High School","degree":"","status":"Graduated","currentPosition":"Case Western Reserve Univ. (Ph.D. program)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"UT Austin high school program alumna"},
-                {"name":"Shannon Lu","level":"High School","degree":"","status":"Graduated","currentPosition":"UC San Francisco (B.S. program)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"UT Austin high school program alumna"},
-                {"name":"Virginia Wang","level":"High School","degree":"","status":"Graduated","currentPosition":"Stanford University (B.S. program)","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"UT Austin high school program alumna"},
-                {"name":"Nicholas Truong","level":"High School","degree":"","status":"Graduated","currentPosition":"UT Austin (Business program)","stem":"No","posters":0,"talks":0,"publications":1,"research":"UT Austin high school program alumna business career"},
-                {"name":"Denzel Namadurai","level":"High School","degree":"","status":"Graduated","currentPosition":"MD Candidate at University of Texas Medical Branch","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"High school intern"},
-                {"name":"Mira Malavia","level":"High School","degree":"","status":"Graduated","currentPosition":"UMKC School of Medicine","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Medical school"},
-                {"name":"Katie Elbert","level":"High School","degree":"","status":"Graduated","currentPosition":"Medical Student at the University of Illinois College of Medicine-Rockford","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Medical school"},
-                {"name":"Britany Ziemer","level":"High School","degree":"","status":"Graduated","currentPosition":"Student at Southern Illinois University School of Medicine","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Medical school"},
-                {"name":"Sruthi Singaraju","level":"High School","degree":"","status":"Graduated","currentPosition":"Research Technologist II at Ann and Robert H. Lurie Children's Hospital of Chicago","stem":"Yes","posters":1,"talks":0,"publications":0,"research":"Research career"},
-                {"name":"Claudia Gallardo","level":"High School","degree":"","status":"Graduated","currentPosition":"Nursing Student! OSF HealthCare","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Nursing career"},
-                {"name":"Alyson Ficca","level":"High School","degree":"","status":"Graduated","currentPosition":"Biology BS UIUC","stem":"Yes","posters":1,"talks":1,"publications":1,"research":"Biology degree"},
-                {"name":"Nikhil Salmayan","level":"High School","degree":"","status":"Graduated","currentPosition":"B.S in Neuroscience Candidate at Saint Louis University","stem":"Yes","posters":0,"talks":0,"publications":0,"research":"Year-round lab member"}
-            ];
-        }
-
-        // Calculate metrics including combined abstracts (posters + talks)
-        function calculateMetrics() {
-           const metrics = {
-    total: studentsData.length,
-    byLevel: { 'PostDoc': 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0 },
-    current: { total: 0, 'Graduate': 0, 'Undergraduate': 0, 'High School': 0, 'PostDoc': 0 },
-    stem: { total: 0, byLevel: {} },
-    publications: { 
-        total: 0, 
-        byLevel: {
-            'PostDoc': { total: 0, sum: 0 },
-            'Graduate': { total: 0, sum: 0 },
-            'Undergraduate': { total: 0, sum: 0 },
-            'High School': { total: 0, sum: 0 }
-        } 
-    },
-    abstracts: { 
-        total: 0, 
-        byLevel: {
-            'PostDoc': { total: 0, sum: 0 },
-            'Graduate': { total: 0, sum: 0 },
-            'Undergraduate': { total: 0, sum: 0 },
-            'High School': { total: 0, sum: 0 }
-        } 
-    },
-    tracked: 0
-};
-
-            // Initialize counters
-            Object.keys(metrics.byLevel).forEach(level => {
-                metrics.stem.byLevel[level] = { total: 0, stem: 0 };
-                metrics.publications.byLevel[level] = { total: 0, sum: 0 };
-                metrics.abstracts.byLevel[level] = { total: 0, sum: 0 };
-            });
-
-            // Calculate metrics from actual data
-            studentsData.forEach(student => {
-                const level = student.level;
-                
-                // Count by level
-                if (metrics.byLevel[level] !== undefined) {
-                    metrics.byLevel[level]++;
-                }
-                
-                // Count current students
-                if (student.status && (student.status.toLowerCase().includes('current') || 
-                    student.status.toLowerCase().includes('continuing'))) {
-                    metrics.current.total++;
-                    if (metrics.current[level] !== undefined) {
-                        metrics.current[level]++;
-                    }
-                }
-                
-                // Count STEM careers (only for graduated/former students with known outcomes)
-                if (student.status && student.stem && 
-                    (student.status.toLowerCase().includes('graduated') || student.status.toLowerCase().includes('former')) &&
-                    student.stem.toLowerCase() !== 'continuing') {
-                    
-                    metrics.stem.byLevel[level].total++;
-                    if (student.stem.toLowerCase() === 'yes') {
-                        metrics.stem.byLevel[level].stem++;
-                        metrics.stem.total++;
-                    }
-                }
-                
-           // Count publications
-const pubs = parseInt(student.publications) || 0;
-metrics.publications.total += pubs;
-
-if (metrics.publications.byLevel[level]) {
-    metrics.publications.byLevel[level].total++;
-    metrics.publications.byLevel[level].sum += pubs;
-}
-
-// Count abstracts (posters + talks combined)
-const posters = parseInt(student.posters) || 0;
-const talks = parseInt(student.talks) || 0;
-const abstracts = posters + talks;
-metrics.abstracts.total += abstracts;
-
-if (metrics.abstracts.byLevel[level]) {
-    metrics.abstracts.byLevel[level].total++;
-    metrics.abstracts.byLevel[level].sum += abstracts;
-}
-                
-                // Count tracked students (those with known current positions or STEM status)
-                if (student.currentPosition || student.stem) {
-                    metrics.tracked++;
-                }
-            });
-
-            return metrics;
-        }
-
-        function updateDisplayedMetrics() {
-            const metrics = calculateMetrics();
-            
-            // Update main statistics
-            document.getElementById('total-students').textContent = metrics.total;
-            document.getElementById('current-students').textContent = metrics.current.total;
-            
-            // Update breakdown counts
-            document.getElementById('postdoc-count').textContent = metrics.byLevel['PostDoc'];
-            document.getElementById('grad-count').textContent = metrics.byLevel['Graduate'];
-            document.getElementById('undergrad-count').textContent = metrics.byLevel['Undergraduate'];
-            document.getElementById('highschool-count').textContent = metrics.byLevel['High School'];
-            
-            // Update current student counts
-            document.getElementById('current-grad').textContent = metrics.current['Graduate'];
-            document.getElementById('current-undergrad').textContent = metrics.current['Undergraduate'];
-            document.getElementById('current-highschool').textContent = metrics.current['High School'];
-            
-            // Calculate and update STEM success rates
-            const stemRates = {};
-            let overallStemTotal = 0;
-            let overallStemSuccess = 0;
-            
-            Object.keys(metrics.stem.byLevel).forEach(level => {
-                const data = metrics.stem.byLevel[level];
-                if (data.total > 0) {
-                    stemRates[level] = Math.round((data.stem / data.total) * 100);
-                    overallStemTotal += data.total;
-                    overallStemSuccess += data.stem;
-                } else {
-                    stemRates[level] = 0;
-                }
-            });
-            
-            const overallStemRate = overallStemTotal > 0 ? Math.round((overallStemSuccess / overallStemTotal) * 100) : 0;
-            
-            document.getElementById('stem-rate').textContent = `${overallStemRate}%`;
-            document.getElementById('postdoc-stem').textContent = `${stemRates['PostDoc']}%`;
-            document.getElementById('grad-stem').textContent = `${stemRates['Graduate']}%`;
-            document.getElementById('undergrad-stem').textContent = `${stemRates['Undergraduate']}%`;
-            document.getElementById('highschool-stem').textContent = `${stemRates['High School']}%`;
-            
-            // Update tracking rate
-            const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
-            document.getElementById('tracking-rate').textContent = `${trackingRate}%`;
-            document.getElementById('tracked-count').textContent = `${metrics.tracked}/${metrics.total}`;
-            
-            // Update publications vs authorships
-            const totalAuthorships = studentsData.reduce((sum, s) => sum + (s.publications || 0), 0);
-            const avgPublications = studentsData.length > 0 ? (totalAuthorships / studentsData.length).toFixed(2) : '0.00';
-
-            // Authorships (sum of all student publication counts)
-            document.getElementById('total-publications').textContent = totalAuthorships;
-            document.getElementById('avg-publications').textContent = avgPublications;
-            document.getElementById('total-authorships').textContent = totalAuthorships;
-            
-            // Unique publications (manually maintained)
-            document.getElementById('total-pubs').textContent = 20;
-            document.getElementById('total-articles').textContent = 20;
-
-            // Update publication averages by level
-            const levels = ['PostDoc', 'Graduate', 'Undergraduate', 'High School'];
-            levels.forEach(level => {
-                const data = metrics.publications.byLevel[level];
-                const avg = data.total > 0 ? (data.sum / data.total).toFixed(1) + ' avg' : '0.0 avg';
-                const idMap = {
-                    'PostDoc': 'postdoc-avg-pubs',
-                    'Graduate': 'grad-avg-pubs',
-                    'Undergraduate': 'undergrad-avg-pubs',
-                    'High School': 'highschool-avg-pubs'
-                };
-                document.getElementById(idMap[level]).textContent = avg;
-            });
-
-        // Update conference abstracts total
-document.getElementById('total-abstracts').textContent = metrics.abstracts.total;
-
-// Update abstract averages by level
-levels.forEach(level => {
-    const data = metrics.abstracts.byLevel[level];
-    const avg = data.total > 0 ? (data.sum / data.total).toFixed(1) + ' avg' : '0.0 avg';
-    const abstractIdMap = {
-        'PostDoc': 'postdoc-avg-abstracts',
-        'Graduate': 'grad-avg-abstracts',
-        'Undergraduate': 'undergrad-avg-abstracts',
-        'High School': 'highschool-avg-abstracts'
-    };
-    document.getElementById(abstractIdMap[level]).textContent = avg;
-});
-            
-            // Update comparison table
-            updateComparisonTable(metrics, stemRates);
-        }
-
-        function updateComparisonTable(metrics, stemRates) {
-            document.getElementById('comparison-total').textContent = metrics.total;
-            
-            // Calculate graduate publication average
-            const gradData = metrics.publications.byLevel['Graduate'];
-            const gradPubAvg = gradData.total > 0 ? (gradData.sum / gradData.total).toFixed(1) : '0.0';
-            document.getElementById('comparison-grad-pubs').textContent = gradPubAvg;
-            
-            let overallStemTotal = 0;
-            let overallStemSuccess = 0;
-            Object.keys(metrics.stem.byLevel).forEach(level => {
-                const data = metrics.stem.byLevel[level];
-                overallStemTotal += data.total;
-                overallStemSuccess += data.stem;
-            });
-            const overallStemRate = overallStemTotal > 0 ? Math.round((overallStemSuccess / overallStemTotal) * 100) : 0;
-            document.getElementById('comparison-stem').textContent = `${overallStemRate}%`;
-            
-            document.getElementById('comparison-undergrads').textContent = metrics.byLevel['Undergraduate'];
-            document.getElementById('comparison-highschool').textContent = metrics.byLevel['High School'];
-            
-            const trackingRate = metrics.total > 0 ? Math.round((metrics.tracked / metrics.total) * 100) : 0;
-            document.getElementById('comparison-tracking').textContent = `${trackingRate}%`;
-            
-            // Calculate average abstracts per student
-const actualAbstractsPerStudent = metrics.total > 0 ? 
-    (metrics.abstracts.total / metrics.total).toFixed(1) : '0.0';
-document.getElementById('comparison-abstracts').textContent = actualAbstractsPerStudent;
-        }
-
-        // Filter data based on controls
         function filterData() {
             const levelFilter = document.getElementById('levelFilter').value;
             const statusFilter = document.getElementById('statusFilter').value;
@@ -957,14 +766,12 @@ document.getElementById('comparison-abstracts').textContent = actualAbstractsPer
                 }
                 
                 const matchesSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
-
                 return matchesLevel && matchesStatus && matchesSearch;
             });
 
             renderTable();
         }
 
-        // Render the table
         function renderTable() {
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
@@ -977,7 +784,6 @@ document.getElementById('comparison-abstracts').textContent = actualAbstractsPer
             filteredData.forEach((student, index) => {
                 const row = document.createElement('tr');
                 row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
-                row.setAttribute('data-index', index);
 
                 let displayStatus = 'Alumni';
                 if (student.status && (student.status.toLowerCase().includes('current') || 
@@ -986,99 +792,28 @@ document.getElementById('comparison-abstracts').textContent = actualAbstractsPer
                 }
 
                 row.innerHTML = `
-                    <td contenteditable="true" data-field="name">${student.name}</td>
-                    <td contenteditable="true" data-field="level">${student.level}</td>
-                    <td contenteditable="true" data-field="status" class="status-${displayStatus.toLowerCase()}">${displayStatus}</td>
+                    <td>${student.name}</td>
+                    <td>${student.level}</td>
+                    <td class="status-${displayStatus.toLowerCase()}">${displayStatus}</td>
                 `;
 
                 tbody.appendChild(row);
             });
-
-            // Add event listeners for editable cells
-            document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
-                cell.addEventListener('blur', function() {
-                    const row = this.parentElement;
-                    const rowIndex = parseInt(row.getAttribute('data-index'));
-                    const field = this.getAttribute('data-field');
-                    const value = this.innerText.trim();
-
-                    if (filteredData[rowIndex]) {
-                        if (field === 'status') {
-                            if (value === 'Current') {
-                                filteredData[rowIndex][field] = 'Current';
-                            } else if (value === 'Alumni') {
-                                filteredData[rowIndex][field] = filteredData[rowIndex][field] || 'Graduated';
-                            } else {
-                                filteredData[rowIndex][field] = value;
-                            }
-                        } else {
-                            filteredData[rowIndex][field] = value;
-                        }
-                        
-                        const originalIndex = studentsData.findIndex(s => 
-                            s.name === filteredData[rowIndex].name && 
-                            s.level === filteredData[rowIndex].level
-                        );
-                        
-                        if (originalIndex !== -1) {
-                            studentsData[originalIndex][field] = filteredData[rowIndex][field];
-                        }
-                        
-                        updateDisplayedMetrics();
-                    }
-                });
-            });
         }
 
-        // Load sample data
-        function loadSampleData() {
-            studentsData = initSampleData();
-            filteredData = [...studentsData];
-            renderTable();
-            updateDisplayedMetrics();
-        }
-
-        // Export to CSV
         function exportToCSV() {
-            const headers = ['Name', 'Level', 'Status', 'Current Position', 'STEM Career', 'Publications', 'Posters', 'Talks', 'Research/Notes'];
-            
-            const csvContent = [
-                headers.join(','),
-                ...studentsData.map(student => [
-                    `"${student.name}"`,
-                    `"${student.level}"`,
-                    `"${student.status}"`,
-                    `"${student.currentPosition || ''}"`,
-                    `"${student.stem || ''}"`,
-                    student.publications || 0,
-                    student.posters || 0,
-                    student.talks || 0,
-                    `"${(student.research || '').replace(/"/g, '""')}"`
-                ].join(','))
-            ].join('\n');
-            
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'vidal_gadea_lab_students.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
+            alert('Export functionality requires full student dataset.');
         }
 
-        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('levelFilter').addEventListener('change', filterData);
             document.getElementById('statusFilter').addEventListener('change', filterData);
             document.getElementById('searchFilter').addEventListener('input', filterData);
 
-            // Load data immediately
-            loadSampleData();
+            filteredData = [...studentsData];
+            renderTable();
         });
-    </script>
 
-    <!-- Password-protect the Export button -->
-    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const exportBtn = document.getElementById('exportBtn');
             exportBtn.addEventListener('click', () => {
