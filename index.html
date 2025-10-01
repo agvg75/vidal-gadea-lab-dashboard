@@ -4,8 +4,8 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Student Mentoring Dashboard 2015-2025</title>
-    <script src="./Lab Student Mentoring Dashboard Oct 1 2025_files/chart.min.js.download"></script>
-    <script src="./Lab Student Mentoring Dashboard Oct 1 2025_files/xlsx.full.min.js.download"></script>
+    <script src="./Lab Student Mentoring Dashboard 2015-2025_files/chart.min.js.download"></script>
+    <script src="./Lab Student Mentoring Dashboard 2015-2025_files/xlsx.full.min.js.download"></script>
     <style>
         * { box-sizing: border-box; }
         body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; font-size: 11pt; }
@@ -62,6 +62,7 @@
         .status-current { color: #28a745; font-weight: bold; }
         .status-graduated { color: #007bff; font-weight: bold; }
         .status-former { color: #6c757d; }
+        .status-visiting { color: #9C27B0; font-weight: bold; }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: white; margin: 15% auto; padding: 30px; border-radius: 10px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .modal-content h3 { color: #CC0000; margin-bottom: 15px; }
@@ -276,7 +277,7 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody"><tr class="level-postdoc"><td>Carola Stadele</td><td>PostDoc</td><td class="status-former">Former</td></tr><tr class="level-postdoc"><td>Jessica Adams</td><td>PostDoc</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Tope Awe</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Mackenzie Jones</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Damiano Marchiafava</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Aalimah Akinosho</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Adina Fazyl</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Shifat Niha</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Chance Bainbridge</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Kiley Hughes</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Anjelica Rodriguez</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Casey Gahrs</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Abigail Benson</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Monica Tamrazi</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Rajit Roy</td><td>Graduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-graduate"><td>Daniel Nuccio</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Mary McKeays</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Gaston Rissi</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Brittani Rivera</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Parham Jazireian</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Ploy Freebairn</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-graduate"><td>Margarita Gomez</td><td>Graduate</td><td class="status-former">Former</td></tr><tr class="level-undergraduate"><td>Austeja Wingate</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Jack Fostiack</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Harrison Weidemiller</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Keke Velez</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Jackson Copeland</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Erin Cheeseman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Florence Ofurum</td><td>Undergraduate</td><td class="status-visiting">visiting</td></tr><tr class="level-undergraduate"><td>Grace Ruscheinski</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Nevyn Laframboise</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Kamden Malinowski</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Rene Wilderman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Hope Fransen</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Avinaash Muthukuman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Paige Batchelor</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Patrick Jackson</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Mary Gardner</td><td>Undergraduate</td><td class="status-former">Former</td></tr><tr class="level-undergraduate"><td>Anabelle Dunaway</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Tyler Stark</td><td>Undergraduate</td><td class="status-former">Former</td></tr><tr class="level-undergraduate"><td>Celia Beron</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Erinda Aidoo</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Austin Alhlert</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Victoria Andriulis</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Blake Bracht</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Srishti Goel</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Molly Ewen</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Selman Ayedagdu</td><td>Undergraduate</td><td class="status-former">Former</td></tr><tr class="level-undergraduate"><td>Janelle Jackson</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Jocelyn McDonald</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Andrew Schuler</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Samantha Vemuri</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Lucas Barickman</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Moe Khalil</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Zach Benefield</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Emily Berry</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Allison Webb</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Carlee Chehak</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kori Cuciarone</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Victoria Edelman</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Allison Fritz</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Yasmine Giliana</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Evan Gustafson</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kayla Haines</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Bryce Hendren</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Jake Kaindl</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Alex Kew</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>William Milanick</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Shawn Mohammed</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Dana Niswonger</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Jacinda Nunez</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Pari Patel</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Vidhi Rakholia</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Trevor Rickert</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Brian Rodemoyer</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Andrew Rodriguez</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Lauren Ruhe</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Erin Sawilchik</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Brianne Suter</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kaitlyn Termine</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kevin Tragesser</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Ranija Turner</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Hannah Watson</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Hannah Swift</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Madison Westbrook</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Jennifer Miller</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Emily Harris</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Emily Killian</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Teagan Zack</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Gina Quiriconi</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Brooke Willis</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Zoe Meier</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Boyowa Mene-Okotie</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Alysia Thorn</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Lindsay Brettmann</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Lindsay Becker</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Mike Moscardelli</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Lea Kressin</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kristi Ward</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Grace Hwang</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Erin Elbel</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Elvira Marquez</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Thomas Maple</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Adhishri Parikh</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Roberto Guajardo</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Adora Akahome</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kristen Bartlett</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Natalie Burrell</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Michael Cisneros</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Adam Conley</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Isabelle De Dianous</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Peter DeVries</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Emily Asmus</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Makayla Holub</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Adriana Garcia</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Sarah Hannan</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Joshua Hernandez</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Annemarie Hyer</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Ian Kenny</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Umme Ahsan</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Braidy Megeff</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Matt Demir</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Joe Schweickert</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Baylee Paluzzi</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Yigit Demir</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kehinde Owoyemi</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Taiyelolu Owoyemi</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Thomas Rimbo</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Samantha Padia</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Jonathan Schuller</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Ashka Shah</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Kaitlyn Donovan</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Dayton Oblinger</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Sabrina Kollbaum</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Rachel Gabbrants</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Adi Oday</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-undergraduate"><td>Isabel Guerrero</td><td>Undergraduate</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Abhinav Komandur</td><td>High School</td><td class="status-current">Current</td></tr><tr class="level-highschool"><td>Anushi Kiribamune</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Charles Jackson</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Sumitra Paramatmuni</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Noelle Woith</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Vidushi Shukla</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nick Leonard</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Adithya Komandur</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Laura Kelly</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Alex Kullman</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Neha Gutta</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Calis Lim</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Hannah Ahmed</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Peyton Carlock</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Lavanya Sathyamurthy</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Adithya Sathyamurthy</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Jack Sauser</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Peter Waller</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Ananya Kommalapati</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Rachel Kullman</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Rahul Darbhakul</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Lucy Ryan</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Matthew Trisnadi</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Shannon Lu</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Virginia Wang</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nicholas Truong</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Rohan Agarwal</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Eesha Alaparthi</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Sunitha Garapathi</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Prasanth Garapathi</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Sahana Garapathi</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Alexander Albert</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Akash Anbu</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Blake Thomson</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Rachel Bolden</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Lydia Brown</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>James Bundy</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Saisu Talasu</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Casey Clubb</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Samaya Danthurthy</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Maanasa Devebhaktuni</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Katie Elbert</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Jacqueline Espinoza</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Joshua Gantert</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Harshith Gorla</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Julian Hawley</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Avery Hedican</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Julianna Heptinstall</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Jaleh Johnson</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>David Kim</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nikitha Lakshiminarayanan</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Ayesha Mahmood</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Devnanda Manjunadth</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Amanda Mala</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Mira Malavia</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Manaswini Mannam</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Zach Mohammed</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Denzel Namadurai</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Arun Kumar</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Saispurthi Palavalli</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Yami Panchal</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Irene Park</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>JuWon Park</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Akshaya Raghavan</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Aila Rahman</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nikith Rao</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nikhil Samayam</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Alanya Schippert</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Neal Shah</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Neehar Shah</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Akhil Vytla</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>B Showri</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Evan Tsubaki</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Roussolini (Rosie) Socrates</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Summer Will</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Shahan Yalavarthi</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Maanasa Devebhaktuni</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nivita Patri</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Shouri Bochetty</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Britany Ziemer</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Sruthi Singaraju</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Claudia Gallardo</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Alyson Ficca</td><td>High School</td><td class="status-graduated">Graduated</td></tr><tr class="level-highschool"><td>Nikhil Samayan</td><td>High School</td><td class="status-graduated">Graduated</td></tr></tbody>
+                    <tbody id="tableBody"><tr class="level-graduate"><td>Mackenzie Jones</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Damiano Marchiafava</td><td>Graduate</td><td class="status-current">Current</td></tr></tbody>
                 </table>
             </div>
         </div>
@@ -286,7 +287,7 @@
         <div class="modal-content">
             <h3>Administrative Access Required</h3>
             <p>Please enter the password to export detailed student data:</p>
-            <input type="password" id="exportPassword" placeholder="Enter password" onkeypress="if(event.key===&#39;Enter&#39;)validatePassword()">
+            <input type="password" id="exportPassword" placeholder="Enter password">
             <div class="modal-buttons">
                 <button class="export-btn" onclick="validatePassword()">Export</button>
                 <button onclick="closePasswordModal()" style="background: #6c757d; color: white;">Cancel</button>
@@ -296,29 +297,231 @@
         </div>
     </div>
 
+    <script src="./Lab Student Mentoring Dashboard 2015-2025_files/students-data.js.download"></script>
     <script>
-        let studentsData=[];let filteredData=[];const EXPORT_PASSWORD="labadmin2025";
-        document.getElementById('fileInput').addEventListener('change',handleFile);
-        document.getElementById('levelFilter').addEventListener('change',applyFilters);
-        document.getElementById('statusFilter').addEventListener('change',applyFilters);
-        document.getElementById('searchFilter').addEventListener('input',applyFilters);
-        function handleFile(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(e){try{const data=new Uint8Array(e.target.result);const workbook=XLSX.read(data,{type:'array'});const firstSheet=workbook.Sheets[workbook.SheetNames[0]];const jsonData=XLSX.utils.sheet_to_json(firstSheet);studentsData=jsonData.slice(2).filter(row=>row.Name&&row.Level).map(row=>({name:row.Name||'',level:row.Level||'',degree:row.Degree||'',status:row.Status||'',currentPosition:row['Current Position']||'',stem:row['STEM Career']||'',posters:parseInt(row.Posters)||0,talks:parseInt(row.Talks)||0,publications:parseInt(row.Publications)||0,research:row['Research/Awards/Notes']||''}));filteredData=[...studentsData];updateAllStats();updateCharts();renderTable(filteredData);alert(`Successfully loaded ${studentsData.length} students!`);}catch(error){console.error('Error:',error);alert('Error loading file.');}};reader.readAsArrayBuffer(file);}
-        function renderTable(data){const tbody=document.getElementById('tableBody');tbody.innerHTML='';if(data.length===0){tbody.innerHTML='<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">No students match filters.</td></tr>';return;}data.forEach(student=>{const row=tbody.insertRow();row.className=`level-${student.level.toLowerCase().replace(' ','')}`;row.insertCell(0).textContent=student.name;row.insertCell(1).textContent=student.level;const statusCell=row.insertCell(2);statusCell.textContent=student.status;statusCell.className=`status-${student.status.toLowerCase()}`;});}
-        function updateAllStats(){const total=studentsData.length;const current=studentsData.filter(s=>s.status==='Current').length;const currentGrad=studentsData.filter(s=>s.status==='Current'&&s.level==='Graduate').length;const currentUndergrad=studentsData.filter(s=>s.status==='Current'&&s.level==='Undergraduate').length;const currentHS=studentsData.filter(s=>s.status==='Current'&&s.level==='High School').length;document.querySelector('.stats-grid .stat-card:nth-child(1) .stat-number').textContent=total;document.querySelector('.stats-grid .stat-card:nth-child(2) .stat-number').textContent=current;document.querySelector('.stats-grid .stat-card:nth-child(2) .breakdown-item:nth-child(1) span:nth-child(2)').textContent=currentGrad;document.querySelector('.stats-grid .stat-card:nth-child(2) .breakdown-item:nth-child(2) span:nth-child(2)').textContent=currentUndergrad;document.querySelector('.stats-grid .stat-card:nth-child(2) .breakdown-item:nth-child(3) span:nth-child(2)').textContent=currentHS;}
-        function updateCharts(){if(window.levelChartInstance){const levelCounts=[studentsData.filter(s=>s.level==='PostDoc').length,studentsData.filter(s=>s.level==='Graduate').length,studentsData.filter(s=>s.level==='Undergraduate').length,studentsData.filter(s=>s.level==='High School').length];window.levelChartInstance.data.datasets[0].data=levelCounts;window.levelChartInstance.update();}}
-        function applyFilters(){if(studentsData.length===0)return;const levelFilter=document.getElementById('levelFilter').value;const statusFilter=document.getElementById('statusFilter').value;const searchFilter=document.getElementById('searchFilter').value.toLowerCase();filteredData=studentsData.filter(student=>{const matchLevel=!levelFilter||student.level===levelFilter;const matchStatus=!statusFilter||student.status===statusFilter;const matchSearch=!searchFilter||student.name.toLowerCase().includes(searchFilter);return matchLevel&&matchStatus&&matchSearch;});renderTable(filteredData);}
-        function requestExportPassword(){if(studentsData.length===0){alert('Please load your Excel file first.');return;}document.getElementById('passwordModal').style.display='block';document.getElementById('exportPassword').focus();}
-        function closePasswordModal(){document.getElementById('passwordModal').style.display='none';document.getElementById('exportPassword').value='';document.getElementById('passwordError').style.display='none';document.getElementById('passwordSuccess').style.display='none';}
-        function validatePassword(){const enteredPassword=document.getElementById('exportPassword').value;const errorDiv=document.getElementById('passwordError');const successDiv=document.getElementById('passwordSuccess');if(enteredPassword===EXPORT_PASSWORD){successDiv.textContent='Access granted! Preparing CSV...';successDiv.style.display='block';errorDiv.style.display='none';setTimeout(()=>{exportToCSV();closePasswordModal();},1500);}else{errorDiv.textContent='Incorrect password.';errorDiv.style.display='block';successDiv.style.display='none';document.getElementById('exportPassword').value='';}}
-        function exportToCSV(){const headers=['Name','Level','Degree','Status','Current Position','STEM Career','Posters','Talks','Publications','Research/Notes'];const csvContent=[headers.join(','),...studentsData.map(s=>[`"${s.name}"`,`"${s.level}"`,`"${s.degree}"`,`"${s.status}"`,`"${s.currentPosition}"`,`"${s.stem}"`,s.posters,s.talks,s.publications,`"${(s.research||'').replace(/"/g,'""')}"`].join(','))].join('\n');const blob=new Blob([csvContent],{type:'text/csv'});const url=window.URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`lab_students_${new Date().toISOString().split('T')[0]}.csv`;a.click();window.URL.revokeObjectURL(url);}
-        window.onclick=function(event){if(event.target===document.getElementById('passwordModal'))closePasswordModal();}
-        window.addEventListener('DOMContentLoaded',function(){window.levelChartInstance=new Chart(document.getElementById('levelChart'),{type:'doughnut',data:{labels:['PostDoc','Graduate','Undergraduate','High School'],datasets:[{data:[2,20,115,84],backgroundColor:['#FFC107','#4CAF50','#2196F3','#FF5722'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:10}}}}});
-        new Chart(document.getElementById('highSchoolChart'),{type:'pie',data:{labels:['Currently Enrolled STEM','Graduate/Professional School','Research Exposure','Science-Adjacent','Non-STEM','Unknown'],datasets:[{data:[30,18,15,8,5,8],backgroundColor:['#4CAF50','#2196F3','#FF9800','#9C27B0','#F44336','#757575'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:8}}}}});
-        new Chart(document.getElementById('undergradChart'),{type:'pie',data:{labels:['Industry/Biotech','Graduate School','Clinical/Healthcare','Academic Research','Teaching','Science-Adjacent','Non-STEM','Unknown'],datasets:[{data:[32,28,18,15,8,6,5,3],backgroundColor:['#2196F3','#4CAF50','#FF9800','#9C27B0','#00BCD4','#FFC107','#F44336','#757575'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},padding:6}}}}});
-        new Chart(document.getElementById('gradChart'),{type:'pie',data:{labels:['Academic Research/Teaching','Industry Research','Clinical Pathways','Postdoctoral','Professional School','Completion Elsewhere','Non-STEM'],datasets:[{data:[7,5,3,2,2,1,1],backgroundColor:['#4CAF50','#2196F3','#FF9800','#9C27B0','#00BCD4','#FFC107','#F44336'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:8}}}}});});
+        let studentsData = [];
+        let filteredData = [];
+        const EXPORT_PASSWORD = "labadmin2025";
+
+        window.addEventListener('DOMContentLoaded', function() {
+            loadStudentData();
+            initializeCharts();
+            
+            document.getElementById('fileInput').addEventListener('change', handleFile);
+            document.getElementById('levelFilter').addEventListener('change', applyFilters);
+            document.getElementById('statusFilter').addEventListener('change', applyFilters);
+            document.getElementById('searchFilter').addEventListener('input', applyFilters);
+            document.getElementById('exportPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') validatePassword();
+            });
+        });
+
+        function loadStudentData() {
+            fetch('students.json')
+                .then(response => response.json())
+                .then(data => {
+                    studentsData = data;
+                    filteredData = [...studentsData];
+                    renderTable(filteredData);
+                })
+                .catch(() => {
+                    console.log('No students.json found, dashboard ready for Excel upload');
+                    document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">Please upload your Excel file to view all 221 students.</td></tr>';
+                });
+        }
+
+        function initializeCharts() {
+            new Chart(document.getElementById('levelChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['PostDoc', 'Graduate', 'Undergraduate', 'High School'],
+                    datasets: [{
+                        data: [2, 20, 115, 84],
+                        backgroundColor: ['#FFC107', '#4CAF50', '#2196F3', '#FF5722'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } } }
+                }
+            });
+
+            new Chart(document.getElementById('highSchoolChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Currently Enrolled STEM', 'Graduate/Professional School', 'Research Exposure', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
+                    datasets: [{
+                        data: [30, 18, 15, 8, 5, 8],
+                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336', '#757575'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
+                }
+            });
+
+            new Chart(document.getElementById('undergradChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Industry/Biotech', 'Graduate School', 'Clinical/Healthcare', 'Academic Research', 'Teaching', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
+                    datasets: [{
+                        data: [32, 28, 18, 15, 8, 6, 5, 3],
+                        backgroundColor: ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336', '#757575'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 9 }, padding: 6 } } }
+                }
+            });
+
+            new Chart(document.getElementById('gradChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Academic Research/Teaching', 'Industry Research', 'Clinical Pathways', 'Postdoctoral', 'Professional School', 'Completion Elsewhere', 'Non-STEM'],
+                    datasets: [{
+                        data: [7, 5, 3, 2, 2, 1, 1],
+                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
+                }
+            });
+        }
+
+        function handleFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                    
+                    studentsData = jsonData.slice(2).filter(row => row.Name && row.Level).map(row => ({
+                        name: row.Name || '',
+                        level: row.Level || '',
+                        status: row.Status || ''
+                    }));
+
+                    filteredData = [...studentsData];
+                    renderTable(filteredData);
+                    alert(`Successfully loaded ${studentsData.length} students!`);
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error loading file.');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">No students match filters.</td></tr>';
+                return;
+            }
+
+            data.forEach(student => {
+                const row = tbody.insertRow();
+                row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
+                row.insertCell(0).textContent = student.name;
+                row.insertCell(1).textContent = student.level;
+                const statusCell = row.insertCell(2);
+                statusCell.textContent = student.status;
+                statusCell.className = `status-${student.status.toLowerCase()}`;
+            });
+        }
+
+        function applyFilters() {
+            if (studentsData.length === 0) return;
+
+            const levelFilter = document.getElementById('levelFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
+
+            filteredData = studentsData.filter(student => {
+                const matchLevel = !levelFilter || student.level === levelFilter;
+                const matchStatus = !statusFilter || student.status === statusFilter;
+                const matchSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
+                return matchLevel && matchStatus && matchSearch;
+            });
+
+            renderTable(filteredData);
+        }
+
+        function requestExportPassword() {
+            if (studentsData.length === 0) {
+                alert('Please load your Excel file first.');
+                return;
+            }
+            document.getElementById('passwordModal').style.display = 'block';
+            document.getElementById('exportPassword').focus();
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('exportPassword').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordSuccess').style.display = 'none';
+        }
+
+        function validatePassword() {
+            const enteredPassword = document.getElementById('exportPassword').value;
+            const errorDiv = document.getElementById('passwordError');
+            const successDiv = document.getElementById('passwordSuccess');
+
+            if (enteredPassword === EXPORT_PASSWORD) {
+                successDiv.textContent = 'Access granted! Preparing CSV...';
+                successDiv.style.display = 'block';
+                errorDiv.style.display = 'none';
+                setTimeout(() => { exportToCSV(); closePasswordModal(); }, 1500);
+            } else {
+                errorDiv.textContent = 'Incorrect password.';
+                errorDiv.style.display = 'block';
+                successDiv.style.display = 'none';
+                document.getElementById('exportPassword').value = '';
+            }
+        }
+
+        function exportToCSV() {
+            const headers = ['Name', 'Level', 'Status'];
+            const csvContent = [headers.join(','), ...studentsData.map(s => [
+                `"${s.name}"`, `"${s.level}"`, `"${s.status}"`
+            ].join(','))].join('\n');
+            
+            const blob = new Blob([csvContent], {type: 'text/csv'});
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lab_students_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('passwordModal')) closePasswordModal();
+        }
     </script>
 
 </body></html>
-    </script>
-</body>
-</html>
