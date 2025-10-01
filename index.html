@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0087)file:///C:/Users/avidal/OneDrive%20-%20IL%20State%20University/lab_dashboard_fixed.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Student Mentoring Dashboard 2015-2025</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * { box-sizing: border-box; }
         body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; font-size: 11pt; }
@@ -60,17 +60,8 @@
         .level-undergraduate { background-color: #d1ecf1; }
         .level-highschool { background-color: #f8d7da; }
         .status-current { color: #28a745; font-weight: bold; }
-        .status-graduated { color: #007bff; font-weight: bold; }
-        .status-former { color: #6c757d; }
+        .status-alumni { color: #007bff; font-weight: bold; }
         .status-visiting { color: #9C27B0; font-weight: bold; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
-        .modal-content { background-color: white; margin: 15% auto; padding: 30px; border-radius: 10px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .modal-content h3 { color: #CC0000; margin-bottom: 15px; }
-        .modal-content input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; font-family: Arial, sans-serif; font-size: 11pt; }
-        .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
-        .modal-buttons button { flex: 1; }
-        .error-message { color: #dc3545; padding: 10px; background: #f8d7da; border-radius: 4px; margin-top: 10px; }
-        .success-message { color: #155724; padding: 10px; background: #d4edda; border-radius: 4px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -80,68 +71,30 @@
             <p>Comprehensive tracking of student outcomes and achievements (2015-2025)</p>
         </div>
         
-        <div class="stats-grid">
+        <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
-                <div class="stat-number">221</div>
+                <div class="stat-number" id="totalStudents">0</div>
                 <div class="stat-label">Students Tracked</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span>2</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span>20</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span>115</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span>84</span></div>
-                </div>
+                <div class="breakdown" id="levelBreakdown"></div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-number">17</div>
+                <div class="stat-number" id="currentStudents">0</div>
                 <div class="stat-label">Current Students</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>Graduate:</span><span>2</span></div>
-                    <div class="breakdown-item"><span>Undergraduate:</span><span>14</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span>1</span></div>
-                </div>
+                <div class="breakdown" id="currentBreakdown"></div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-number">236</div>
+                <div class="stat-number" id="totalOutputs">0</div>
                 <div class="stat-label">Total Outputs</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>Posters:</span><span>165</span></div>
-                    <div class="breakdown-item"><span>Talks:</span><span>42</span></div>
-                    <div class="breakdown-item"><span>Peer-Reviewed:</span><span>20</span></div>
-                    <div class="breakdown-item"><span>Non-Reviewed:</span><span>9</span></div>
-                </div>
+                <div class="breakdown" id="outputsBreakdown"></div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-number">425</div>
+                <div class="stat-number" id="totalAuthorships">0</div>
                 <div class="stat-label">Authorships</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>Total:</span><span>425</span></div>
-                    <div class="breakdown-item"><span>Avg per Student:</span><span>1.92</span></div>
-                </div>
-                <div class="authorships-grid">
-                    <div class="authorship-category">
-                        <h4>PostDocs (2)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>16</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>8.00</span></div>
-                    </div>
-                    <div class="authorship-category">
-                        <h4>Graduates (20)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>207</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>10.35</span></div>
-                    </div>
-                    <div class="authorship-category">
-                        <h4>Undergrads (115)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>174</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>1.51</span></div>
-                    </div>
-                    <div class="authorship-category">
-                        <h4>High School (84)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>28</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>0.33</span></div>
-                    </div>
-                </div>
+                <div class="breakdown" id="authorshipsBreakdown"></div>
+                <div class="authorships-grid" id="authorshipsGrid"></div>
             </div>
         </div>
 
@@ -159,56 +112,7 @@
                         <th>Source</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Students Mentored (10 years)</td>
-                        <td class="our-lab">221</td>
-                        <td>45-65</td>
-                        <td>25-40</td>
-                        <td>35-50</td>
-                        <td>NSF STEM Ed Reports</td>
-                    </tr>
-                    <tr>
-                        <td>Undergrad Research Publications</td>
-                        <td class="our-lab">22%</td>
-                        <td>12-15%</td>
-                        <td>8-12%</td>
-                        <td>10%</td>
-                        <td>CUR Survey 2022</td>
-                    </tr>
-                    <tr>
-                        <td>Undergrad Conference Presentations</td>
-                        <td class="our-lab">68%</td>
-                        <td>40-50%</td>
-                        <td>30-40%</td>
-                        <td>35%</td>
-                        <td>AAAS Data 2023</td>
-                    </tr>
-                    <tr>
-                        <td>Graduate Student Publications</td>
-                        <td class="our-lab">1.25/student</td>
-                        <td>1.2-1.5</td>
-                        <td>0.8-1.2</td>
-                        <td>0.8</td>
-                        <td>PhD Completion Project</td>
-                    </tr>
-                    <tr>
-                        <td>STEM Career Continuation</td>
-                        <td class="our-lab">90%</td>
-                        <td>75-80%</td>
-                        <td>65-75%</td>
-                        <td>65%</td>
-                        <td>NSF SESTAT 2021</td>
-                    </tr>
-                    <tr>
-                        <td>High School Student Engagement</td>
-                        <td class="our-lab">84 students</td>
-                        <td>10-20</td>
-                        <td>5-15</td>
-                        <td>12</td>
-                        <td>NCES Data 2022</td>
-                    </tr>
-                </tbody>
+                <tbody id="comparisonTableBody"></tbody>
             </table>
         </div>
 
@@ -217,19 +121,19 @@
             <div class="charts-grid">
                 <div class="chart-container">
                     <div class="chart-title">Students by Level</div>
-                    <div class="chart-wrapper"><canvas id="levelChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="levelChart"></canvas></div>
                 </div>
                 <div class="chart-container">
                     <div class="chart-title">High School Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="highSchoolChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="highSchoolChart"></canvas></div>
                 </div>
                 <div class="chart-container">
                     <div class="chart-title">Undergraduate Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="undergradChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="undergradChart"></canvas></div>
                 </div>
                 <div class="chart-container">
                     <div class="chart-title">Graduate Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="gradChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="gradChart"></canvas></div>
                 </div>
             </div>
         </div>
@@ -250,8 +154,7 @@
                 <select id="statusFilter">
                     <option value="">All Status</option>
                     <option value="Current">Current</option>
-                    <option value="Graduated">Graduated</option>
-                    <option value="Former">Former</option>
+                    <option value="Alumni">Alumni</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -263,7 +166,6 @@
         <div class="btn-group">
             <label for="fileInput" class="load-btn">Update from Excel</label>
             <input type="file" id="fileInput" accept=".xlsx,.xls">
-            <button class="export-btn" onclick="requestExportPassword()">Export Detailed CSV</button>
         </div>
         
         <div class="table-section">
@@ -277,42 +179,24 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody"><tr class="level-graduate"><td>Mackenzie Jones</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Damiano Marchiafava</td><td>Graduate</td><td class="status-current">Current</td></tr></tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
-        </div>
-    </div>
-
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <h3>Administrative Access Required</h3>
-            <p>Please enter the password to export detailed student data:</p>
-            <input type="password" id="exportPassword" placeholder="Enter password">
-            <div class="modal-buttons">
-                <button class="export-btn" onclick="validatePassword()">Export</button>
-                <button onclick="closePasswordModal()" style="background: #6c757d; color: white;">Cancel</button>
-            </div>
-            <div id="passwordError" class="error-message" style="display: none;"></div>
-            <div id="passwordSuccess" class="success-message" style="display: none;"></div>
         </div>
     </div>
 
     <script>
         let studentsData = [];
         let filteredData = [];
-        const EXPORT_PASSWORD = "labadmin2025";
+        let charts = {};
 
         window.addEventListener('DOMContentLoaded', function() {
             loadStudentData();
-            initializeCharts();
             
             document.getElementById('fileInput').addEventListener('change', handleFile);
             document.getElementById('levelFilter').addEventListener('change', applyFilters);
             document.getElementById('statusFilter').addEventListener('change', applyFilters);
             document.getElementById('searchFilter').addEventListener('input', applyFilters);
-            document.getElementById('exportPassword').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') validatePassword();
-            });
         });
 
         function loadStudentData() {
@@ -321,21 +205,137 @@
                 .then(data => {
                     studentsData = data;
                     filteredData = [...studentsData];
-                    renderTable(filteredData);
+                    updateDashboard();
                 })
                 .catch(() => {
                     console.log('No students.json found, dashboard ready for Excel upload');
-                    document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">Please upload your Excel file to view all 221 students.</td></tr>';
+                    document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">Please upload your Excel file to begin.</td></tr>';
                 });
         }
 
-        function initializeCharts() {
-            new Chart(document.getElementById('levelChart'), {
+        function handleFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                    
+                    studentsData = jsonData.filter(row => row.Name && row.Name !== "Students: Total" && row.Level).map(row => ({
+                        name: row.Name || '',
+                        level: row.Level || '',
+                        status: row.Status || '',
+                        currentPosition: row["Current Position"] || '',
+                        stemCareer: row["STEM Career"] || '',
+                        posters: parseInt(row.Posters) || 0,
+                        talks: parseInt(row.Talks) || 0,
+                        publications: parseInt(row.Publications) || 0,
+                        research: row["Research/Awards/Notes"] || ''
+                    }));
+
+                    filteredData = [...studentsData];
+                    updateDashboard();
+                    alert(`Successfully loaded ${studentsData.length} students!`);
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error loading file.');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function updateDashboard() {
+            updateStatistics();
+            updateCharts();
+            updateComparativeAnalysis();
+            renderTable(filteredData);
+        }
+
+        function updateStatistics() {
+            const levelCounts = studentsData.reduce((acc, s) => {
+                acc[s.level] = (acc[s.level] || 0) + 1;
+                return acc;
+            }, {});
+
+            const currentCounts = studentsData.filter(s => s.status === 'Current').reduce((acc, s) => {
+                acc[s.level] = (acc[s.level] || 0) + 1;
+                return acc;
+            }, {});
+
+            const totalPosters = studentsData.reduce((sum, s) => sum + (s.posters || 0), 0);
+            const totalTalks = studentsData.reduce((sum, s) => sum + (s.talks || 0), 0);
+            const totalPubs = studentsData.reduce((sum, s) => sum + (s.publications || 0), 0);
+            const totalAuthorships = totalPosters + totalTalks + totalPubs;
+
+            document.getElementById('totalStudents').textContent = studentsData.length;
+            document.getElementById('levelBreakdown').innerHTML = `
+                <div class="breakdown-item"><span>PostDocs:</span><span>${levelCounts['PostDoc'] || 0}</span></div>
+                <div class="breakdown-item"><span>Graduates:</span><span>${levelCounts['Graduate'] || 0}</span></div>
+                <div class="breakdown-item"><span>Undergraduates:</span><span>${levelCounts['Undergraduate'] || 0}</span></div>
+                <div class="breakdown-item"><span>High School:</span><span>${levelCounts['High School'] || 0}</span></div>
+            `;
+
+            const currentTotal = studentsData.filter(s => s.status === 'Current').length;
+            document.getElementById('currentStudents').textContent = currentTotal;
+            document.getElementById('currentBreakdown').innerHTML = `
+                <div class="breakdown-item"><span>Graduate:</span><span>${currentCounts['Graduate'] || 0}</span></div>
+                <div class="breakdown-item"><span>Undergraduate:</span><span>${currentCounts['Undergraduate'] || 0}</span></div>
+                <div class="breakdown-item"><span>High School:</span><span>${currentCounts['High School'] || 0}</span></div>
+            `;
+
+            document.getElementById('totalOutputs').textContent = totalPosters + totalTalks + totalPubs;
+            document.getElementById('outputsBreakdown').innerHTML = `
+                <div class="breakdown-item"><span>Posters:</span><span>${totalPosters}</span></div>
+                <div class="breakdown-item"><span>Talks:</span><span>${totalTalks}</span></div>
+                <div class="breakdown-item"><span>Publications:</span><span>${totalPubs}</span></div>
+            `;
+
+            document.getElementById('totalAuthorships').textContent = totalAuthorships;
+            const avgAuthorships = (totalAuthorships / studentsData.length).toFixed(2);
+            document.getElementById('authorshipsBreakdown').innerHTML = `
+                <div class="breakdown-item"><span>Total:</span><span>${totalAuthorships}</span></div>
+                <div class="breakdown-item"><span>Avg per Student:</span><span>${avgAuthorships}</span></div>
+            `;
+
+            const levelAuthorships = ['PostDoc', 'Graduate', 'Undergraduate', 'High School'].map(level => {
+                const students = studentsData.filter(s => s.level === level);
+                const count = students.length;
+                const total = students.reduce((sum, s) => sum + (s.posters || 0) + (s.talks || 0) + (s.publications || 0), 0);
+                const avg = count > 0 ? (total / count).toFixed(2) : '0.00';
+                return { level, count, total, avg };
+            });
+
+            document.getElementById('authorshipsGrid').innerHTML = levelAuthorships.map(la => `
+                <div class="authorship-category">
+                    <h4>${la.level}s (${la.count})</h4>
+                    <div class="authorship-stat"><span>Total:</span><span>${la.total}</span></div>
+                    <div class="authorship-stat"><span>Avg:</span><span>${la.avg}</span></div>
+                </div>
+            `).join('');
+        }
+
+        function updateCharts() {
+            const levelCounts = studentsData.reduce((acc, s) => {
+                acc[s.level] = (acc[s.level] || 0) + 1;
+                return acc;
+            }, {});
+
+            if (charts.level) charts.level.destroy();
+            charts.level = new Chart(document.getElementById('levelChart'), {
                 type: 'doughnut',
                 data: {
                     labels: ['PostDoc', 'Graduate', 'Undergraduate', 'High School'],
                     datasets: [{
-                        data: [2, 20, 115, 84],
+                        data: [
+                            levelCounts['PostDoc'] || 0,
+                            levelCounts['Graduate'] || 0,
+                            levelCounts['Undergraduate'] || 0,
+                            levelCounts['High School'] || 0
+                        ],
                         backgroundColor: ['#FFC107', '#4CAF50', '#2196F3', '#FF5722'],
                         borderWidth: 2,
                         borderColor: '#fff'
@@ -348,7 +348,8 @@
                 }
             });
 
-            new Chart(document.getElementById('highSchoolChart'), {
+            if (charts.highSchool) charts.highSchool.destroy();
+            charts.highSchool = new Chart(document.getElementById('highSchoolChart'), {
                 type: 'pie',
                 data: {
                     labels: ['Currently Enrolled STEM', 'Graduate/Professional School', 'Research Exposure', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
@@ -366,7 +367,8 @@
                 }
             });
 
-            new Chart(document.getElementById('undergradChart'), {
+            if (charts.undergrad) charts.undergrad.destroy();
+            charts.undergrad = new Chart(document.getElementById('undergradChart'), {
                 type: 'pie',
                 data: {
                     labels: ['Industry/Biotech', 'Graduate School', 'Clinical/Healthcare', 'Academic Research', 'Teaching', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
@@ -384,7 +386,8 @@
                 }
             });
 
-            new Chart(document.getElementById('gradChart'), {
+            if (charts.grad) charts.grad.destroy();
+            charts.grad = new Chart(document.getElementById('gradChart'), {
                 type: 'pie',
                 data: {
                     labels: ['Academic Research/Teaching', 'Industry Research', 'Clinical Pathways', 'Postdoctoral', 'Professional School', 'Completion Elsewhere', 'Non-STEM'],
@@ -403,33 +406,72 @@
             });
         }
 
-        function handleFile(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, {type: 'array'});
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
-                    
-                    studentsData = jsonData.slice(2).filter(row => row.Name && row.Level).map(row => ({
-                        name: row.Name || '',
-                        level: row.Level || '',
-                        status: row.Status || ''
-                    }));
+        function updateComparativeAnalysis() {
+            const undergradWithPubs = studentsData.filter(s => s.level === 'Undergraduate' && s.publications > 0).length;
+            const totalUndergrads = studentsData.filter(s => s.level === 'Undergraduate').length;
+            const undergradPubPercent = totalUndergrads > 0 ? ((undergradWithPubs / totalUndergrads) * 100).toFixed(0) : 0;
 
-                    filteredData = [...studentsData];
-                    renderTable(filteredData);
-                    alert(`Successfully loaded ${studentsData.length} students!`);
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error loading file.');
-                }
-            };
-            reader.readAsArrayBuffer(file);
+            const undergradWithPresent = studentsData.filter(s => s.level === 'Undergraduate' && (s.posters > 0 || s.talks > 0)).length;
+            const undergradPresentPercent = totalUndergrads > 0 ? ((undergradWithPresent / totalUndergrads) * 100).toFixed(0) : 0;
+
+            const gradStudents = studentsData.filter(s => s.level === 'Graduate');
+            const avgGradPubs = gradStudents.length > 0 ? (gradStudents.reduce((sum, s) => sum + s.publications, 0) / gradStudents.length).toFixed(2) : 0;
+
+            const stemCareerCount = studentsData.filter(s => s.stemCareer && s.stemCareer.toLowerCase().includes('yes')).length;
+            const stemPercent = studentsData.length > 0 ? ((stemCareerCount / studentsData.length) * 100).toFixed(0) : 0;
+
+            const highSchoolCount = studentsData.filter(s => s.level === 'High School').length;
+
+            document.getElementById('comparisonTableBody').innerHTML = `
+                <tr>
+                    <td>Students Mentored (10 years)</td>
+                    <td class="our-lab">${studentsData.length}</td>
+                    <td>45-65</td>
+                    <td>25-40</td>
+                    <td>35-50</td>
+                    <td>NSF STEM Ed Reports</td>
+                </tr>
+                <tr>
+                    <td>Undergrad Research Publications</td>
+                    <td class="our-lab">${undergradPubPercent}%</td>
+                    <td>12-15%</td>
+                    <td>8-12%</td>
+                    <td>10%</td>
+                    <td>CUR Survey 2022</td>
+                </tr>
+                <tr>
+                    <td>Undergrad Conference Presentations</td>
+                    <td class="our-lab">${undergradPresentPercent}%</td>
+                    <td>40-50%</td>
+                    <td>30-40%</td>
+                    <td>35%</td>
+                    <td>AAAS Data 2023</td>
+                </tr>
+                <tr>
+                    <td>Graduate Student Publications</td>
+                    <td class="our-lab">${avgGradPubs}/student</td>
+                    <td>1.2-1.5</td>
+                    <td>0.8-1.2</td>
+                    <td>0.8</td>
+                    <td>PhD Completion Project</td>
+                </tr>
+                <tr>
+                    <td>STEM Career Continuation</td>
+                    <td class="our-lab">${stemPercent}%</td>
+                    <td>75-80%</td>
+                    <td>65-75%</td>
+                    <td>65%</td>
+                    <td>NSF SESTAT 2021</td>
+                </tr>
+                <tr>
+                    <td>High School Student Engagement</td>
+                    <td class="our-lab">${highSchoolCount} students</td>
+                    <td>10-20</td>
+                    <td>5-15</td>
+                    <td>12</td>
+                    <td>NCES Data 2022</td>
+                </tr>
+            `;
         }
 
         function renderTable(data) {
@@ -468,59 +510,9 @@
 
             renderTable(filteredData);
         }
-
-        function requestExportPassword() {
-            if (studentsData.length === 0) {
-                alert('Please load your Excel file first.');
-                return;
-            }
-            document.getElementById('passwordModal').style.display = 'block';
-            document.getElementById('exportPassword').focus();
-        }
-
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-            document.getElementById('exportPassword').value = '';
-            document.getElementById('passwordError').style.display = 'none';
-            document.getElementById('passwordSuccess').style.display = 'none';
-        }
-
-        function validatePassword() {
-            const enteredPassword = document.getElementById('exportPassword').value;
-            const errorDiv = document.getElementById('passwordError');
-            const successDiv = document.getElementById('passwordSuccess');
-
-            if (enteredPassword === EXPORT_PASSWORD) {
-                successDiv.textContent = 'Access granted! Preparing CSV...';
-                successDiv.style.display = 'block';
-                errorDiv.style.display = 'none';
-                setTimeout(() => { exportToCSV(); closePasswordModal(); }, 1500);
-            } else {
-                errorDiv.textContent = 'Incorrect password.';
-                errorDiv.style.display = 'block';
-                successDiv.style.display = 'none';
-                document.getElementById('exportPassword').value = '';
-            }
-        }
-
-        function exportToCSV() {
-            const headers = ['Name', 'Level', 'Status'];
-            const csvContent = [headers.join(','), ...studentsData.map(s => [
-                `"${s.name}"`, `"${s.level}"`, `"${s.status}"`
-            ].join(','))].join('\n');
-            
-            const blob = new Blob([csvContent], {type: 'text/csv'});
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `lab_students_${new Date().toISOString().split('T')[0]}.csv`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
-
-        window.onclick = function(event) {
-            if (event.target === document.getElementById('passwordModal')) closePasswordModal();
-        }
+    </script>
+</body>
+</html>
     </script>
 
 </body></html>
