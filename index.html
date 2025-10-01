@@ -46,8 +46,6 @@
         button, .load-btn { padding: 10px 20px; border: none; border-radius: 4px; font-size: 10pt; cursor: pointer; font-family: Arial, sans-serif; }
         .load-btn { background: #28a745; color: white; }
         .load-btn:hover { background: #218838; }
-        .export-btn { background: #CC0000; color: white; }
-        .export-btn:hover { background: #A50E1F; }
         input[type="file"] { display: none; }
         .table-section { padding: 30px; background: white; border-top: 2px solid #f0f0f0; }
         .table-container { overflow: auto; max-height: 600px; border: 2px solid #CC0000; border-radius: 5px; }
@@ -189,6 +187,7 @@
         let studentsData = [];
         let filteredData = [];
         let charts = {};
+        let uniqueOutputs = { posters: 0, talks: 0, publications: 0 };
 
         window.addEventListener('DOMContentLoaded', function() {
             loadStudentData();
@@ -203,7 +202,12 @@
             fetch('students.json')
                 .then(response => response.json())
                 .then(data => {
-                    studentsData = data;
+                    if (data.students && data.uniqueOutputs) {
+                        studentsData = data.students;
+                        uniqueOutputs = data.uniqueOutputs;
+                    } else {
+                        studentsData = data;
+                    }
                     filteredData = [...studentsData];
                     updateDashboard();
                 })
@@ -225,7 +229,18 @@
                     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(firstSheet);
                     
-                    studentsData = jsonData.filter(row => row.Name && row.Name !== "Students: Total" && row.Level).map(row => ({
+                    const outputRows = jsonData.filter(row => row.Output && row.Number);
+                    uniqueOutputs = { posters: 0, talks: 0, publications: 0 };
+                    
+                    outputRows.forEach(row => {
+                        const output = (row.Output || '').toLowerCase();
+                        const num = parseInt(row.Number) || 0;
+                        if (output.includes('poster')) uniqueOutputs.posters = num;
+                        if (output.includes('student talk')) uniqueOutputs.talks = num;
+                        if (output.includes('peer-reviewed')) uniqueOutputs.publications = num;
+                    });
+                    
+                    studentsData = jsonData.filter(row => row.Name && row.Name !== "Students: Total" && row.Name !== "" && row.Level).map(row => ({
                         name: row.Name || '',
                         level: row.Level || '',
                         status: row.Status || '',
@@ -266,10 +281,12 @@
                 return acc;
             }, {});
 
-            const totalPosters = studentsData.reduce((sum, s) => sum + (s.posters || 0), 0);
-            const totalTalks = studentsData.reduce((sum, s) => sum + (s.talks || 0), 0);
-            const totalPubs = studentsData.reduce((sum, s) => sum + (s.publications || 0), 0);
-            const totalAuthorships = totalPosters + totalTalks + totalPubs;
+            const totalAuthorshipPosters = studentsData.reduce((sum, s) => sum + (s.posters || 0), 0);
+            const totalAuthorshipTalks = studentsData.reduce((sum, s) => sum + (s.talks || 0), 0);
+            const totalAuthorshipPubs = studentsData.reduce((sum, s) => sum + (s.publications || 0), 0);
+            const totalAuthorships = totalAuthorshipPosters + totalAuthorshipTalks + totalAuthorshipPubs;
+
+            const totalUniqueOutputs = uniqueOutputs.posters + uniqueOutputs.talks + uniqueOutputs.publications;
 
             document.getElementById('totalStudents').textContent = studentsData.length;
             document.getElementById('levelBreakdown').innerHTML = `
@@ -287,11 +304,11 @@
                 <div class="breakdown-item"><span>High School:</span><span>${currentCounts['High School'] || 0}</span></div>
             `;
 
-            document.getElementById('totalOutputs').textContent = totalPosters + totalTalks + totalPubs;
+            document.getElementById('totalOutputs').textContent = totalUniqueOutputs;
             document.getElementById('outputsBreakdown').innerHTML = `
-                <div class="breakdown-item"><span>Posters:</span><span>${totalPosters}</span></div>
-                <div class="breakdown-item"><span>Talks:</span><span>${totalTalks}</span></div>
-                <div class="breakdown-item"><span>Publications:</span><span>${totalPubs}</span></div>
+                <div class="breakdown-item"><span>Posters:</span><span>${uniqueOutputs.posters}</span></div>
+                <div class="breakdown-item"><span>Talks:</span><span>${uniqueOutputs.talks}</span></div>
+                <div class="breakdown-item"><span>Publications:</span><span>${uniqueOutputs.publications}</span></div>
             `;
 
             document.getElementById('totalAuthorships').textContent = totalAuthorships;
@@ -513,6 +530,3 @@
     </script>
 </body>
 </html>
-    </script>
-
-</body></html>
