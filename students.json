@@ -4,12 +4,109 @@
     "talks": 42,
     "publications": 20
   },
+  "authorshipStatistics": {
+    "totalStudentAuthorships": 449,
+    "byLevel": {
+      "graduate": {
+        "count": 188,
+        "percentage": 41.9
+      },
+      "undergraduate": {
+        "count": 230,
+        "percentage": 51.2
+      },
+      "highSchool": {
+        "count": 31,
+        "percentage": 6.9
+      }
+    },
+    "averageAuthorsPerPoster": 2.90,
+    "byYear": {
+      "2015": {
+        "posters": 12,
+        "graduate": 7,
+        "undergraduate": 13,
+        "highSchool": 0,
+        "total": 20
+      },
+      "2016": {
+        "posters": 15,
+        "graduate": 9,
+        "undergraduate": 65,
+        "highSchool": 0,
+        "total": 74
+      },
+      "2017": {
+        "posters": 14,
+        "graduate": 11,
+        "undergraduate": 28,
+        "highSchool": 0,
+        "total": 39
+      },
+      "2018": {
+        "posters": 19,
+        "graduate": 16,
+        "undergraduate": 51,
+        "highSchool": 7,
+        "total": 74
+      },
+      "2019": {
+        "posters": 7,
+        "graduate": 8,
+        "undergraduate": 16,
+        "highSchool": 7,
+        "total": 31
+      },
+      "2020": {
+        "posters": 1,
+        "graduate": 4,
+        "undergraduate": 7,
+        "highSchool": 3,
+        "total": 14
+      },
+      "2021": {
+        "posters": 18,
+        "graduate": 45,
+        "undergraduate": 19,
+        "highSchool": 9,
+        "total": 73
+      },
+      "2022": {
+        "posters": 10,
+        "graduate": 12,
+        "undergraduate": 11,
+        "highSchool": 1,
+        "total": 24
+      },
+      "2023": {
+        "posters": 26,
+        "graduate": 23,
+        "undergraduate": 3,
+        "highSchool": 0,
+        "total": 26
+      },
+      "2024": {
+        "posters": 16,
+        "graduate": 24,
+        "undergraduate": 2,
+        "highSchool": 4,
+        "total": 30
+      },
+      "2025": {
+        "posters": 17,
+        "graduate": 29,
+        "undergraduate": 15,
+        "highSchool": 0,
+        "total": 44
+      }
+    }
+  },
   "students": [
     {
       "name": "Carola Stadele",
       "level": "PostDoc",
       "status": "Alumni",
-      "currentPosition": "Group Leader University of G√∂ttingen Germany",
+      "currentPosition": "Group Leader University of Göttingen Germany",
       "stemCareer": "Yes",
       "posters": 7,
       "talks": 2,
@@ -338,7 +435,7 @@
     {
       "name": "Nevyn Laframboise",
       "level": "Undergraduate",
-      "status": "Alumni",
+      "status": "Current",
       "currentPosition": "Undergraduate Researcher",
       "stemCareer": "Continuing",
       "posters": 0,
@@ -349,7 +446,7 @@
     {
       "name": "Kamden Malinowski",
       "level": "Undergraduate",
-      "status": "Alumni",
+      "status": "Current",
       "currentPosition": "Undergraduate Researcher",
       "stemCareer": "Continuing",
       "posters": 0,
@@ -402,7 +499,17 @@
       "research": "Current lab member"
     },
     {
- 
+      "name": "Patrick Jackson",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
       "name": "Mary Gardner",
       "level": "Undergraduate",
       "status": "Alumni",
@@ -549,7 +656,7 @@
       "name": "Andrew Schuler",
       "level": "Undergraduate",
       "status": "Alumni",
-      "currentPosition": "Medical School (UIC‚ÄìPeoria)",
+      "currentPosition": "Medical School (UIC–Peoria)",
       "stemCareer": "Yes",
       "posters": 5,
       "talks": 0,
@@ -1585,7 +1692,7 @@
       "status": "Alumni",
       "currentPosition": "",
       "stemCareer": "",
-      "posters": 0,
+      "posters": 2,
       "talks": 0,
       "publications": 1,
       "research": "First-author peer-reviewed publication on mechanoreceptor pezo-1 - rare achievement for high school student"
@@ -1640,7 +1747,7 @@
       "status": "Alumni",
       "currentPosition": "M.S. Health Systems Management Student at Rush University",
       "stemCareer": "Yes",
-      "posters": 0,
+      "posters": 1,
       "talks": 0,
       "publications": 0,
       "research": "Former high school researcher"
@@ -1651,7 +1758,7 @@
       "status": "Alumni",
       "currentPosition": "High School graduate",
       "stemCareer": "Yes",
-      "posters": 1,
+      "posters": 2,
       "talks": 1,
       "publications": 0,
       "research": "Year-round lab member"
@@ -1803,7 +1910,7 @@
       "name": "Eesha Alaparthi",
       "level": "High School",
       "status": "Alumni",
-      "currentPosition": "University of Illinois Urbana‑Champaign",
+      "currentPosition": "University of Illinois Urbana–Champaign",
       "stemCareer": "Yes",
       "posters": 0,
       "talks": 0,
@@ -1981,7 +2088,7 @@
       "status": "Alumni",
       "currentPosition": "High School graduate",
       "stemCareer": "",
-      "posters": 0,
+      "posters": 1,
       "talks": 0,
       "publications": 0,
       "research": "High school intern"
@@ -2102,7 +2209,7 @@
       "status": "Alumni",
       "currentPosition": "UMKC School of Medicine",
       "stemCareer": "Yes",
-      "posters": 0,
+      "posters": 1,
       "talks": 0,
       "publications": 0,
       "research": "Summer and year-round researcher"
@@ -2155,7 +2262,7 @@
       "name": "Saispurthi Palavalli",
       "level": "High School",
       "status": "Alumni",
-      "currentPosition": "Software Engineer ",
+      "currentPosition": "Software Engineer ",
       "stemCareer": "Yes",
       "posters": 0,
       "talks": 0,
@@ -2336,7 +2443,7 @@
       "posters": 0,
       "talks": 0,
       "publications": 0,
-      "research": "CS Chancellorâ€™s Scholar, UIUC"
+      "research": "CS Chancellor's Scholar, UIUC"
     },
     {
       "name": "Maanasa Devebhaktuni",
@@ -2386,7 +2493,7 @@
       "name": "Sruthi Singaraju",
       "level": "High School",
       "status": "Alumni",
-      "currentPosition": "Research Technologist II at Ann and Robert H. Lurie Children’s Hospital of Chicago",
+      "currentPosition": "Research Technologist II at Ann and Robert H. Lurie Children's Hospital of Chicago",
       "stemCareer": "Yes",
       "posters": 1,
       "talks": 0,
@@ -2425,6 +2532,17 @@
       "talks": 0,
       "publications": 0,
       "research": "Former high school researcher"
+    },
+    {
+      "name": "Gomez L",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "High school student with poster authorship 2024"
     }
   ]
 }
