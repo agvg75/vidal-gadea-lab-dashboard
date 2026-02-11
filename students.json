@@ -1,692 +1,101 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)https://agvg75.github.io/vidal-gadea-lab-dashboard/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">:root{--toastify-color-light: #fff;--toastify-color-dark: #121212;--toastify-color-info: #3498db;--toastify-color-success: #07bc0c;--toastify-color-warning: #f1c40f;--toastify-color-error: hsl(6, 78%, 57%);--toastify-color-transparent: rgba(255, 255, 255, .7);--toastify-icon-color-info: var(--toastify-color-info);--toastify-icon-color-success: var(--toastify-color-success);--toastify-icon-color-warning: var(--toastify-color-warning);--toastify-icon-color-error: var(--toastify-color-error);--toastify-container-width: fit-content;--toastify-toast-width: 320px;--toastify-toast-offset: 16px;--toastify-toast-top: max(var(--toastify-toast-offset), env(safe-area-inset-top));--toastify-toast-right: max(var(--toastify-toast-offset), env(safe-area-inset-right));--toastify-toast-left: max(var(--toastify-toast-offset), env(safe-area-inset-left));--toastify-toast-bottom: max(var(--toastify-toast-offset), env(safe-area-inset-bottom));--toastify-toast-background: #fff;--toastify-toast-padding: 14px;--toastify-toast-min-height: 64px;--toastify-toast-max-height: 800px;--toastify-toast-bd-radius: 6px;--toastify-toast-shadow: 0px 4px 12px rgba(0, 0, 0, .1);--toastify-font-family: sans-serif;--toastify-z-index: 9999;--toastify-text-color-light: #757575;--toastify-text-color-dark: #fff;--toastify-text-color-info: #fff;--toastify-text-color-success: #fff;--toastify-text-color-warning: #fff;--toastify-text-color-error: #fff;--toastify-spinner-color: #616161;--toastify-spinner-color-empty-area: #e0e0e0;--toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);--toastify-color-progress-dark: #bb86fc;--toastify-color-progress-info: var(--toastify-color-info);--toastify-color-progress-success: var(--toastify-color-success);--toastify-color-progress-warning: var(--toastify-color-warning);--toastify-color-progress-error: var(--toastify-color-error);--toastify-color-progress-bgo: .2}.Toastify__toast-container{z-index:var(--toastify-z-index);-webkit-transform:translate3d(0,0,var(--toastify-z-index));position:fixed;width:var(--toastify-container-width);box-sizing:border-box;color:#fff;display:flex;flex-direction:column}.Toastify__toast-container--top-left{top:var(--toastify-toast-top);left:var(--toastify-toast-left)}.Toastify__toast-container--top-center{top:var(--toastify-toast-top);left:50%;transform:translate(-50%);align-items:center}.Toastify__toast-container--top-right{top:var(--toastify-toast-top);right:var(--toastify-toast-right);align-items:end}.Toastify__toast-container--bottom-left{bottom:var(--toastify-toast-bottom);left:var(--toastify-toast-left)}.Toastify__toast-container--bottom-center{bottom:var(--toastify-toast-bottom);left:50%;transform:translate(-50%);align-items:center}.Toastify__toast-container--bottom-right{bottom:var(--toastify-toast-bottom);right:var(--toastify-toast-right);align-items:end}.Toastify__toast{--y: 0;position:relative;touch-action:none;width:var(--toastify-toast-width);min-height:var(--toastify-toast-min-height);box-sizing:border-box;margin-bottom:1rem;padding:var(--toastify-toast-padding);border-radius:var(--toastify-toast-bd-radius);box-shadow:var(--toastify-toast-shadow);max-height:var(--toastify-toast-max-height);font-family:var(--toastify-font-family);z-index:0;display:flex;flex:1 auto;align-items:center;word-break:break-word}@media only screen and (max-width: 480px){.Toastify__toast-container{width:100vw;left:env(safe-area-inset-left);margin:0}.Toastify__toast-container--top-left,.Toastify__toast-container--top-center,.Toastify__toast-container--top-right{top:env(safe-area-inset-top);transform:translate(0)}.Toastify__toast-container--bottom-left,.Toastify__toast-container--bottom-center,.Toastify__toast-container--bottom-right{bottom:env(safe-area-inset-bottom);transform:translate(0)}.Toastify__toast-container--rtl{right:env(safe-area-inset-right);left:initial}.Toastify__toast{--toastify-toast-width: 100%;margin-bottom:0;border-radius:0}}.Toastify__toast-container[data-stacked=true]{width:var(--toastify-toast-width)}.Toastify__toast--stacked{position:absolute;width:100%;transform:translate3d(0,var(--y),0) scale(var(--s));transition:transform .3s}.Toastify__toast--stacked[data-collapsed] .Toastify__toast-body,.Toastify__toast--stacked[data-collapsed] .Toastify__close-button{transition:opacity .1s}.Toastify__toast--stacked[data-collapsed=false]{overflow:visible}.Toastify__toast--stacked[data-collapsed=true]:not(:last-child)>*{opacity:0}.Toastify__toast--stacked:after{content:"";position:absolute;left:0;right:0;height:calc(var(--g) * 1px);bottom:100%}.Toastify__toast--stacked[data-pos=top]{top:0}.Toastify__toast--stacked[data-pos=bot]{bottom:0}.Toastify__toast--stacked[data-pos=bot].Toastify__toast--stacked:before{transform-origin:top}.Toastify__toast--stacked[data-pos=top].Toastify__toast--stacked:before{transform-origin:bottom}.Toastify__toast--stacked:before{content:"";position:absolute;left:0;right:0;bottom:0;height:100%;transform:scaleY(3);z-index:-1}.Toastify__toast--rtl{direction:rtl}.Toastify__toast--close-on-click{cursor:pointer}.Toastify__toast-icon{margin-inline-end:10px;width:22px;flex-shrink:0;display:flex}.Toastify--animate{animation-fill-mode:both;animation-duration:.5s}.Toastify--animate-icon{animation-fill-mode:both;animation-duration:.3s}.Toastify__toast-theme--dark{background:var(--toastify-color-dark);color:var(--toastify-text-color-dark)}.Toastify__toast-theme--light,.Toastify__toast-theme--colored.Toastify__toast--default{background:var(--toastify-color-light);color:var(--toastify-text-color-light)}.Toastify__toast-theme--colored.Toastify__toast--info{color:var(--toastify-text-color-info);background:var(--toastify-color-info)}.Toastify__toast-theme--colored.Toastify__toast--success{color:var(--toastify-text-color-success);background:var(--toastify-color-success)}.Toastify__toast-theme--colored.Toastify__toast--warning{color:var(--toastify-text-color-warning);background:var(--toastify-color-warning)}.Toastify__toast-theme--colored.Toastify__toast--error{color:var(--toastify-text-color-error);background:var(--toastify-color-error)}.Toastify__progress-bar-theme--light{background:var(--toastify-color-progress-light)}.Toastify__progress-bar-theme--dark{background:var(--toastify-color-progress-dark)}.Toastify__progress-bar--info{background:var(--toastify-color-progress-info)}.Toastify__progress-bar--success{background:var(--toastify-color-progress-success)}.Toastify__progress-bar--warning{background:var(--toastify-color-progress-warning)}.Toastify__progress-bar--error{background:var(--toastify-color-progress-error)}.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--error{background:var(--toastify-color-transparent)}.Toastify__close-button{color:#fff;position:absolute;top:6px;right:6px;background:transparent;outline:none;border:none;padding:0;cursor:pointer;opacity:.7;transition:.3s ease;z-index:1}.Toastify__toast--rtl .Toastify__close-button{left:6px;right:unset}.Toastify__close-button--light{color:#000;opacity:.3}.Toastify__close-button>svg{fill:currentColor;height:16px;width:14px}.Toastify__close-button:hover,.Toastify__close-button:focus{opacity:1}@keyframes Toastify__trackProgress{0%{transform:scaleX(1)}to{transform:scaleX(0)}}.Toastify__progress-bar{position:absolute;bottom:0;left:0;width:100%;height:100%;z-index:1;opacity:.7;transform-origin:left}.Toastify__progress-bar--animated{animation:Toastify__trackProgress linear 1 forwards}.Toastify__progress-bar--controlled{transition:transform .2s}.Toastify__progress-bar--rtl{right:0;left:initial;transform-origin:right;border-bottom-left-radius:initial}.Toastify__progress-bar--wrp{position:absolute;overflow:hidden;bottom:0;left:0;width:100%;height:5px;border-bottom-left-radius:var(--toastify-toast-bd-radius);border-bottom-right-radius:var(--toastify-toast-bd-radius)}.Toastify__progress-bar--wrp[data-hidden=true]{opacity:0}.Toastify__progress-bar--bg{opacity:var(--toastify-color-progress-bgo);width:100%;height:100%}.Toastify__spinner{width:20px;height:20px;box-sizing:border-box;border:2px solid;border-radius:100%;border-color:var(--toastify-spinner-color-empty-area);border-right-color:var(--toastify-spinner-color);animation:Toastify__spin .65s linear infinite}@keyframes Toastify__bounceInRight{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(3000px,0,0)}60%{opacity:1;transform:translate3d(-25px,0,0)}75%{transform:translate3d(10px,0,0)}90%{transform:translate3d(-5px,0,0)}to{transform:none}}@keyframes Toastify__bounceOutRight{20%{opacity:1;transform:translate3d(-20px,var(--y),0)}to{opacity:0;transform:translate3d(2000px,var(--y),0)}}@keyframes Toastify__bounceInLeft{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(-3000px,0,0)}60%{opacity:1;transform:translate3d(25px,0,0)}75%{transform:translate3d(-10px,0,0)}90%{transform:translate3d(5px,0,0)}to{transform:none}}@keyframes Toastify__bounceOutLeft{20%{opacity:1;transform:translate3d(20px,var(--y),0)}to{opacity:0;transform:translate3d(-2000px,var(--y),0)}}@keyframes Toastify__bounceInUp{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(0,3000px,0)}60%{opacity:1;transform:translate3d(0,-20px,0)}75%{transform:translate3d(0,10px,0)}90%{transform:translate3d(0,-5px,0)}to{transform:translateZ(0)}}@keyframes Toastify__bounceOutUp{20%{transform:translate3d(0,calc(var(--y) - 10px),0)}40%,45%{opacity:1;transform:translate3d(0,calc(var(--y) + 20px),0)}to{opacity:0;transform:translate3d(0,-2000px,0)}}@keyframes Toastify__bounceInDown{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(0,-3000px,0)}60%{opacity:1;transform:translate3d(0,25px,0)}75%{transform:translate3d(0,-10px,0)}90%{transform:translate3d(0,5px,0)}to{transform:none}}@keyframes Toastify__bounceOutDown{20%{transform:translate3d(0,calc(var(--y) - 10px),0)}40%,45%{opacity:1;transform:translate3d(0,calc(var(--y) + 20px),0)}to{opacity:0;transform:translate3d(0,2000px,0)}}.Toastify__bounce-enter--top-left,.Toastify__bounce-enter--bottom-left{animation-name:Toastify__bounceInLeft}.Toastify__bounce-enter--top-right,.Toastify__bounce-enter--bottom-right{animation-name:Toastify__bounceInRight}.Toastify__bounce-enter--top-center{animation-name:Toastify__bounceInDown}.Toastify__bounce-enter--bottom-center{animation-name:Toastify__bounceInUp}.Toastify__bounce-exit--top-left,.Toastify__bounce-exit--bottom-left{animation-name:Toastify__bounceOutLeft}.Toastify__bounce-exit--top-right,.Toastify__bounce-exit--bottom-right{animation-name:Toastify__bounceOutRight}.Toastify__bounce-exit--top-center{animation-name:Toastify__bounceOutUp}.Toastify__bounce-exit--bottom-center{animation-name:Toastify__bounceOutDown}@keyframes Toastify__zoomIn{0%{opacity:0;transform:scale3d(.3,.3,.3)}50%{opacity:1}}@keyframes Toastify__zoomOut{0%{opacity:1}50%{opacity:0;transform:translate3d(0,var(--y),0) scale3d(.3,.3,.3)}to{opacity:0}}.Toastify__zoom-enter{animation-name:Toastify__zoomIn}.Toastify__zoom-exit{animation-name:Toastify__zoomOut}@keyframes Toastify__flipIn{0%{transform:perspective(400px) rotateX(90deg);animation-timing-function:ease-in;opacity:0}40%{transform:perspective(400px) rotateX(-20deg);animation-timing-function:ease-in}60%{transform:perspective(400px) rotateX(10deg);opacity:1}80%{transform:perspective(400px) rotateX(-5deg)}to{transform:perspective(400px)}}@keyframes Toastify__flipOut{0%{transform:translate3d(0,var(--y),0) perspective(400px)}30%{transform:translate3d(0,var(--y),0) perspective(400px) rotateX(-20deg);opacity:1}to{transform:translate3d(0,var(--y),0) perspective(400px) rotateX(90deg);opacity:0}}.Toastify__flip-enter{animation-name:Toastify__flipIn}.Toastify__flip-exit{animation-name:Toastify__flipOut}@keyframes Toastify__slideInRight{0%{transform:translate3d(110%,0,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInLeft{0%{transform:translate3d(-110%,0,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInUp{0%{transform:translate3d(0,110%,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInDown{0%{transform:translate3d(0,-110%,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideOutRight{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(110%,var(--y),0)}}@keyframes Toastify__slideOutLeft{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(-110%,var(--y),0)}}@keyframes Toastify__slideOutDown{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(0,500px,0)}}@keyframes Toastify__slideOutUp{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(0,-500px,0)}}.Toastify__slide-enter--top-left,.Toastify__slide-enter--bottom-left{animation-name:Toastify__slideInLeft}.Toastify__slide-enter--top-right,.Toastify__slide-enter--bottom-right{animation-name:Toastify__slideInRight}.Toastify__slide-enter--top-center{animation-name:Toastify__slideInDown}.Toastify__slide-enter--bottom-center{animation-name:Toastify__slideInUp}.Toastify__slide-exit--top-left,.Toastify__slide-exit--bottom-left{animation-name:Toastify__slideOutLeft;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--top-right,.Toastify__slide-exit--bottom-right{animation-name:Toastify__slideOutRight;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--top-center{animation-name:Toastify__slideOutUp;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--bottom-center{animation-name:Toastify__slideOutDown;animation-timing-function:ease-in;animation-duration:.3s}@keyframes Toastify__spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Dashboard</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; }
+.dashboard { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.header { background: linear-gradient(135deg, #CC0000 0%, #A50E1F 100%); color: white; padding: 30px; text-align: center; }
+.header h1 { margin: 0; font-size: 2.2em; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 30px; }
+.stat-card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center; border-left: 5px solid #CC0000; }
+.stat-number { font-size: 2.5em; font-weight: bold; color: #CC0000; }
+.stat-label { color: #666; font-size: 1.1em; margin-top: 10px; }
+.comparative { padding: 30px; background: white; border-top: 3px solid #CC0000; }
+.comparative h2 { color: #CC0000; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th { background: #CC0000; color: white; padding: 12px; text-align: left; }
+td { padding: 12px; border: 1px solid #ddd; }
+.our-lab { background: #e8f5e9; font-weight: bold; color: #2e7d32; }
 </style>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Student Mentoring Dashboard 2015-2025</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; font-size: 11pt; }
-        .dashboard { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 30px; }
-        .header { background: linear-gradient(135deg, #CC0000 0%, #A50E1F 100%); color: white; padding: 30px; text-align: center; }
-        .header h1 { margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; }
-        .header p { margin: 0; opacity: 0.9; font-size: 1.1em; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 30px; background: #f8f9fa; }
-        .stat-card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center; border-left: 5px solid #CC0000; transition: transform 0.3s ease; }
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-number { font-size: 2.5em; font-weight: bold; color: #CC0000; margin-bottom: 10px; }
-        .stat-label { color: #666; font-size: 1.1em; margin-bottom: 15px; font-weight: 500; }
-        .breakdown { margin-top: 10px; font-size: 10pt; color: #555; }
-        .breakdown-item { display: flex; justify-content: space-between; margin: 5px 0; }
-        .authorships-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
-        .authorship-category { background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #CC0000; }
-        .authorship-category h4 { margin: 0 0 8px 0; font-size: 10pt; color: #CC0000; }
-        .authorship-stat { display: flex; justify-content: space-between; font-size: 9pt; margin: 3px 0; }
-        .comparative-analysis { padding: 30px; background: white; border-top: 3px solid #CC0000; }
-        .comparative-analysis h2 { color: #CC0000; margin-bottom: 10px; font-size: 1.5em; }
-        .comparative-analysis p { color: #666; font-size: 10pt; margin-bottom: 20px; }
-        .comparison-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-        .comparison-table th { background: #CC0000; color: white; padding: 12px; text-align: left; font-weight: 600; border: 1px solid #ddd; }
-        .comparison-table td { padding: 12px; border: 1px solid #ddd; }
-        .comparison-table tr:hover { background: #f8f9fa; }
-        .comparison-table .our-lab { background: #e8f5e9; font-weight: bold; color: #2e7d32; }
-        .charts-section { padding: 30px; background: white; border-top: 2px solid #f0f0f0; }
-        .section-title { margin-bottom: 20px; color: #CC0000; font-size: 1.5em; }
-        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .chart-container { background: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .chart-title { font-size: 1.1em; font-weight: 600; color: #333; margin-bottom: 15px; text-align: center; }
-        .chart-wrapper { position: relative; height: 300px; }
-        .filters { padding: 20px 30px; background: white; border-bottom: 2px solid #f0f0f0; display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
-        .filter-group { display: flex; flex-direction: column; gap: 5px; }
-        .filter-group label { font-size: 10pt; color: #666; font-weight: 500; }
-        .filter-group select, .filter-group input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 10pt; font-family: Arial, sans-serif; }
-        .btn-group { display: flex; gap: 10px; padding: 20px 30px; background: white; }
-        button, .load-btn { padding: 10px 20px; border: none; border-radius: 4px; font-size: 10pt; cursor: pointer; font-family: Arial, sans-serif; }
-        .load-btn { background: #28a745; color: white; }
-        .load-btn:hover { background: #218838; }
-        input[type="file"] { display: none; }
-        .table-section { padding: 30px; background: white; border-top: 2px solid #f0f0f0; }
-        .table-container { overflow: auto; max-height: 600px; border: 2px solid #CC0000; border-radius: 5px; }
-        .student-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-        .student-table th { background: #CC0000; color: white; padding: 12px; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
-        .student-table td { padding: 10px 12px; border-bottom: 1px solid #e9ecef; }
-        .student-table tbody tr:hover { background: #f8f9fa; }
-        .level-postdoc { background-color: #fff3cd; }
-        .level-graduate { background-color: #d4edda; }
-        .level-undergraduate { background-color: #d1ecf1; }
-        .level-highschool { background-color: #f8d7da; }
-        .status-current { color: #28a745; font-weight: bold; }
-        .status-alumni { color: #007bff; font-weight: bold; }
-        .status-visiting { color: #9C27B0; font-weight: bold; }
-    </style>
 </head>
 <body>
-    <div class="dashboard">
-        <div class="header">
-            <h1>Lab Student Mentoring Dashboard</h1>
-            <p>Comprehensive tracking of student outcomes and achievements (2015-2025)</p>
-        </div>
-        
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card">
-                <div class="stat-number" id="totalStudents">216</div>
-                <div class="stat-label">Students Tracked</div>
-                <div class="breakdown" id="levelBreakdown">
-                <div class="breakdown-item"><span>PostDocs:</span><span>2</span></div>
-                <div class="breakdown-item"><span>Graduates:</span><span>20</span></div>
-                <div class="breakdown-item"><span>Undergraduates:</span><span>114</span></div>
-                <div class="breakdown-item"><span>High School:</span><span>80</span></div>
-            </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number" id="currentStudents">14</div>
-                <div class="stat-label">Current Students</div>
-                <div class="breakdown" id="currentBreakdown">
-                <div class="breakdown-item"><span>Graduate:</span><span>2</span></div>
-                <div class="breakdown-item"><span>Undergraduate:</span><span>11</span></div>
-                <div class="breakdown-item"><span>High School:</span><span>1</span></div>
-            </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number" id="totalOutputs">425</div>
-                <div class="stat-label">Total Authorships</div>
-                <div class="breakdown" id="outputsBreakdown">
-                <div class="breakdown-item"><span>Posters:</span><span>288</span></div>
-                <div class="breakdown-item"><span>Talks:</span><span>72</span></div>
-                <div class="breakdown-item"><span>Publications:</span><span>65</span></div>
-            </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number" id="totalAuthorships">425</div>
-                <div class="stat-label">Authorship Details</div>
-                <div class="breakdown" id="authorshipsBreakdown">
-                <div class="breakdown-item"><span>Total:</span><span>425</span></div>
-                <div class="breakdown-item"><span>Avg per Student:</span><span>1.97</span></div>
-            </div>
-                <div class="authorships-grid" id="authorshipsGrid">
-                <div class="authorship-category">
-                    <h4>PostDocs (2)</h4>
-                    <div class="authorship-stat"><span>Total:</span><span>16</span></div>
-                    <div class="authorship-stat"><span>Avg:</span><span>8.00</span></div>
-                </div>
-            
-                <div class="authorship-category">
-                    <h4>Graduates (20)</h4>
-                    <div class="authorship-stat"><span>Total:</span><span>207</span></div>
-                    <div class="authorship-stat"><span>Avg:</span><span>10.35</span></div>
-                </div>
-            
-                <div class="authorship-category">
-                    <h4>Undergraduates (114)</h4>
-                    <div class="authorship-stat"><span>Total:</span><span>174</span></div>
-                    <div class="authorship-stat"><span>Avg:</span><span>1.53</span></div>
-                </div>
-            
-                <div class="authorship-category">
-                    <h4>High Schools (80)</h4>
-                    <div class="authorship-stat"><span>Total:</span><span>28</span></div>
-                    <div class="authorship-stat"><span>Avg:</span><span>0.35</span></div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div class="comparative-analysis">
-            <h2>Comparative Analysis: Lab Performance vs National Averages</h2>
-            <p>Comparison data from peer-reviewed academic studies and national reports (2018-2024).</p>
-            
-            <div style="background: #f8f9fa; border-left: 4px solid #CC0000; padding: 15px; margin: 20px 0; font-size: 10pt;">
-                <strong>Methods and Definitions:</strong> All comparative metrics calculate outcomes for students who completed their programs (Alumni status only). This ensures fair comparison with national benchmarks, which typically report outcomes for completion cohorts.
-                <br><br>
-                <strong>Inclusion criteria:</strong> Students who graduated from the lab (degree awarded) during 2015-2025 (ISU period).
-                <br>
-                <strong>Exclusion criteria:</strong> Students currently in the program, visiting students, and students who transferred to other institutions before degree completion are excluded from comparative metrics but remain in the total student roster.
-                <br>
-                <strong>Graduate student completion:</strong> Only the 9 verified graduate students who earned degrees from the lab are included in graduate metrics (2 PhD, 7 MS).
-                <br><br>
-                <strong>Last updated:</strong> February 11, 2025
-            </div>
-            
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>Our Lab</th>
-                        <th>Average R1 Lab</th>
-                        <th>Average R2 Lab</th>
-                        <th>National Average</th>
-                        <th>Source</th>
-                    </tr>
-                </thead>
-                <tbody id="comparisonTableBody">
-                <tr>
-                    <td>Students Mentored (10 years)</td>
-                    <td class="our-lab">202</td>
-                    <td>45-65</td>
-                    <td>25-40</td>
-                    <td>35-50</td>
-                    <td>NSF STEM Ed Reports</td>
-                </tr>
-                <tr>
-                    <td>Undergrad Research Publications</td>
-                    <td class="our-lab">20%</td>
-                    <td>12-15%</td>
-                    <td>8-12%</td>
-                    <td>10%</td>
-                    <td>CUR Survey 2022</td>
-                </tr>
-                <tr>
-                    <td>Undergrad Conference Presentations</td>
-                    <td class="our-lab">45%</td>
-                    <td>40-50%</td>
-                    <td>30-40%</td>
-                    <td>35%</td>
-                    <td>AAAS Data 2023</td>
-                </tr>
-                <tr>
-                    <td>Graduate Student Publications (Combined)</td>
-                    <td class="our-lab">2.22/student (n=9)</td>
-                    <td>1.2-1.5</td>
-                    <td>0.8-1.2</td>
-                    <td>0.8</td>
-                    <td>PhD Completion Project</td>
-                </tr>
-                <tr style="background: #f8f9fa;">
-                    <td style="padding-left: 30px;">PhD Students</td>
-                    <td class="our-lab">4.50/student (n=2)</td>
-                    <td>2.0-3.0</td>
-                    <td>1.5-2.5</td>
-                    <td>1.5</td>
-                    <td>PhD Completion Project</td>
-                </tr>
-                <tr style="background: #f8f9fa;">
-                    <td style="padding-left: 30px;">MS Students</td>
-                    <td class="our-lab">1.57/student (n=7)</td>
-                    <td>0.8-1.2</td>
-                    <td>0.5-0.8</td>
-                    <td>0.5</td>
-                    <td>CGS/NAGAP Data</td>
-                </tr>
-                <tr>
-                    <td>STEM Career Continuation</td>
-                    <td class="our-lab">80%</td>
-                    <td>75-80%</td>
-                    <td>65-75%</td>
-                    <td>65%</td>
-                    <td>NSF SESTAT 2021</td>
-                </tr>
-                <tr>
-                    <td>High School Student Engagement</td>
-                    <td class="our-lab">79 students</td>
-                    <td>10-20</td>
-                    <td>5-15</td>
-                    <td>12</td>
-                    <td>NCES Data 2022</td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-
-        <div class="charts-section">
-            <h2 class="section-title">Student Distribution and Career Outcomes</h2>
-            <div class="charts-grid">
-                <div class="chart-container">
-                    <div class="chart-title">Students by Level</div>
-                    <div class="chart-wrapper"><canvas id="levelChart" width="415" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 415px;"></canvas></div>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">High School Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="highSchoolChart" width="415" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 415px;"></canvas></div>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">Undergraduate Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="undergradChart" width="415" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 415px;"></canvas></div>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">Graduate Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="gradChart" width="415" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 415px;"></canvas></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="filters">
-            <div class="filter-group">
-                <label for="levelFilter">Level:</label>
-                <select id="levelFilter">
-                    <option value="">All Levels</option>
-                    <option value="PostDoc">PostDoc</option>
-                    <option value="Graduate">Graduate</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="High School">High School</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="statusFilter">Status:</label>
-                <select id="statusFilter">
-                    <option value="">All Status</option>
-                    <option value="Current">Current</option>
-                    <option value="Alumni">Alumni</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="searchFilter">Search:</label>
-                <input type="text" id="searchFilter" placeholder="Search names...">
-            </div>
-        </div>
-
-        <div class="btn-group">
-            <label for="fileInput" class="load-btn">Update from Excel</label>
-            <input type="file" id="fileInput" accept=".xlsx,.xls">
-        </div>
-        
-        <div class="table-section">
-            <h2 class="section-title">Student Alumni List</h2>
-            <div class="table-container">
-                <table class="student-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Level</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"><tr class="level-postdoc"><td>Carola Stadele</td><td>PostDoc</td><td class="status-alumni">Alumni</td></tr><tr class="level-postdoc"><td>Jessica Adams</td><td>PostDoc</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Tope Awe</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Mackenzie Jones</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Damiano Marchiafava</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Aalimah Akinosho</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Adina Fazyl</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Shifat Niha</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Chance Bainbridge</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Kiley Hughes</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Anjelica Rodriguez</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Casey Gahrs</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Abigail Benson</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Monica Tamrazi</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Rajit Roy</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Daniel Nuccio</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Mary McKeays</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Gaston Risi</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Brittani Rivera</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Parham Jazireian</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Ploy Freebairn</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Margarita Gomez</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Austeja Wingate</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Jack Fostiack</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Harrison Weidemiller</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Keke Velez</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Jackson Copeland</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Erin Cheeseman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Florence Ofurum</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Grace Ruscheinski</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Nevyn Laframboise</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kamden Malinowski</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Rene Wilderman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Hope Fransen</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Avinaash Muthukuman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Paige Batchelor</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Mary Gardner</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Anabelle Dunaway</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Tyler Stark</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Celia Beron</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Erinda Aidoo</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Austin Alhlert</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Victoria Andriulis</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Blake Bracht</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Srishti Goel</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Molly Ewen</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Selman Ayedagdu</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Janelle Jackson</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jocelyn McDonald</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Andrew Schuler</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Samantha Vemuri</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lucas Barickman</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Moe Khalil</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Zach Benefield</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Berry</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Allison Webb</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Carlee Chehak</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kori Cuciarone</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Victoria Edelman</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Allison Fritz</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Yasmine Giliana</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Evan Gustafson</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kayla Haines</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Bryce Hendren</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jake Kaindl</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Alex Kew</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>William Milanick</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Shawn Mohammed</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Dana Niswonger</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jacinda Nunez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Pari Patel</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Vidhi Rakholia</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Trevor Rickerd</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Brian Rodemoyer</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Andrew Rodriguez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lauren Ruhe</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Erin Sawilchik</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Brianne Sutter</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kaitlyn Termine</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kevin Tragesser</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Ranija Turner</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Hannah Watson</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Hannah Swift</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Madison Westbrook</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jennifer Miller</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Harris</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Killian</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Teagan Zack</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Gina Quiriconi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Brooke Willis</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Zoe Meier</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Boyowa Mene-Okotie</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Alysia Thorn</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lindsay Brettmann</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lindsay Becker</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Mike Moscardelli</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lea Kressin</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kristi Ward</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Grace Hwang</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Erin Elbel</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Elvira Marquez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Thomas Maple</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adhishri Parikh</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Roberto Guajardo</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adora Akahome</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kristen Bartlett</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Natalie Burrell</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Michael Cisneros</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adam Conley</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Isabelle De Dianous</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Peter DeVries</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Asmus</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Makayla Holub</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adriana Garcia</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Sarah Hannan</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Joshua Hernandez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Annemarie Hyer</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Ian Kenny</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Umme Ahsan</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Braidy Megeff</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Matt Demir</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Joe Schweickert</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Baylee Paluzzi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Yigit Demir</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kehinde Owoyemi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Taiyelolu Owoyemi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Thomas Rimbo</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Samantha Padia</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jonathan Schuller</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Ashka Shah</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kaitlyn Donovan</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Dayton Oblinger</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Sabrina Kollbaum</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Rachel Gabbrants</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adi Oday</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Isabel Guerrero</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Abhinav Komandur</td><td>High School</td><td class="status-current">Current</td></tr><tr class="level-highschool"><td>Anushi Kiribamune</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Charles Jackson</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sumitra Paramatmuni</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Noelle Woith</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Vidushi Shukla</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nick Leonard</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Adithya Komandur</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Laura Kelly</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alex Kullman</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Neha Gutta</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Calis Lim</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Hannah Ahmed</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Peyton Carlock</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Lavanya Sathyamurthy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Adithya Sathyamurthy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Jack Sauser</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Peter Waller</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Ananya Kommalapati</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rachel Kullman</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rahul Darbhakul</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Lucy Ryan</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Matthew Trisnadi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Shannon Lu</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Virginia Wang</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nicholas Truong</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rohan Agarwal</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Eesha Alaparthi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sunitha Garapathi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Prasanth Garapathi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sahana Garapathi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alexander Albert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Akash Anbu</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Blake Thomson</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rachel Bolden</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Lydia Brown</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>James Bundy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Saisu Talasu</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Casey Clubb</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Samaya Danthurthy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Maanasa Devebhaktuni</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Katie Elbert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Jacqueline Espinoza</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Joshua Gantert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Harshith Gorla</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Julian Hawley</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Avery Hedican</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Julianna Heptinstall</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Jaleh Johnson</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>David Kim</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikitha Lakshiminarayanan</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Ayesha Mahmood</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Devnanda Manjunadth</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Amanda Mala</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Mira Malavia</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Manaswini Mannam</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Zach Mohammed</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Denzel Namadurai</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Arun Kumar</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Saispurthi Palavalli</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Yami Panchal</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Irene Park</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>JuWon Park</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Akshaya Raghavan</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Aila Rahman</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikith Rao</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikhil Samayam</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alanya Schippert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Neal Shah</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Neehar Shah</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Akhil Vytla</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>B Showri</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Evan Tsubaki</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Roussolini (Rosie) Socrates</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Summer Will</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Shahan Yalavarthi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Maanasa Devebhaktuni</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nivita Patri</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Shouri Bochetty</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Britany Ziemer</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sruthi Singaraju</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Claudia Gallardo</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alyson Ficca</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikhil Samayan</td><td>High School</td><td class="status-alumni">Alumni</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let studentsData = [];
-        let filteredData = [];
-        let charts = {};
-        let uniqueOutputs = { posters: 0, talks: 0, publications: 0 };
-
-        window.addEventListener('DOMContentLoaded', function() {
-            loadStudentData();
-            
-            document.getElementById('fileInput').addEventListener('change', handleFile);
-            document.getElementById('levelFilter').addEventListener('change', applyFilters);
-            document.getElementById('statusFilter').addEventListener('change', applyFilters);
-            document.getElementById('searchFilter').addEventListener('input', applyFilters);
-        });
-
-        function loadStudentData() {
-            fetch('students.json')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.students && data.uniqueOutputs) {
-                        studentsData = data.students;
-                        uniqueOutputs = data.uniqueOutputs;
-                    } else {
-                        studentsData = data;
-                    }
-                    filteredData = [...studentsData];
-                    updateDashboard();
-                })
-                .catch(() => {
-                    console.log('No students.json found, dashboard ready for Excel upload');
-                    document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">Please upload your Excel file to begin.</td></tr>';
-                });
-        }
-
-        function handleFile(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, {type: 'array'});
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
-                    
-                    const outputRows = jsonData.filter(row => row.Output && row.Number);
-                    uniqueOutputs = { posters: 0, talks: 0, publications: 0 };
-                    
-                    outputRows.forEach(row => {
-                        const output = (row.Output || '').toLowerCase();
-                        const num = parseInt(row.Number) || 0;
-                        if (output.includes('poster')) uniqueOutputs.posters = num;
-                        if (output.includes('student talk')) uniqueOutputs.talks = num;
-                        if (output.includes('peer-reviewed')) uniqueOutputs.publications = num;
-                    });
-                    
-                    studentsData = jsonData.filter(row => row.Name && row.Name !== "Students: Total" && row.Name !== "" && row.Level).map(row => ({
-                        name: row.Name || '',
-                        level: row.Level || '',
-                        status: row.Status || '',
-                        degree: row.Degree || '',
-                        currentPosition: row["Current Position"] || '',
-                        stemCareer: row["STEM Career"] || '',
-                        posters: parseInt(row.Posters) || 0,
-                        talks: parseInt(row.Talks) || 0,
-                        publications: parseInt(row.Publications) || 0,
-                        research: row["Research/Awards/Notes"] || ''
-                    }));
-
-                    filteredData = [...studentsData];
-                    updateDashboard();
-                    alert(`Successfully loaded ${studentsData.length} students!`);
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error loading file: ' + error.message + '\n\nCheck browser console for details.');
-                }
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        function updateDashboard() {
-            updateStatistics();
-            updateCharts();
-            updateComparativeAnalysis();
-            renderTable(filteredData);
-        }
-
-        function updateStatistics() {
-            const levelCounts = studentsData.reduce((acc, s) => {
-                acc[s.level] = (acc[s.level] || 0) + 1;
-                return acc;
-            }, {});
-
-            const currentCounts = studentsData.filter(s => s.status === 'Current').reduce((acc, s) => {
-                acc[s.level] = (acc[s.level] || 0) + 1;
-                return acc;
-            }, {});
-
-            const totalAuthorshipPosters = studentsData.reduce((sum, s) => sum + (s.posters || 0), 0);
-            const totalAuthorshipTalks = studentsData.reduce((sum, s) => sum + (s.talks || 0), 0);
-            const totalAuthorshipPubs = studentsData.reduce((sum, s) => sum + (s.publications || 0), 0);
-            const totalAuthorships = totalAuthorshipPosters + totalAuthorshipTalks + totalAuthorshipPubs;
-
-            const totalUniqueOutputs = uniqueOutputs.posters + uniqueOutputs.talks + uniqueOutputs.publications;
-
-            document.getElementById('totalStudents').textContent = studentsData.length;
-            document.getElementById('levelBreakdown').innerHTML = `
-                <div class="breakdown-item"><span>PostDocs:</span><span>${levelCounts['PostDoc'] || 0}</span></div>
-                <div class="breakdown-item"><span>Graduates:</span><span>${levelCounts['Graduate'] || 0}</span></div>
-                <div class="breakdown-item"><span>Undergraduates:</span><span>${levelCounts['Undergraduate'] || 0}</span></div>
-                <div class="breakdown-item"><span>High School:</span><span>${levelCounts['High School'] || 0}</span></div>
-            `;
-
-            const currentTotal = studentsData.filter(s => s.status === 'Current').length;
-            document.getElementById('currentStudents').textContent = currentTotal;
-            document.getElementById('currentBreakdown').innerHTML = `
-                <div class="breakdown-item"><span>Graduate:</span><span>${currentCounts['Graduate'] || 0}</span></div>
-                <div class="breakdown-item"><span>Undergraduate:</span><span>${currentCounts['Undergraduate'] || 0}</span></div>
-                <div class="breakdown-item"><span>High School:</span><span>${currentCounts['High School'] || 0}</span></div>
-            `;
-
-            document.getElementById('totalOutputs').textContent = totalUniqueOutputs;
-            document.getElementById('outputsBreakdown').innerHTML = `
-                <div class="breakdown-item"><span>Posters:</span><span>${uniqueOutputs.posters}</span></div>
-                <div class="breakdown-item"><span>Talks:</span><span>${uniqueOutputs.talks}</span></div>
-                <div class="breakdown-item"><span>Publications:</span><span>${uniqueOutputs.publications}</span></div>
-            `;
-
-            document.getElementById('totalAuthorships').textContent = totalAuthorships;
-            const avgAuthorships = (totalAuthorships / studentsData.length).toFixed(2);
-            document.getElementById('authorshipsBreakdown').innerHTML = `
-                <div class="breakdown-item"><span>Total:</span><span>${totalAuthorships}</span></div>
-                <div class="breakdown-item"><span>Avg per Student:</span><span>${avgAuthorships}</span></div>
-            `;
-
-            const levelAuthorships = ['PostDoc', 'Graduate', 'Undergraduate', 'High School'].map(level => {
-                const students = studentsData.filter(s => s.level === level);
-                const count = students.length;
-                const total = students.reduce((sum, s) => sum + (s.posters || 0) + (s.talks || 0) + (s.publications || 0), 0);
-                const avg = count > 0 ? (total / count).toFixed(2) : '0.00';
-                return { level, count, total, avg };
-            });
-
-            document.getElementById('authorshipsGrid').innerHTML = levelAuthorships.map(la => `
-                <div class="authorship-category">
-                    <h4>${la.level}s (${la.count})</h4>
-                    <div class="authorship-stat"><span>Total:</span><span>${la.total}</span></div>
-                    <div class="authorship-stat"><span>Avg:</span><span>${la.avg}</span></div>
-                </div>
-            `).join('');
-        }
-
-        function updateCharts() {
-            const levelCounts = studentsData.reduce((acc, s) => {
-                acc[s.level] = (acc[s.level] || 0) + 1;
-                return acc;
-            }, {});
-
-            if (charts.level) charts.level.destroy();
-            charts.level = new Chart(document.getElementById('levelChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['PostDoc', 'Graduate', 'Undergraduate', 'High School'],
-                    datasets: [{
-                        data: [
-                            levelCounts['PostDoc'] || 0,
-                            levelCounts['Graduate'] || 0,
-                            levelCounts['Undergraduate'] || 0,
-                            levelCounts['High School'] || 0
-                        ],
-                        backgroundColor: ['#FFC107', '#4CAF50', '#2196F3', '#FF5722'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } } }
-                }
-            });
-
-            if (charts.highSchool) charts.highSchool.destroy();
-            charts.highSchool = new Chart(document.getElementById('highSchoolChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Currently Enrolled STEM', 'Graduate/Professional School', 'Research Exposure', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [30, 18, 15, 8, 5, 8],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336', '#757575'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
-                }
-            });
-
-            if (charts.undergrad) charts.undergrad.destroy();
-            charts.undergrad = new Chart(document.getElementById('undergradChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Industry/Biotech', 'Graduate School', 'Clinical/Healthcare', 'Academic Research', 'Teaching', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [32, 28, 18, 15, 8, 6, 5, 3],
-                        backgroundColor: ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336', '#757575'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 9 }, padding: 6 } } }
-                }
-            });
-
-            if (charts.grad) charts.grad.destroy();
-            charts.grad = new Chart(document.getElementById('gradChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Academic Research/Teaching', 'Industry Research', 'Clinical Pathways', 'Postdoctoral', 'Professional School', 'Completion Elsewhere', 'Non-STEM'],
-                    datasets: [{
-                        data: [7, 5, 3, 2, 2, 1, 1],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
-                }
-            });
-        }
-
-        function updateComparativeAnalysis() {
-            // Verified graduate students who completed degrees from the lab
-            const verifiedGraduates = [
-                'Aalimah Akinosho', 'Adina Fazyl', 'Shifat Niha',
-                'Chance Bainbridge', 'Kiley Hughes', 'Anjelica Rodriguez',
-                'Casey Gahrs', 'Abigail Benson', 'Rajit Roy'
-            ];
-
-            // Filter to Alumni only for all comparative metrics
-            const alumniData = studentsData.filter(s => s.status === 'Alumni');
-
-            // Undergraduate metrics (Alumni only)
-            const undergradAlumni = alumniData.filter(s => s.level === 'Undergraduate');
-            const undergradWithPubs = undergradAlumni.filter(s => s.publications > 0).length;
-            const undergradPubPercent = undergradAlumni.length > 0 ? ((undergradWithPubs / undergradAlumni.length) * 100).toFixed(0) : 0;
-
-            const undergradWithPresent = undergradAlumni.filter(s => s.posters > 0 || s.talks > 0).length;
-            const undergradPresentPercent = undergradAlumni.length > 0 ? ((undergradWithPresent / undergradAlumni.length) * 100).toFixed(0) : 0;
-
-            // Graduate metrics (verified degree completers only)
-            const gradAlumni = alumniData.filter(s => 
-                s.level === 'Graduate' && verifiedGraduates.includes(s.name)
-            );
-            const avgGradPubs = gradAlumni.length > 0 ? (gradAlumni.reduce((sum, s) => sum + s.publications, 0) / gradAlumni.length).toFixed(2) : 0;
-            
-            // PhD vs MS breakdown
-            const phdGrads = gradAlumni.filter(s => s.degree === 'PhD');
-            const msGrads = gradAlumni.filter(s => s.degree === 'MS');
-            const avgPhdPubs = phdGrads.length > 0 ? (phdGrads.reduce((sum, s) => sum + s.publications, 0) / phdGrads.length).toFixed(2) : 0;
-            const avgMsPubs = msGrads.length > 0 ? (msGrads.reduce((sum, s) => sum + s.publications, 0) / msGrads.length).toFixed(2) : 0;
-
-            // STEM career (Alumni only)
-            const stemCareerCount = alumniData.filter(s => s.stemCareer && s.stemCareer.toLowerCase().includes('yes')).length;
-            const stemPercent = alumniData.length > 0 ? ((stemCareerCount / alumniData.length) * 100).toFixed(0) : 0;
-
-            // High school (Alumni only)
-            const highSchoolAlumni = alumniData.filter(s => s.level === 'High School');
-            const highSchoolCount = highSchoolAlumni.length;
-
-            document.getElementById('comparisonTableBody').innerHTML = `
-                <tr>
-                    <td>Students Mentored (10 years)</td>
-                    <td class="our-lab">${alumniData.length}</td>
-                    <td>45-65</td>
-                    <td>25-40</td>
-                    <td>35-50</td>
-                    <td>NSF STEM Ed Reports</td>
-                </tr>
-                <tr>
-                    <td>Undergrad Research Publications</td>
-                    <td class="our-lab">${undergradPubPercent}%</td>
-                    <td>12-15%</td>
-                    <td>8-12%</td>
-                    <td>10%</td>
-                    <td>CUR Survey 2022</td>
-                </tr>
-                <tr>
-                    <td>Undergrad Conference Presentations</td>
-                    <td class="our-lab">${undergradPresentPercent}%</td>
-                    <td>40-50%</td>
-                    <td>30-40%</td>
-                    <td>35%</td>
-                    <td>AAAS Data 2023</td>
-                </tr>
-                <tr>
-                    <td>Graduate Student Publications (Combined)</td>
-                    <td class="our-lab">${avgGradPubs}/student (n=${gradAlumni.length})</td>
-                    <td>1.2-1.5</td>
-                    <td>0.8-1.2</td>
-                    <td>0.8</td>
-                    <td>PhD Completion Project</td>
-                </tr>
-                <tr style="background: #f8f9fa;">
-                    <td style="padding-left: 30px;">PhD Students</td>
-                    <td class="our-lab">${avgPhdPubs}/student (n=${phdGrads.length})</td>
-                    <td>2.0-3.0</td>
-                    <td>1.5-2.5</td>
-                    <td>1.5</td>
-                    <td>PhD Completion Project</td>
-                </tr>
-                <tr style="background: #f8f9fa;">
-                    <td style="padding-left: 30px;">MS Students</td>
-                    <td class="our-lab">${avgMsPubs}/student (n=${msGrads.length})</td>
-                    <td>0.8-1.2</td>
-                    <td>0.5-0.8</td>
-                    <td>0.5</td>
-                    <td>CGS/NAGAP Data</td>
-                </tr>
-                <tr>
-                    <td>STEM Career Continuation</td>
-                    <td class="our-lab">${stemPercent}%</td>
-                    <td>75-80%</td>
-                    <td>65-75%</td>
-                    <td>65%</td>
-                    <td>NSF SESTAT 2021</td>
-                </tr>
-                <tr>
-                    <td>High School Student Engagement</td>
-                    <td class="our-lab">${highSchoolCount} students</td>
-                    <td>10-20</td>
-                    <td>5-15</td>
-                    <td>12</td>
-                    <td>NCES Data 2022</td>
-                </tr>
-            `;
-        }
-
-        function renderTable(data) {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
-
-            if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">No students match filters.</td></tr>';
-                return;
-            }
-
-            data.forEach(student => {
-                const row = tbody.insertRow();
-                row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
-                row.insertCell(0).textContent = student.name;
-                row.insertCell(1).textContent = student.level;
-                const statusCell = row.insertCell(2);
-                statusCell.textContent = student.status;
-                statusCell.className = `status-${student.status.toLowerCase()}`;
-            });
-        }
-
-        function applyFilters() {
-            if (studentsData.length === 0) return;
-
-            const levelFilter = document.getElementById('levelFilter').value;
-            const statusFilter = document.getElementById('statusFilter').value;
-            const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
-
-            filteredData = studentsData.filter(student => {
-                const matchLevel = !levelFilter || student.level === levelFilter;
-                const matchStatus = !statusFilter || student.status === statusFilter;
-                const matchSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
-                return matchLevel && matchStatus && matchSearch;
-            });
-
-            renderTable(filteredData);
-        }
-    </script>
-
-
+<div class="dashboard">
+<div class="header">
+<h1>Lab Student Mentoring Dashboard</h1>
+<p>Student outcomes and achievements (2015-2025)</p>
+</div>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-number">216</div>
+<div class="stat-label">Students Tracked</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">14</div>
+<div class="stat-label">Current Students</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">425</div>
+<div class="stat-label">Total Authorships</div>
+</div>
+</div>
+<div class="comparative">
+<h2>Comparative Analysis</h2>
+<table>
+<tr>
+<th>Metric</th>
+<th>Our Lab</th>
+<th>R1 Lab</th>
+<th>R2 Lab</th>
+<th>National</th>
+</tr>
+<tr>
+<td>Students Mentored (10 years)</td>
+<td class="our-lab">202</td>
+<td>45-65</td>
+<td>25-40</td>
+<td>35-50</td>
+</tr>
+<tr>
+<td>Undergrad Research Publications</td>
+<td class="our-lab">20%</td>
+<td>12-15%</td>
+<td>8-12%</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>Graduate Student Publications</td>
+<td class="our-lab">2.22/student</td>
+<td>1.2-1.5</td>
+<td>0.8-1.2</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>PhD Students</td>
+<td class="our-lab">4.50/student</td>
+<td>2.0-3.0</td>
+<td>1.5-2.5</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>MS Students</td>
+<td class="our-lab">1.57/student</td>
+<td>0.8-1.2</td>
+<td>0.5-0.8</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>STEM Career Rate</td>
+<td class="our-lab">80%</td>
+<td>75-80%</td>
+<td>65-75%</td>
+<td>65%</td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>
 </body></html>
