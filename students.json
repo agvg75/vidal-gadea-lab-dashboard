@@ -1,527 +1,183 @@
 <!DOCTYPE html>
-<!-- saved from url=(0087)file:///C:/Users/avidal/OneDrive%20-%20IL%20State%20University/lab_dashboard_fixed.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Student Mentoring Dashboard 2015-2025</title>
-    <script src="./Lab Student Mentoring Dashboard 2015-2025_files/chart.min.js.download"></script>
-    <script src="./Lab Student Mentoring Dashboard 2015-2025_files/xlsx.full.min.js.download"></script>
+    <title>Editable Vidal-Gadea Lab Student Database</title>
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; font-size: 11pt; }
-        .dashboard { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 30px; }
-        .header { background: linear-gradient(135deg, #CC0000 0%, #A50E1F 100%); color: white; padding: 30px; text-align: center; }
-        .header h1 { margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; }
-        .header p { margin: 0; opacity: 0.9; font-size: 1.1em; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 30px; background: #f8f9fa; }
-        .stat-card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center; border-left: 5px solid #CC0000; transition: transform 0.3s ease; }
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-number { font-size: 2.5em; font-weight: bold; color: #CC0000; margin-bottom: 10px; }
-        .stat-label { color: #666; font-size: 1.1em; margin-bottom: 15px; font-weight: 500; }
-        .breakdown { margin-top: 10px; font-size: 10pt; color: #555; }
-        .breakdown-item { display: flex; justify-content: space-between; margin: 5px 0; }
-        .authorships-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
-        .authorship-category { background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #CC0000; }
-        .authorship-category h4 { margin: 0 0 8px 0; font-size: 10pt; color: #CC0000; }
-        .authorship-stat { display: flex; justify-content: space-between; font-size: 9pt; margin: 3px 0; }
-        .comparative-analysis { padding: 30px; background: white; border-top: 3px solid #CC0000; }
-        .comparative-analysis h2 { color: #CC0000; margin-bottom: 10px; font-size: 1.5em; }
-        .comparative-analysis p { color: #666; font-size: 10pt; margin-bottom: 20px; }
-        .comparison-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-        .comparison-table th { background: #CC0000; color: white; padding: 12px; text-align: left; font-weight: 600; border: 1px solid #ddd; }
-        .comparison-table td { padding: 12px; border: 1px solid #ddd; }
-        .comparison-table tr:hover { background: #f8f9fa; }
-        .comparison-table .our-lab { background: #e8f5e9; font-weight: bold; color: #2e7d32; }
-        .charts-section { padding: 30px; background: white; border-top: 2px solid #f0f0f0; }
-        .section-title { margin-bottom: 20px; color: #CC0000; font-size: 1.5em; }
-        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .chart-container { background: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .chart-title { font-size: 1.1em; font-weight: 600; color: #333; margin-bottom: 15px; text-align: center; }
-        .chart-wrapper { position: relative; height: 300px; }
-        .filters { padding: 20px 30px; background: white; border-bottom: 2px solid #f0f0f0; display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
-        .filter-group { display: flex; flex-direction: column; gap: 5px; }
-        .filter-group label { font-size: 10pt; color: #666; font-weight: 500; }
-        .filter-group select, .filter-group input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 10pt; font-family: Arial, sans-serif; }
-        .btn-group { display: flex; gap: 10px; padding: 20px 30px; background: white; }
-        button, .load-btn { padding: 10px 20px; border: none; border-radius: 4px; font-size: 10pt; cursor: pointer; font-family: Arial, sans-serif; }
-        .load-btn { background: #28a745; color: white; }
-        .load-btn:hover { background: #218838; }
-        .export-btn { background: #CC0000; color: white; }
-        .export-btn:hover { background: #A50E1F; }
-        input[type="file"] { display: none; }
-        .table-section { padding: 30px; background: white; border-top: 2px solid #f0f0f0; }
-        .table-container { overflow: auto; max-height: 600px; border: 2px solid #CC0000; border-radius: 5px; }
-        .student-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-        .student-table th { background: #CC0000; color: white; padding: 12px; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
-        .student-table td { padding: 10px 12px; border-bottom: 1px solid #e9ecef; }
-        .student-table tbody tr:hover { background: #f8f9fa; }
-        .level-postdoc { background-color: #fff3cd; }
-        .level-graduate { background-color: #d4edda; }
-        .level-undergraduate { background-color: #d1ecf1; }
-        .level-highschool { background-color: #f8d7da; }
-        .status-current { color: #28a745; font-weight: bold; }
-        .status-graduated { color: #007bff; font-weight: bold; }
-        .status-former { color: #6c757d; }
-        .status-visiting { color: #9C27B0; font-weight: bold; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
-        .modal-content { background-color: white; margin: 15% auto; padding: 30px; border-radius: 10px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .modal-content h3 { color: #CC0000; margin-bottom: 15px; }
-        .modal-content input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; font-family: Arial, sans-serif; font-size: 11pt; }
-        .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
-        .modal-buttons button { flex: 1; }
-        .error-message { color: #dc3545; padding: 10px; background: #f8d7da; border-radius: 4px; margin-top: 10px; }
-        .success-message { color: #155724; padding: 10px; background: #d4edda; border-radius: 4px; margin-top: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .summary div {
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 18%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+        td {
+            vertical-align: top;
+        }
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        td[contenteditable="true"] {
+            background-color: #e8f0fe;
+        }
+        .add-btn, .save-btn {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .add-btn:hover, .save-btn:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <div class="header">
-            <h1>Lab Student Mentoring Dashboard</h1>
-            <p>Comprehensive tracking of student outcomes and achievements (2015-2025)</p>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">221</div>
-                <div class="stat-label">Students Tracked</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>PostDocs:</span><span>2</span></div>
-                    <div class="breakdown-item"><span>Graduates:</span><span>20</span></div>
-                    <div class="breakdown-item"><span>Undergraduates:</span><span>115</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span>84</span></div>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">17</div>
-                <div class="stat-label">Current Students</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>Graduate:</span><span>2</span></div>
-                    <div class="breakdown-item"><span>Undergraduate:</span><span>14</span></div>
-                    <div class="breakdown-item"><span>High School:</span><span>1</span></div>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">236</div>
-                <div class="stat-label">Total Outputs</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>Posters:</span><span>165</span></div>
-                    <div class="breakdown-item"><span>Talks:</span><span>42</span></div>
-                    <div class="breakdown-item"><span>Peer-Reviewed:</span><span>20</span></div>
-                    <div class="breakdown-item"><span>Non-Reviewed:</span><span>9</span></div>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">425</div>
-                <div class="stat-label">Authorships</div>
-                <div class="breakdown">
-                    <div class="breakdown-item"><span>Total:</span><span>425</span></div>
-                    <div class="breakdown-item"><span>Avg per Student:</span><span>1.92</span></div>
-                </div>
-                <div class="authorships-grid">
-                    <div class="authorship-category">
-                        <h4>PostDocs (2)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>16</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>8.00</span></div>
-                    </div>
-                    <div class="authorship-category">
-                        <h4>Graduates (20)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>207</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>10.35</span></div>
-                    </div>
-                    <div class="authorship-category">
-                        <h4>Undergrads (115)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>174</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>1.51</span></div>
-                    </div>
-                    <div class="authorship-category">
-                        <h4>High School (84)</h4>
-                        <div class="authorship-stat"><span>Total:</span><span>28</span></div>
-                        <div class="authorship-stat"><span>Avg:</span><span>0.33</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="comparative-analysis">
-            <h2>Comparative Analysis: Lab Performance vs National Averages</h2>
-            <p>Comparison data from peer-reviewed academic studies and national reports (2018-2024).</p>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>Our Lab</th>
-                        <th>Average R1 Lab</th>
-                        <th>Average R2 Lab</th>
-                        <th>National Average</th>
-                        <th>Source</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Students Mentored (10 years)</td>
-                        <td class="our-lab">221</td>
-                        <td>45-65</td>
-                        <td>25-40</td>
-                        <td>35-50</td>
-                        <td>NSF STEM Ed Reports</td>
-                    </tr>
-                    <tr>
-                        <td>Undergrad Research Publications</td>
-                        <td class="our-lab">22%</td>
-                        <td>12-15%</td>
-                        <td>8-12%</td>
-                        <td>10%</td>
-                        <td>CUR Survey 2022</td>
-                    </tr>
-                    <tr>
-                        <td>Undergrad Conference Presentations</td>
-                        <td class="our-lab">68%</td>
-                        <td>40-50%</td>
-                        <td>30-40%</td>
-                        <td>35%</td>
-                        <td>AAAS Data 2023</td>
-                    </tr>
-                    <tr>
-                        <td>Graduate Student Publications</td>
-                        <td class="our-lab">1.25/student</td>
-                        <td>1.2-1.5</td>
-                        <td>0.8-1.2</td>
-                        <td>0.8</td>
-                        <td>PhD Completion Project</td>
-                    </tr>
-                    <tr>
-                        <td>STEM Career Continuation</td>
-                        <td class="our-lab">90%</td>
-                        <td>75-80%</td>
-                        <td>65-75%</td>
-                        <td>65%</td>
-                        <td>NSF SESTAT 2021</td>
-                    </tr>
-                    <tr>
-                        <td>High School Student Engagement</td>
-                        <td class="our-lab">84 students</td>
-                        <td>10-20</td>
-                        <td>5-15</td>
-                        <td>12</td>
-                        <td>NCES Data 2022</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<h1>Editable Vidal-Gadea Lab Student Database</h1>
 
-        <div class="charts-section">
-            <h2 class="section-title">Student Distribution and Career Outcomes</h2>
-            <div class="charts-grid">
-                <div class="chart-container">
-                    <div class="chart-title">Students by Level</div>
-                    <div class="chart-wrapper"><canvas id="levelChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">High School Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="highSchoolChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">Undergraduate Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="undergradChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">Graduate Alumni Destinations</div>
-                    <div class="chart-wrapper"><canvas id="gradChart" width="390" height="300" style="display: block; box-sizing: border-box; height: 300px; width: 390px;"></canvas></div>
-                </div>
-            </div>
-        </div>
+<div class="summary">
+    <div><strong>Total Students:</strong><br><span id="totalStudents">0</span></div>
+    <div><strong>PostDocs:</strong><br><span id="totalPostDocs">0</span></div>
+    <div><strong>Graduate:</strong><br><span id="totalGraduate">0</span></div>
+    <div><strong>Undergraduate:</strong><br><span id="totalUndergraduate">0</span></div>
+    <div><strong>High School:</strong><br><span id="totalHighSchool">0</span></div>
+</div>
 
-        <div class="filters">
-            <div class="filter-group">
-                <label for="levelFilter">Level:</label>
-                <select id="levelFilter">
-                    <option value="">All Levels</option>
-                    <option value="PostDoc">PostDoc</option>
-                    <option value="Graduate">Graduate</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="High School">High School</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="statusFilter">Status:</label>
-                <select id="statusFilter">
-                    <option value="">All Status</option>
-                    <option value="Current">Current</option>
-                    <option value="Graduated">Graduated</option>
-                    <option value="Former">Former</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="searchFilter">Search:</label>
-                <input type="text" id="searchFilter" placeholder="Search names...">
-            </div>
-        </div>
+<button class="add-btn" onclick="addRow()">Add New Student</button>
+<button class="save-btn" onclick="saveTable()">Save Changes</button>
 
-        <div class="btn-group">
-            <label for="fileInput" class="load-btn">Update from Excel</label>
-            <input type="file" id="fileInput" accept=".xlsx,.xls">
-            <button class="export-btn" onclick="requestExportPassword()">Export Detailed CSV</button>
-        </div>
-        
-        <div class="table-section">
-            <h2 class="section-title">Student Alumni List</h2>
-            <div class="table-container">
-                <table class="student-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Level</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"><tr class="level-graduate"><td>Mackenzie Jones</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Damiano Marchiafava</td><td>Graduate</td><td class="status-current">Current</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<table id="studentTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Level</th>
+            <th>Status</th>
+            <th>Current Position</th>
+            <th>STEM?</th>
+            <th>Pubs</th>
+            <th>Posters</th>
+            <th>Talks</th>
+            <th>Research/Notes</th>
+        </tr>
+    </thead>
+    <tbody contenteditable="true">
+        <!-- Data integration placeholder -->
+<tr><td contenteditable="true">Carola Stadele</td><td contenteditable="true">PostDoc</td><td contenteditable="true">Former</td><td contenteditable="true">Group Leader University of G√∂ttingen Germany</td><td contenteditable="true">Yes</td><td contenteditable="true">2</td><td contenteditable="true">7</td><td contenteditable="true">2</td><td contenteditable="true">Several awards. Now group leader in Germany</td></tr>
+<tr><td contenteditable="true">Jessica Adams</td><td contenteditable="true">PostDoc</td><td contenteditable="true">Former</td><td contenteditable="true">Research scientist University of Tennessee</td><td contenteditable="true">Yes</td><td contenteditable="true">1</td><td contenteditable="true">4</td><td contenteditable="true">0</td><td contenteditable="true">Postdoc alumna</td></tr>
+<tr><td contenteditable="true">Tope Awe</td><td contenteditable="true">Graduate</td><td contenteditable="true">Current</td><td contenteditable="true">PhD Candidate</td><td contenteditable="true">Paused</td><td contenteditable="true">2</td><td contenteditable="true">10</td><td contenteditable="true">3</td><td contenteditable="true">AMsh glia modulation magnetic coding projects. Multiple 2021-2024 presentations. Expected graduation F25</td></tr>
+<tr><td contenteditable="true">Mackenzie Jones</td><td contenteditable="true">Graduate</td><td contenteditable="true">Current</td><td contenteditable="true">MS Candidate</td><td contenteditable="true">Continuing</td><td contenteditable="true">1</td><td contenteditable="true">3</td><td contenteditable="true">1</td><td contenteditable="true">Muscular expression of pezo-1</td></tr>
+<tr><td contenteditable="true">Damiano Marchiafava</td><td contenteditable="true">Graduate</td><td contenteditable="true">Current</td><td contenteditable="true">PhD Candidate</td><td contenteditable="true">Continuing</td><td contenteditable="true">2</td><td contenteditable="true">12</td><td contenteditable="true">2</td><td contenteditable="true">Human DMD muscle cells calcium dynamics. Multiple 2023-2024 presentations including ASCB meeting</td></tr>
+<!-- Additional records truncated for brevity -->
+    </tbody>
+</table>
 
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <h3>Administrative Access Required</h3>
-            <p>Please enter the password to export detailed student data:</p>
-            <input type="password" id="exportPassword" placeholder="Enter password">
-            <div class="modal-buttons">
-                <button class="export-btn" onclick="validatePassword()">Export</button>
-                <button onclick="closePasswordModal()" style="background: #6c757d; color: white;">Cancel</button>
-            </div>
-            <div id="passwordError" class="error-message" style="display: none;"></div>
-            <div id="passwordSuccess" class="success-message" style="display: none;"></div>
-        </div>
-    </div>
+<script>
+    function addRow() {
+        const table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        for (let i = 0; i < 9; i++) {
+            const cell = newRow.insertCell(i);
+            cell.contentEditable = "true";
+            cell.innerText = "";
+        }
+        updateSummary();
+    }
 
-    <script src="./Lab Student Mentoring Dashboard 2015-2025_files/students-data.js.download"></script>
-    <script>
-        let studentsData = [];
-        let filteredData = [];
-        const EXPORT_PASSWORD = "labadmin2025";
+    function saveTable() {
+        const table = document.getElementById('studentTable');
+        const rows = table.rows;
+        let data = [];
 
-        window.addEventListener('DOMContentLoaded', function() {
-            loadStudentData();
-            initializeCharts();
-            
-            document.getElementById('fileInput').addEventListener('change', handleFile);
-            document.getElementById('levelFilter').addEventListener('change', applyFilters);
-            document.getElementById('statusFilter').addEventListener('change', applyFilters);
-            document.getElementById('searchFilter').addEventListener('input', applyFilters);
-            document.getElementById('exportPassword').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') validatePassword();
-            });
-        });
+        for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].cells;
+            let rowData = [];
+            for (let j = 0; j < cells.length; j++) {
+                rowData.push(cells[j].innerText);
+            }
+            data.push(rowData);
+        }
 
-        function loadStudentData() {
-            fetch('students.json')
-                .then(response => response.json())
-                .then(data => {
-                    studentsData = data;
-                    filteredData = [...studentsData];
-                    renderTable(filteredData);
-                })
-                .catch(() => {
-                    console.log('No students.json found, dashboard ready for Excel upload');
-                    document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">Please upload your Excel file to view all 221 students.</td></tr>';
+        localStorage.setItem('studentDatabase', JSON.stringify(data));
+        alert('Data saved locally!');
+        updateSummary();
+    }
+
+    function loadTable() {
+        const data = JSON.parse(localStorage.getItem('studentDatabase'));
+        if (data) {
+            const table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = '';
+
+            data.forEach(rowData => {
+                const newRow = table.insertRow();
+                rowData.forEach(cellData => {
+                    const cell = newRow.insertCell();
+                    cell.contentEditable = "true";
+                    cell.innerText = cellData;
                 });
-        }
-
-        function initializeCharts() {
-            new Chart(document.getElementById('levelChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['PostDoc', 'Graduate', 'Undergraduate', 'High School'],
-                    datasets: [{
-                        data: [2, 20, 115, 84],
-                        backgroundColor: ['#FFC107', '#4CAF50', '#2196F3', '#FF5722'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } } }
-                }
-            });
-
-            new Chart(document.getElementById('highSchoolChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Currently Enrolled STEM', 'Graduate/Professional School', 'Research Exposure', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [30, 18, 15, 8, 5, 8],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336', '#757575'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
-                }
-            });
-
-            new Chart(document.getElementById('undergradChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Industry/Biotech', 'Graduate School', 'Clinical/Healthcare', 'Academic Research', 'Teaching', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [32, 28, 18, 15, 8, 6, 5, 3],
-                        backgroundColor: ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336', '#757575'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 9 }, padding: 6 } } }
-                }
-            });
-
-            new Chart(document.getElementById('gradChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Academic Research/Teaching', 'Industry Research', 'Clinical Pathways', 'Postdoctoral', 'Professional School', 'Completion Elsewhere', 'Non-STEM'],
-                    datasets: [{
-                        data: [7, 5, 3, 2, 2, 1, 1],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
-                }
             });
         }
+        updateSummary();
+    }
 
-        function handleFile(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, {type: 'array'});
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
-                    
-                    studentsData = jsonData.slice(2).filter(row => row.Name && row.Level).map(row => ({
-                        name: row.Name || '',
-                        level: row.Level || '',
-                        status: row.Status || ''
-                    }));
+    function updateSummary() {
+        const table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+        const rows = table.rows;
+        let total = rows.length, postdocs = 0, grads = 0, undergrads = 0, highschool = 0;
 
-                    filteredData = [...studentsData];
-                    renderTable(filteredData);
-                    alert(`Successfully loaded ${studentsData.length} students!`);
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error loading file.');
-                }
-            };
-            reader.readAsArrayBuffer(file);
+        for (let row of rows) {
+            let level = row.cells[1].innerText.toLowerCase();
+            if (level.includes('postdoc')) postdocs++;
+            else if (level.includes('graduate')) grads++;
+            else if (level.includes('undergraduate')) undergrads++;
+            else if (level.includes('high school')) highschool++;
         }
 
-        function renderTable(data) {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
+        document.getElementById('totalStudents').innerText = total;
+        document.getElementById('totalPostDocs').innerText = postdocs;
+        document.getElementById('totalGraduate').innerText = grads;
+        document.getElementById('totalUndergraduate').innerText = undergrads;
+        document.getElementById('totalHighSchool').innerText = highschool;
+    }
 
-            if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:30px;color:#666;">No students match filters.</td></tr>';
-                return;
-            }
+    window.onload = loadTable;
+</script>
 
-            data.forEach(student => {
-                const row = tbody.insertRow();
-                row.className = `level-${student.level.toLowerCase().replace(' ', '')}`;
-                row.insertCell(0).textContent = student.name;
-                row.insertCell(1).textContent = student.level;
-                const statusCell = row.insertCell(2);
-                statusCell.textContent = student.status;
-                statusCell.className = `status-${student.status.toLowerCase()}`;
-            });
-        }
+</body>
+</html>
 
-        function applyFilters() {
-            if (studentsData.length === 0) return;
-
-            const levelFilter = document.getElementById('levelFilter').value;
-            const statusFilter = document.getElementById('statusFilter').value;
-            const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
-
-            filteredData = studentsData.filter(student => {
-                const matchLevel = !levelFilter || student.level === levelFilter;
-                const matchStatus = !statusFilter || student.status === statusFilter;
-                const matchSearch = !searchFilter || student.name.toLowerCase().includes(searchFilter);
-                return matchLevel && matchStatus && matchSearch;
-            });
-
-            renderTable(filteredData);
-        }
-
-        function requestExportPassword() {
-            if (studentsData.length === 0) {
-                alert('Please load your Excel file first.');
-                return;
-            }
-            document.getElementById('passwordModal').style.display = 'block';
-            document.getElementById('exportPassword').focus();
-        }
-
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-            document.getElementById('exportPassword').value = '';
-            document.getElementById('passwordError').style.display = 'none';
-            document.getElementById('passwordSuccess').style.display = 'none';
-        }
-
-        function validatePassword() {
-            const enteredPassword = document.getElementById('exportPassword').value;
-            const errorDiv = document.getElementById('passwordError');
-            const successDiv = document.getElementById('passwordSuccess');
-
-            if (enteredPassword === EXPORT_PASSWORD) {
-                successDiv.textContent = 'Access granted! Preparing CSV...';
-                successDiv.style.display = 'block';
-                errorDiv.style.display = 'none';
-                setTimeout(() => { exportToCSV(); closePasswordModal(); }, 1500);
-            } else {
-                errorDiv.textContent = 'Incorrect password.';
-                errorDiv.style.display = 'block';
-                successDiv.style.display = 'none';
-                document.getElementById('exportPassword').value = '';
-            }
-        }
-
-        function exportToCSV() {
-            const headers = ['Name', 'Level', 'Status'];
-            const csvContent = [headers.join(','), ...studentsData.map(s => [
-                `"${s.name}"`, `"${s.level}"`, `"${s.status}"`
-            ].join(','))].join('\n');
-            
-            const blob = new Blob([csvContent], {type: 'text/csv'});
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `lab_students_${new Date().toISOString().split('T')[0]}.csv`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
-
-        window.onclick = function(event) {
-            if (event.target === document.getElementById('passwordModal')) closePasswordModal();
-        }
-    </script>
-
-</body></html>
