@@ -1,183 +1,2429 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Vidal-Gadea Lab Student Database</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-        .summary {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-        .summary div {
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 18%;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #34495e;
-            color: white;
-        }
-        td {
-            vertical-align: top;
-        }
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-        td[contenteditable="true"] {
-            background-color: #e8f0fe;
-        }
-        .add-btn, .save-btn {
-            padding: 8px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .add-btn:hover, .save-btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
-</head>
-<body>
-
-<h1>Editable Vidal-Gadea Lab Student Database</h1>
-
-<div class="summary">
-    <div><strong>Total Students:</strong><br><span id="totalStudents">0</span></div>
-    <div><strong>PostDocs:</strong><br><span id="totalPostDocs">0</span></div>
-    <div><strong>Graduate:</strong><br><span id="totalGraduate">0</span></div>
-    <div><strong>Undergraduate:</strong><br><span id="totalUndergraduate">0</span></div>
-    <div><strong>High School:</strong><br><span id="totalHighSchool">0</span></div>
-</div>
-
-<button class="add-btn" onclick="addRow()">Add New Student</button>
-<button class="save-btn" onclick="saveTable()">Save Changes</button>
-
-<table id="studentTable">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Level</th>
-            <th>Status</th>
-            <th>Current Position</th>
-            <th>STEM?</th>
-            <th>Pubs</th>
-            <th>Posters</th>
-            <th>Talks</th>
-            <th>Research/Notes</th>
-        </tr>
-    </thead>
-    <tbody contenteditable="true">
-        <!-- Data integration placeholder -->
-<tr><td contenteditable="true">Carola Stadele</td><td contenteditable="true">PostDoc</td><td contenteditable="true">Former</td><td contenteditable="true">Group Leader University of G√∂ttingen Germany</td><td contenteditable="true">Yes</td><td contenteditable="true">2</td><td contenteditable="true">7</td><td contenteditable="true">2</td><td contenteditable="true">Several awards. Now group leader in Germany</td></tr>
-<tr><td contenteditable="true">Jessica Adams</td><td contenteditable="true">PostDoc</td><td contenteditable="true">Former</td><td contenteditable="true">Research scientist University of Tennessee</td><td contenteditable="true">Yes</td><td contenteditable="true">1</td><td contenteditable="true">4</td><td contenteditable="true">0</td><td contenteditable="true">Postdoc alumna</td></tr>
-<tr><td contenteditable="true">Tope Awe</td><td contenteditable="true">Graduate</td><td contenteditable="true">Current</td><td contenteditable="true">PhD Candidate</td><td contenteditable="true">Paused</td><td contenteditable="true">2</td><td contenteditable="true">10</td><td contenteditable="true">3</td><td contenteditable="true">AMsh glia modulation magnetic coding projects. Multiple 2021-2024 presentations. Expected graduation F25</td></tr>
-<tr><td contenteditable="true">Mackenzie Jones</td><td contenteditable="true">Graduate</td><td contenteditable="true">Current</td><td contenteditable="true">MS Candidate</td><td contenteditable="true">Continuing</td><td contenteditable="true">1</td><td contenteditable="true">3</td><td contenteditable="true">1</td><td contenteditable="true">Muscular expression of pezo-1</td></tr>
-<tr><td contenteditable="true">Damiano Marchiafava</td><td contenteditable="true">Graduate</td><td contenteditable="true">Current</td><td contenteditable="true">PhD Candidate</td><td contenteditable="true">Continuing</td><td contenteditable="true">2</td><td contenteditable="true">12</td><td contenteditable="true">2</td><td contenteditable="true">Human DMD muscle cells calcium dynamics. Multiple 2023-2024 presentations including ASCB meeting</td></tr>
-<!-- Additional records truncated for brevity -->
-    </tbody>
-</table>
-
-<script>
-    function addRow() {
-        const table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow();
-        for (let i = 0; i < 9; i++) {
-            const cell = newRow.insertCell(i);
-            cell.contentEditable = "true";
-            cell.innerText = "";
-        }
-        updateSummary();
+{
+  "uniqueOutputs": {
+    "posters": 165,
+    "talks": 42,
+    "publications": 20
+  },
+  "students": [
+    {
+      "name": "Carola Stadele",
+      "level": "PostDoc",
+      "status": "Alumni",
+      "currentPosition": "Group Leader University of Gottingen Germany",
+      "stemCareer": "Yes",
+      "posters": 7,
+      "talks": 2,
+      "publications": 2,
+      "research": "Several awards. Now group leader in Germany"
+    },
+    {
+      "name": "Jessica Adams",
+      "level": "PostDoc",
+      "status": "Alumni",
+      "currentPosition": "Research scientist University of Tennessee",
+      "stemCareer": "Yes",
+      "posters": 12,
+      "talks": 0,
+      "publications": 1,
+      "research": "Postdoc alumna"
+    },
+    {
+      "name": "Tope Awe",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "PhD Candidate",
+      "stemCareer": "Former",
+      "posters": 17,
+      "talks": 3,
+      "publications": 2,
+      "research": "AMsh glia modulation magnetic coding projects. Multiple 2021-2024 presentations. Expected graduation F25"
+    },
+    {
+      "name": "Mackenzie Jones",
+      "level": "Graduate",
+      "status": "Current",
+      "currentPosition": "MS Candidate",
+      "stemCareer": "Continuing",
+      "posters": 5,
+      "talks": 1,
+      "publications": 1,
+      "research": "Muscular expression of pezo-1"
+    },
+    {
+      "name": "Damiano Marchiafava",
+      "level": "Graduate",
+      "status": "Current",
+      "currentPosition": "PhD Candidate",
+      "stemCareer": "Continuing",
+      "posters": 13,
+      "talks": 2,
+      "publications": 2,
+      "research": "Human DMD muscle cells calcium dynamics. Multiple 2023-2024 presentations including ASCB meeting"
+    },
+    {
+      "name": "Aalimah Akinosho",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Lab Technician Loyola University Chicago Medical Center",
+      "stemCareer": "Yes",
+      "posters": 9,
+      "talks": 4,
+      "publications": 3,
+      "research": "Magnetocaloric vs magnetomechanic studies transgenerational inheritance. 3 publications 4+ poster presentations"
+    },
+    {
+      "name": "Adina Fazyl",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Research Scientist Kazakhstan",
+      "stemCareer": "Yes",
+      "posters": 28,
+      "talks": 3,
+      "publications": 3,
+      "research": "DMD isoform expression muscle plasticity. 3 publications. Image of Research Awardee"
+    },
+    {
+      "name": "Shifat Niha",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Lab Instructor Alabama State University",
+      "stemCareer": "Yes",
+      "posters": 10,
+      "talks": 4,
+      "publications": 1,
+      "research": "DMD neuronal function dystrophin expression."
+    },
+    {
+      "name": "Chance Bainbridge",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Postdoctoral Fellow at University of Rochester Medical Center",
+      "stemCareer": "Yes",
+      "posters": 27,
+      "talks": 2,
+      "publications": 5,
+      "research": "Magnetic orientation C. elegans behavior. 2018 Weigel Grant 2018 R. Omar Rilett Trust 2018 IBANGS Young Investigator Travel Grant multiple awards"
+    },
+    {
+      "name": "Kiley Hughes",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Postdoctoral Fellow at Scripps Research Institute",
+      "stemCareer": "Yes",
+      "posters": 22,
+      "talks": 5,
+      "publications": 4,
+      "research": "DMD pathophysiology neuromuscular disorders. Multiple 2018-2022 presentations. 2018 Weigel Grant 2018 R. Omar Riley Trust 2018 IBANGS Travel Grant"
+    },
+    {
+      "name": "Anjelica Rodriguez",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Lab Manager at University of Wisconsin-Madison",
+      "stemCareer": "Yes",
+      "posters": 12,
+      "talks": 1,
+      "publications": 1,
+      "research": "Several awards lab management role"
+    },
+    {
+      "name": "Casey Gahrs",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Research Associate II at A2 Biotherapeutics Inc. LA CA",
+      "stemCareer": "Yes",
+      "posters": 14,
+      "talks": 3,
+      "publications": 1,
+      "research": "Biotech industry. Multiple 2016-2019 presentations including marbled crayfish work. 2018 Rilett; 2018 Weigel; IBANGS Young Investigator Travel Award; multiple additional awards"
+    },
+    {
+      "name": "Abigail Benson",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Law student at Lewis & Clark Law School Portland OR",
+      "stemCareer": "No",
+      "posters": 9,
+      "talks": 2,
+      "publications": 1,
+      "research": "2018 Weigel grant 2018 Outstanding M.S. Teaching Assistant Award 2018 IBANGS Young Investigator Travel grant 2018 R. Omar Rilett Trust"
+    },
+    {
+      "name": "Monica Tamrazi",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Assistant Director Huntington Learning Center",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 2,
+      "publications": 0,
+      "research": "Health sector"
+    },
+    {
+      "name": "Rajit Roy",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Research Assistant at University of Mass. Boston MA",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 1,
+      "publications": 1,
+      "research": "Gap junction genes crayfish research"
+    },
+    {
+      "name": "Daniel Nuccio",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Biology PhD student NorthWestern University",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "n/a"
+    },
+    {
+      "name": "Mary McKeays",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "PhD student (different lab)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Continued in different lab"
+    },
+    {
+      "name": "Gaston Risi",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Biotech Industry (Italy)",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 1,
+      "publications": 0,
+      "research": "International visiting student"
+    },
+    {
+      "name": "Brittani Rivera",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Biology Instructor Heartland Community College",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 1,
+      "publications": 0,
+      "research": "Biology Teacher"
+    },
+    {
+      "name": "Parham Jazireian",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Joined different lab",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 2,
+      "publications": 0,
+      "research": "n/a"
+    },
+    {
+      "name": "Ploy Freebairn",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Rivian",
+      "stemCareer": "Yes",
+      "posters": 10,
+      "talks": 2,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Margarita Gomez",
+      "level": "Graduate",
+      "status": "Alumni",
+      "currentPosition": "Joined different lab",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 1,
+      "publications": 0,
+      "research": "n/a"
+    },
+    {
+      "name": "Austeja Wingate",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Jack Fostiack",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Harrison Weidemiller",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Keke Velez",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Jackson Copeland",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Erin Cheeseman",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 3,
+      "talks": 1,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Florence Ofurum",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Grace Ruscheinski",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 3,
+      "talks": 1,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Nevyn Laframboise",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Alumni"
+    },
+    {
+      "name": "Kamden Malinowski",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Alumni"
+    },
+    {
+      "name": "Rene Wilderman",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 4,
+      "talks": 1,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Hope Fransen",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 3,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Avinaash Muthukuman",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Paige Batchelor",
+      "level": "Undergraduate",
+      "status": "Current",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Continuing",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Mary Gardner",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Continuing in program"
+    },
+    {
+      "name": "Anabelle Dunaway",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Thermo Fisher Scientist",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Recent graduate. Won ISU FIREbird Award"
+    },
+    {
+      "name": "Tyler Stark",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Undergraduate Researcher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Alumni"
+    },
+    {
+      "name": "Celia Beron",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Postdoc at Harvard University (Sabatini lab)",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 2,
+      "publications": 2,
+      "research": "Completed PhD in Neuroscience at Harvard now Harvard postdoc. Burrowing behavior magnetotaxis research"
+    },
+    {
+      "name": "Erinda Aidoo",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Researcher at Yale School of Medicine",
+      "stemCareer": "Yes",
+      "posters": 10,
+      "talks": 1,
+      "publications": 0,
+      "research": "Steroid targets in DMD honors thesis Yale medical internship. Won poster awards and FIREbird award. Multiple 2022-2024 presentations including NexSTEM Alliance"
+    },
+    {
+      "name": "Austin Alhlert",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Zookeeper Bloomington Zoo",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Animal care profession"
+    },
+    {
+      "name": "Victoria Andriulis",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Senior Clinical Research Associate IQVIA",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 1,
+      "publications": 1,
+      "research": "Clinical research career pharmaceutical industry"
+    },
+    {
+      "name": "Blake Bracht",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Pilot Plant Engineer Clever Carnivore",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 0,
+      "research": "Biotechnology/food tech engineering"
+    },
+    {
+      "name": "Srishti Goel",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical Student SIU School of Medicine",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 0,
+      "publications": 0,
+      "research": "Medical school at Southern Illinois University, Completed Honor Thesis"
+    },
+    {
+      "name": "Molly Ewen",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Service industry",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "n/a"
+    },
+    {
+      "name": "Selman Ayedagdu",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "continuing student",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Alumni"
+    },
+    {
+      "name": "Janelle Jackson",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical Technologist Rosalind Franklin University of Medicine and Science",
+      "stemCareer": "Yes",
+      "posters": 7,
+      "talks": 0,
+      "publications": 1,
+      "research": "MS degree Medical Technology, Poster award 2nd place LSAMP meeting in Chicago, 2016 AND 2017"
+    },
+    {
+      "name": "Jocelyn McDonald",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "MS. student at ISU",
+      "stemCareer": "Yes",
+      "posters": 6,
+      "talks": 0,
+      "publications": 0,
+      "research": "MS program at Illinois State"
+    },
+    {
+      "name": "Andrew Schuler",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School (UIC‚Peoria)",
+      "stemCareer": "Yes",
+      "posters": 8,
+      "talks": 0,
+      "publications": 3,
+      "research": "MD program at University of Illinois College of Medicine"
+    },
+    {
+      "name": "Samantha Vemuri",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Student at Delaware Valley University - Physician Assistant Studies",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "MS at LSU Shreveport now PA program"
+    },
+    {
+      "name": "Lucas Barickman",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School (Switzerland)",
+      "stemCareer": "Yes",
+      "posters": 18,
+      "talks": 0,
+      "publications": 1,
+      "research": "International medical education. Multiple 2015-2018 presentations including magnetotaxis research"
+    },
+    {
+      "name": "Moe Khalil",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "MD/PhD Graduate Medical College of Wisconsin",
+      "stemCareer": "Yes",
+      "posters": 7,
+      "talks": 1,
+      "publications": 0,
+      "research": "Completed MD/PhD program. Angelman syndrome model honors thesis"
+    },
+    {
+      "name": "Zach Benefield",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "Completed Honors thesis co-authored one publication (under review). Medical career path"
+    },
+    {
+      "name": "Emily Berry",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Science Teacher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Science education career"
+    },
+    {
+      "name": "Allison Webb",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Bisco",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Carlee Chehak",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Chemist Camlin Fine Sciences",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Chemistry industry"
+    },
+    {
+      "name": "Kori Cuciarone",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical Lab Technologist",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "Medical laboratory profession"
+    },
+    {
+      "name": "Victoria Edelman",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Science Teacher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 1,
+      "research": "Science education"
+    },
+    {
+      "name": "Allison Fritz",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Science Teacher",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 0,
+      "publications": 0,
+      "research": "Science education"
+    },
+    {
+      "name": "Yasmine Giliana",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical Sales Representative",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 1,
+      "research": "Medical sales industry"
+    },
+    {
+      "name": "Evan Gustafson",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Master of Public Health program",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Public health career"
+    },
+    {
+      "name": "Kayla Haines",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Science Teacher",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Science education"
+    },
+    {
+      "name": "Bryce Hendren",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Nurse (RN)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Healthcare nursing"
+    },
+    {
+      "name": "Jake Kaindl",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Lab Tech Central Clinical Labs Inc.",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Clinical laboratory work"
+    },
+    {
+      "name": "Alex Kew",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Science Teacher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Science education"
+    },
+    {
+      "name": "William Milanick",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Ph.D. program Ohio Wesleyan University",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Graduate school"
+    },
+    {
+      "name": "Shawn Mohammed",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Research Technician Washington University",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "Research career"
+    },
+    {
+      "name": "Dana Niswonger",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "M.S. degree completed",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 0,
+      "publications": 1,
+      "research": "Graduate degree completed"
+    },
+    {
+      "name": "Jacinda Nunez",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "COVID field technician (public health)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Public health work"
+    },
+    {
+      "name": "Pari Patel",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Pharmaceutical industry",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Pharmaceutical industry"
+    },
+    {
+      "name": "Vidhi Rakholia",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Nurse Technician",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Healthcare nursing"
+    },
+    {
+      "name": "Trevor Rickerd",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Biology PhD at ISU",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 0,
+      "publications": 0,
+      "research": "Graduate studies"
+    },
+    {
+      "name": "Brian Rodemoyer",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Ph.D. program Univ. of South Florida",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 0,
+      "publications": 1,
+      "research": "Graduate school"
+    },
+    {
+      "name": "Andrew Rodriguez",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Medical career"
+    },
+    {
+      "name": "Lauren Ruhe",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "STEM industry job",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "STEM industry"
+    },
+    {
+      "name": "Erin Sawilchik",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical Assistant North Georgia Endocrinology",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 1,
+      "research": "Medical field"
+    },
+    {
+      "name": "Brianne Sutter",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Employed in STEM field",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "STEM employment"
+    },
+    {
+      "name": "Kaitlyn Termine",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Medical education"
+    },
+    {
+      "name": "Kevin Tragesser",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "Medical career"
+    },
+    {
+      "name": "Ranija Turner",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Science Teacher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Science education"
+    },
+    {
+      "name": "Hannah Watson",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Dental School",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Dental education"
+    },
+    {
+      "name": "Hannah Swift",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Madison Westbrook",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Nurse",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Healthcare nursing"
+    },
+    {
+      "name": "Jennifer Miller",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Transferred to Biology program at Univ. of Michigan",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 1,
+      "research": "U Miss, OSR Summer Fellowship"
+    },
+    {
+      "name": "Emily Harris",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Career in Chemistry",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "Chemistry field"
+    },
+    {
+      "name": "Emily Killian",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Public Health program St. Louis University",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Public health, Image of Research Award Illnois State University"
+    },
+    {
+      "name": "Teagan Zack",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "no information available",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 3,
+      "publications": 0,
+      "research": "Recent graduate"
+    },
+    {
+      "name": "Gina Quiriconi",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Business Administration degree (non-STEM)",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Business career path"
+    },
+    {
+      "name": "Brooke Willis",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Sales (outside STEM)",
+      "stemCareer": "No",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "Non-STEM sales career"
+    },
+    {
+      "name": "Zoe Meier",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Academic Research Track",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Vidette photographer"
+    },
+    {
+      "name": "Boyowa Mene-Okotie",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Industry/Pharma Research",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Eli Lilly employee"
+    },
+    {
+      "name": "Alysia Thorn",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "M.A. at ASU (Criminal Justice) (non-STEM)",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Criminal justice field"
+    },
+    {
+      "name": "Lindsay Brettmann",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "UT Southwestern Medical School (M.D. program)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UT Austin alumna now medical school"
+    },
+    {
+      "name": "Lindsay Becker",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Stanford University Biology PhD",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 2,
+      "publications": 0,
+      "research": "UT Austin alumna now Stanford PhD"
+    },
+    {
+      "name": "Mike Moscardelli",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Industry Biotech",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Chicago area biotech regulatory affairs"
+    },
+    {
+      "name": "Lea Kressin",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Boston University (Ph.D. program)",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 2,
+      "publications": 0,
+      "research": "UT Austin alumna now Boston U PhD"
+    },
+    {
+      "name": "Kristi Ward",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Texas Tech Univ. Health Sciences (M.D. program)",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 2,
+      "publications": 1,
+      "research": "UT Austin alumna now medical school"
+    },
+    {
+      "name": "Grace Hwang",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "University of Houston (Pharmacy School)",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 1,
+      "publications": 1,
+      "research": "UT Austin alumna now pharmacy school"
+    },
+    {
+      "name": "Erin Elbel",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Columbia University (Medical School)",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 2,
+      "publications": 0,
+      "research": "UT Austin alumna now Columbia medical school"
+    },
+    {
+      "name": "Elvira Marquez",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "High School Chemistry Teacher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 1,
+      "publications": 0,
+      "research": "UT Austin alumna science education"
+    },
+    {
+      "name": "Thomas Maple",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "UT Southwestern Medical School (M.D. program)",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 1,
+      "publications": 0,
+      "research": "UT Austin alumna now medical school"
+    },
+    {
+      "name": "Adhishri Parikh",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "UT Austin Business School (MBA)",
+      "stemCareer": "No",
+      "posters": 1,
+      "talks": 1,
+      "publications": 2,
+      "research": "UT Austin alumna business career"
+    },
+    {
+      "name": "Roberto Guajardo",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Education",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 1,
+      "publications": 0,
+      "research": "UT Austin alumna status unknown"
+    },
+    {
+      "name": "Adora Akahome",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Nursing School",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Nurse"
+    },
+    {
+      "name": "Kristen Bartlett",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical Assistant Midwest Express Clinic",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Healthcare profession"
+    },
+    {
+      "name": "Natalie Burrell",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "M.S. degree program",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Graduate studies, Poster award at LSAMP Meeting in Chicago 2018"
+    },
+    {
+      "name": "Michael Cisneros",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Clinical Research/Healthcare (tentative)",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 0,
+      "publications": 1,
+      "research": "ISU Biology -> clinical research coordinator in Peoria"
+    },
+    {
+      "name": "Adam Conley",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Nurse",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Healthcare nursing career"
+    },
+    {
+      "name": "Isabelle De Dianous",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "EMT LeRoy Ambulance Service",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Healthcare"
+    },
+    {
+      "name": "Peter DeVries",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Quality Assurance Manager at The Vegan Copacker",
+      "stemCareer": "No",
+      "posters": 3,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Emily Asmus",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Clinical Healthcare",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "Nursing/public health program in IL"
+    },
+    {
+      "name": "Makayla Holub",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Graduate Research Track",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU biology honors -> PhD program"
+    },
+    {
+      "name": "Adriana Garcia",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Research Assistant at Illinois State University",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Sarah Hannan",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Academic/Public Health Research",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU health sciences alum"
+    },
+    {
+      "name": "Joshua Hernandez",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Industry/Clinical Research",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Clinical research coordinator in IL"
+    },
+    {
+      "name": "Annemarie Hyer",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Matsers Genetic Counselling Indiana University ",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 2,
+      "publications": 0,
+      "research": "DMD steroid research"
+    },
+    {
+      "name": "Ian Kenny",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Industry Healthcare Sales (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU chemistry undergrad -> medical sales"
+    },
+    {
+      "name": "Umme Ahsan",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School (prospective)",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Pre-medical track"
+    },
+    {
+      "name": "Braidy Megeff",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Honors thesis"
+    },
+    {
+      "name": "Matt Demir",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Sales Support Engineer at Ferrum",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Joe Schweickert",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Academic/Biomedical Research (tentative)",
+      "stemCareer": "No",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU-related publication in muscle regeneration"
+    },
+    {
+      "name": "Baylee Paluzzi",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Academic Research/Early Career",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU undergrad biology research"
+    },
+    {
+      "name": "Yigit Demir",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Graduate/Professional Research Track (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UIUC biomaterials lab"
+    },
+    {
+      "name": "Kehinde Owoyemi",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "M.S. degree completed",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 0,
+      "publications": 0,
+      "research": "Graduate degree completed, Poster Award LSAMP Meeting in Chicago 2020"
+    },
+    {
+      "name": "Taiyelolu Owoyemi",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Graduate School",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 0,
+      "publications": 0,
+      "research": "Graduate studies, Poster Award LSAMP Meeting in Chicago 2020"
+    },
+    {
+      "name": "Thomas Rimbo",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "unknown",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Samantha Padia",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Industry/Private Sector Research (tentative)",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 0,
+      "publications": 0,
+      "research": "Biotech internship, Chicago"
+    },
+    {
+      "name": "Jonathan Schuller",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Electrical Foreman at Meany Inc.",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Ashka Shah",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "PhD candidate at University of Chicago",
+      "stemCareer": "yes",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Kaitlyn Donovan",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Student at Illinois State University-Mennonite College of Nursing",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former lab member"
+    },
+    {
+      "name": "Dayton Oblinger",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Professional School Veterinary",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "UIUC veterinary school"
+    },
+    {
+      "name": "Sabrina Kollbaum",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Medical School",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 1,
+      "research": "Completed honors thesis co-authored one publication (under review)"
+    },
+    {
+      "name": "Rachel Gabbrants",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Industry/Clinical Research Support",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Lab tech at Carle Hospital"
+    },
+    {
+      "name": "Adi Oday",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Graduate/Professional Research Track",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UIUC biomedical program"
+    },
+    {
+      "name": "Isabel Guerrero",
+      "level": "Undergraduate",
+      "status": "Alumni",
+      "currentPosition": "Graduate/Professional Healthcare Training",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU Biology 2022, PA program"
+    },
+    {
+      "name": "Abhinav Komandur",
+      "level": "High School",
+      "status": "Current",
+      "currentPosition": "Current",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Anushi Kiribamune",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School Researcher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 1,
+      "publications": 1,
+      "research": "Case Western Reserve University BSC/MD"
+    },
+    {
+      "name": "Charles Jackson",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School Researcher",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "graduating from Jahn lab senior thesis"
+    },
+    {
+      "name": "Sumitra Paramatmuni",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Noelle Woith",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Vidushi Shukla",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School Researcher",
+      "stemCareer": "Continuing",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Current lab member"
+    },
+    {
+      "name": "Nick Leonard",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School Graduate",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 1,
+      "research": "First-author peer-reviewed publication on C. elegans tracking system - rare achievement for high school student"
+    },
+    {
+      "name": "Adithya Komandur",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 2,
+      "talks": 0,
+      "publications": 1,
+      "research": "First-author peer-reviewed publication on mechanoreceptor pezo-1 - rare achievement for high school student"
+    },
+    {
+      "name": "Laura Kelly",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Florida PhD program",
+      "stemCareer": "Yes",
+      "posters": 3,
+      "talks": 0,
+      "publications": 1,
+      "research": "UBC undergraduate then Florida PhD program"
+    },
+    {
+      "name": "Alex Kullman",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 5,
+      "talks": 0,
+      "publications": 1,
+      "research": "Summer researcher with publication"
+    },
+    {
+      "name": "Neha Gutta",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "University of Missouri-Kansas City School of Medicine",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 0,
+      "publications": 1,
+      "research": "Summer researcher year-round member"
+    },
+    {
+      "name": "Calis Lim",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Organic Chemistry Peer Led Team Learning Leader at The Student Success Center",
+      "stemCareer": "Yes",
+      "posters": 4,
+      "talks": 0,
+      "publications": 1,
+      "research": "Summer researcher year-round member"
+    },
+    {
+      "name": "Hannah Ahmed",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "M.S. Health Systems Management Student at Rush University",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former high school researcher"
+    },
+    {
+      "name": "Peyton Carlock",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School graduate",
+      "stemCareer": "Yes",
+      "posters": 2,
+      "talks": 1,
+      "publications": 0,
+      "research": "Year-round lab member"
+    },
+    {
+      "name": "Lavanya Sathyamurthy",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Graduate/Professional School",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Brown University student researcher, Education/Public Health"
+    },
+    {
+      "name": "Adithya Sathyamurthy",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU student, bioengineering research Chicago"
+    },
+    {
+      "name": "Jack Sauser",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Machine Learning Engineering @ GoHealth",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former high school researcher"
+    },
+    {
+      "name": "Peter Waller",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "B.S. student at Purdue University",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Now undergraduate at major university"
+    },
+    {
+      "name": "Ananya Kommalapati",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "M.S. student at UIUC",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 1,
+      "research": "Now graduate student at University of Illinois"
+    },
+    {
+      "name": "Rachel Kullman",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Industry STEM",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Cal Poly SLO Biomed Eng -> Toyota engineer"
+    },
+    {
+      "name": "Rahul Darbhakul",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School graduate",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "High school graduate"
+    },
+    {
+      "name": "Lucy Ryan",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Bryn Mawr College (undergraduate)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UT Austin high school program alumna"
+    },
+    {
+      "name": "Matthew Trisnadi",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Case Western Reserve Univ. (Ph.D. program)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UT Austin high school program alumna"
+    },
+    {
+      "name": "Shannon Lu",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "UC San Francisco (B.S. program)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UT Austin high school program alumna"
+    },
+    {
+      "name": "Virginia Wang",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Stanford University (B.S. program)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UT Austin high school program alumna"
+    },
+    {
+      "name": "Nicholas Truong",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "UT Austin (Business program)",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 1,
+      "research": "UT Austin high school program alumna business career"
+    },
+    {
+      "name": "Rohan Agarwal",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "M&A @ Blue Ops Partners",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Eesha Alaparthi",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "University of Illinois Urbana‑Champaign",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Sunitha Garapathi",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Prasanth Garapathi",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Sahana Garapathi",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Possible ISU honors biology student"
+    },
+    {
+      "name": "Alexander Albert",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Communications Batchelor",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Akash Anbu",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Biology BS at St Louis University",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 1,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Blake Thomson",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Rachel Bolden",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Student at University of Alabama",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Lydia Brown",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "James Bundy",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Production Staff at MAAC Machinery",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Saisu Talasu",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "IMSA, now undergraduate"
+    },
+    {
+      "name": "Casey Clubb",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Graduate/Professional School (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU graduate student registers"
+    },
+    {
+      "name": "Samaya Danthurthy",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Undergraduate Research Assistant at Center of Collaborative Research (Rumbaugh-Goodwin Institute)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Maanasa Devebhaktuni",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Neurobiology Major at University of Wisconsin-Madison interested in Public Health",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Katie Elbert",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Medical Student at the University of Illinois College of Medicine-Rockford",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer and year-round researcher"
+    },
+    {
+      "name": "Jacqueline Espinoza",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Human Resources Specialists Bureau of Prisons",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Joshua Gantert",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "High School graduate",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "High school intern"
+    },
+    {
+      "name": "Harshith Gorla",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Senior @ Saint Louis University || Medical Scribe @ Cardinal Glennon",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "High school intern"
+    },
+    {
+      "name": "Julian Hawley",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "GM team member at Target",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Avery Hedican",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Graduate/Professional School (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU Neuroscience student"
+    },
+    {
+      "name": "Julianna Heptinstall",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Data Specialist @ Veolia North America",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Jaleh Johnson",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Industry/Private Sector Research",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Johnson & Johnson R&D engineer, Chicago"
+    },
+    {
+      "name": "David Kim",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Nikitha Lakshiminarayanan",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "UCLA Human Biology",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Ayesha Mahmood",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Industry STEM (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU public health & kinesiology"
+    },
+    {
+      "name": "Devnanda Manjunadth",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Amanda Mala",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Birchwood Healthcare Partners, Investor Associate",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Mira Malavia",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "UMKC School of Medicine",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer and year-round researcher"
+    },
+    {
+      "name": "Manaswini Mannam",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "UIUC Neuroscience",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Zach Mohammed",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "ISU lab experience, later Univ. Michigan"
+    },
+    {
+      "name": "Denzel Namadurai",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "MD Candidate at University of Texas Medical Branch",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "High school intern"
+    },
+    {
+      "name": "Arun Kumar",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Saispurthi Palavalli",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Software Engineer ",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Yami Panchal",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Industry Biotech (tentative)",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UIUC/Urbana biotech profile"
+    },
+    {
+      "name": "Irene Park",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Operations Development Program, UIUC",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "JuWon Park",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Computer Science At Northwestern University",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Akshaya Raghavan",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Aila Rahman",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "UIUC Biology degree",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Nikith Rao",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Clinical Healthcare",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate: Midwestern DO -> Internal Medicine Residency, St. Louis"
+    },
+    {
+      "name": "Nikhil Samayam",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "B.S in Neuroscience Candidate at Saint Louis University",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Year-round lab member"
+    },
+    {
+      "name": "Alanya Schippert",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Neal Shah",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 1,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Neehar Shah",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "President at Rubinos & Mesia Engineers",
+      "stemCareer": "No",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Akhil Vytla",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "IMSA, now undergraduate"
+    },
+    {
+      "name": "B Showri",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Evan Tsubaki",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Roussolini (Rosie) Socrates",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Medical Assistant at TRE Medical | Biomedical Engineer",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 1,
+      "publications": 0,
+      "research": "Year-round lab member"
+    },
+    {
+      "name": "Summer Will",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer Research Academy graduate"
+    },
+    {
+      "name": "Shahan Yalavarthi",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "CS Chancellorâ€™s Scholar, UIUC"
+    },
+    {
+      "name": "Maanasa Devebhaktuni",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "",
+      "stemCareer": "",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": ""
+    },
+    {
+      "name": "Nivita Patri",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Industry Tech",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Case Western -> Software Engineer"
+    },
+    {
+      "name": "Shouri Bochetty",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Currently Enrolled STEM Undergrad",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "UIUC neuroscience pipeline, IMSA/Brain Bee"
+    },
+    {
+      "name": "Britany Ziemer",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Student at Southern Illinois University School of Medicine",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Summer and year-round researcher"
+    },
+    {
+      "name": "Sruthi Singaraju",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Research Technologist II at Ann and Robert H. Lurie Children's Hospital of Chicago",
+      "stemCareer": "Yes",
+      "posters": 1,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former high school researcher"
+    },
+    {
+      "name": "Claudia Gallardo",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Nursing Student! OSF HealthCare",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former high school researcher"
+    },
+    {
+      "name": "Alyson Ficca",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "Biology BS UIUC",
+      "stemCareer": "Yes",
+      "posters": 5,
+      "talks": 1,
+      "publications": 1,
+      "research": "Former high school researcher"
+    },
+    {
+      "name": "Nikhil Samayan",
+      "level": "High School",
+      "status": "Alumni",
+      "currentPosition": "BS Neuroscience, St Louis University",
+      "stemCareer": "Yes",
+      "posters": 0,
+      "talks": 0,
+      "publications": 0,
+      "research": "Former high school researcher"
     }
-
-    function saveTable() {
-        const table = document.getElementById('studentTable');
-        const rows = table.rows;
-        let data = [];
-
-        for (let i = 1; i < rows.length; i++) {
-            const cells = rows[i].cells;
-            let rowData = [];
-            for (let j = 0; j < cells.length; j++) {
-                rowData.push(cells[j].innerText);
-            }
-            data.push(rowData);
-        }
-
-        localStorage.setItem('studentDatabase', JSON.stringify(data));
-        alert('Data saved locally!');
-        updateSummary();
-    }
-
-    function loadTable() {
-        const data = JSON.parse(localStorage.getItem('studentDatabase'));
-        if (data) {
-            const table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
-            table.innerHTML = '';
-
-            data.forEach(rowData => {
-                const newRow = table.insertRow();
-                rowData.forEach(cellData => {
-                    const cell = newRow.insertCell();
-                    cell.contentEditable = "true";
-                    cell.innerText = cellData;
-                });
-            });
-        }
-        updateSummary();
-    }
-
-    function updateSummary() {
-        const table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
-        const rows = table.rows;
-        let total = rows.length, postdocs = 0, grads = 0, undergrads = 0, highschool = 0;
-
-        for (let row of rows) {
-            let level = row.cells[1].innerText.toLowerCase();
-            if (level.includes('postdoc')) postdocs++;
-            else if (level.includes('graduate')) grads++;
-            else if (level.includes('undergraduate')) undergrads++;
-            else if (level.includes('high school')) highschool++;
-        }
-
-        document.getElementById('totalStudents').innerText = total;
-        document.getElementById('totalPostDocs').innerText = postdocs;
-        document.getElementById('totalGraduate').innerText = grads;
-        document.getElementById('totalUndergraduate').innerText = undergrads;
-        document.getElementById('totalHighSchool').innerText = highschool;
-    }
-
-    window.onload = loadTable;
-</script>
-
-</body>
-</html>
-
+  ]
+}
