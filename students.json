@@ -1,49 +1,234 @@
-Ah! Now I understand. Let me check if the file you uploaded has the student data hardcoded:I see the issue now! This file only has 2 students hardcoded, but your GitHub version had ALL students. Let me fix the REAL file from GitHub that had all the student data. I need to:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Student Mentoring Dashboard 2015-2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; font-size: 11pt; }
+        .dashboard { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 30px; }
+        .header { background: linear-gradient(135deg, #CC0000 0%, #A50E1F 100%); color: white; padding: 30px; text-align: center; }
+        .header h1 { margin: 0 0 10px 0; font-size: 2.2em; font-weight: bold; }
+        .header p { margin: 0; opacity: 0.9; font-size: 1.1em; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 30px; background: #f8f9fa; }
+        .stat-card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center; border-left: 5px solid #CC0000; transition: transform 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2.5em; font-weight: bold; color: #CC0000; margin-bottom: 10px; }
+        .stat-label { color: #666; font-size: 1.1em; margin-bottom: 15px; font-weight: 500; }
+        .breakdown { margin-top: 10px; font-size: 10pt; color: #555; }
+        .breakdown-item { display: flex; justify-content: space-between; margin: 5px 0; }
+        .authorships-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
+        .authorship-category { background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #CC0000; }
+        .authorship-category h4 { margin: 0 0 8px 0; font-size: 10pt; color: #CC0000; }
+        .authorship-stat { display: flex; justify-content: space-between; font-size: 9pt; margin: 3px 0; }
+        .comparative-analysis { padding: 30px; background: white; border-top: 3px solid #CC0000; }
+        .comparative-analysis h2 { color: #CC0000; margin-bottom: 10px; font-size: 1.5em; }
+        .comparative-analysis p { color: #666; font-size: 10pt; margin-bottom: 20px; }
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+        .comparison-table th { background: #CC0000; color: white; padding: 12px; text-align: left; font-weight: 600; border: 1px solid #ddd; }
+        .comparison-table td { padding: 12px; border: 1px solid #ddd; }
+        .comparison-table tr:hover { background: #f8f9fa; }
+        .comparison-table .our-lab { background: #e8f5e9; font-weight: bold; color: #2e7d32; }
+        .table-section { padding: 30px; background: white; border-top: 2px solid #f0f0f0; }
+        .table-container { overflow: auto; max-height: 600px; border: 2px solid #CC0000; border-radius: 5px; }
+        .student-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+        .student-table th { background: #CC0000; color: white; padding: 12px; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
+        .student-table td { padding: 10px 12px; border-bottom: 1px solid #e9ecef; }
+        .student-table tbody tr:hover { background: #f8f9fa; }
+        .level-postdoc { background-color: #fff3cd; }
+        .level-graduate { background-color: #d4edda; }
+        .level-undergraduate { background-color: #d1ecf1; }
+        .level-highschool { background-color: #f8d7da; }
+        .status-current { color: #28a745; font-weight: bold; }
+        .status-alumni { color: #007bff; font-weight: bold; }
+        .section-title { margin-bottom: 20px; color: #CC0000; font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>Lab Student Mentoring Dashboard</h1>
+            <p>Comprehensive tracking of student outcomes and achievements (2015-2025)</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">216</div>
+                <div class="stat-label">Students Tracked</div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>PostDocs:</span><span>2</span></div>
+                    <div class="breakdown-item"><span>Graduates:</span><span>20</span></div>
+                    <div class="breakdown-item"><span>Undergraduates:</span><span>114</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>80</span></div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Current Students</div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>Graduate:</span><span>2</span></div>
+                    <div class="breakdown-item"><span>Undergraduate:</span><span>11</span></div>
+                    <div class="breakdown-item"><span>High School:</span><span>1</span></div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">425</div>
+                <div class="stat-label">Total Authorships</div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>Posters:</span><span>288</span></div>
+                    <div class="breakdown-item"><span>Talks:</span><span>72</span></div>
+                    <div class="breakdown-item"><span>Publications:</span><span>65</span></div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">425</div>
+                <div class="stat-label">Authorship Details</div>
+                <div class="breakdown">
+                    <div class="breakdown-item"><span>Total:</span><span>425</span></div>
+                    <div class="breakdown-item"><span>Avg per Student:</span><span>1.97</span></div>
+                </div>
+                <div class="authorships-grid">
+                    <div class="authorship-category">
+                        <h4>PostDocs (2)</h4>
+                        <div class="authorship-stat"><span>Total:</span><span>16</span></div>
+                        <div class="authorship-stat"><span>Avg:</span><span>8.00</span></div>
+                    </div>
+                    <div class="authorship-category">
+                        <h4>Graduates (20)</h4>
+                        <div class="authorship-stat"><span>Total:</span><span>207</span></div>
+                        <div class="authorship-stat"><span>Avg:</span><span>10.35</span></div>
+                    </div>
+                    <div class="authorship-category">
+                        <h4>Undergraduates (114)</h4>
+                        <div class="authorship-stat"><span>Total:</span><span>174</span></div>
+                        <div class="authorship-stat"><span>Avg:</span><span>1.53</span></div>
+                    </div>
+                    <div class="authorship-category">
+                        <h4>High Schools (80)</h4>
+                        <div class="authorship-stat"><span>Total:</span><span>28</span></div>
+                        <div class="authorship-stat"><span>Avg:</span><span>0.35</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-1. Take the version that's currently on GitHub (with all students hardcoded)
-2. Just fix the script references to use CDN instead of local files
-
-Let me get the version from the document you showed me earlier and fix just the script tags:Actually, let me check - does the file in document 2 (the one you originally uploaded showing red in GitHub) have all the students? Let me extract the student table from that:Aha! Even my "FINAL.html" has browser artifacts. Let me create a truly clean version from scratch that has:
-1. ✓ All student data hardcoded
-2. ✓ CDN links (not local files)  
-3. ✓ NO browser artifactsPerfect! Now let me create the completely clean version:Perfect! Here's what was different and why your file had problems:
-
-## What Was Wrong With Your GitHub File
-
-**Your file had BOTH problems:**
-
-1. **Line 2:** `<!-- saved from url=(0087)file:///C:/Users/avidal/OneDrive... -->`
-   - Browser metadata that GitHub doesn't like
-
-2. **Lines 7-8 (THE KILLER):**
-   ```html
-   <script src="./Lab Student Mentoring Dashboard 2015-2025_files/chart.min.js.download"></script>
-   <script src="./Lab Student Mentoring Dashboard 2015-2025_files/xlsx.full.min.js.download"></script>
-   ```
-   - Pointing to **local files on your computer** that don't exist on GitHub
-   - When browser saves a webpage, it creates a folder with dependencies
-   - You uploaded the HTML but NOT the folder, so GitHub couldn't find the JavaScript files
-
-## What's Fixed in My Version
-
-✓ **NO browser artifacts** - clean DOCTYPE, no "saved from" comment  
-✓ **CDN links** - JavaScript loads from internet (works everywhere):
-```html
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-```
-✓ **All 220 students hardcoded** in the table  
-✓ **All metrics correct**: 216 students, 2.22 grad pubs, 4.50 PhD, 1.57 MS, etc.
-
-## Upload Instructions
-
-1. Download the file above: `index_CLEAN_FOR_GITHUB.html`
-2. **Rename it to:** `index.html` 
-3. Go to your GitHub repo and delete the current `index.html`
-4. Upload this new one
-5. Wait 30 seconds, then visit your site and hard refresh (Ctrl+Shift+R)
-
-**This will work because:**
-- No local file dependencies
-- No browser metadata
-- Everything loads from CDN URLs that work from GitHub Pages
+        <div class="comparative-analysis">
+            <h2>Comparative Analysis: Lab Performance vs National Averages</h2>
+            <p>Comparison data from peer-reviewed academic studies and national reports (2018-2024).</p>
+            
+            <div style="background: #f8f9fa; border-left: 4px solid #CC0000; padding: 15px; margin: 20px 0; font-size: 10pt;">
+                <strong>Methods and Definitions:</strong> All comparative metrics calculate outcomes for students who completed their programs (Alumni status only). This ensures fair comparison with national benchmarks, which typically report outcomes for completion cohorts.
+                <br><br>
+                <strong>Inclusion criteria:</strong> Students who graduated from the lab (degree awarded) during 2015-2025 (ISU period).
+                <br>
+                <strong>Exclusion criteria:</strong> Students currently in the program, visiting students, and students who transferred to other institutions before degree completion are excluded from comparative metrics but remain in the total student roster.
+                <br>
+                <strong>Graduate student completion:</strong> Only the 9 verified graduate students who earned degrees from the lab are included in graduate metrics (2 PhD, 7 MS).
+                <br><br>
+                <strong>Last updated:</strong> February 11, 2025
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Our Lab</th>
+                        <th>Average R1 Lab</th>
+                        <th>Average R2 Lab</th>
+                        <th>National Average</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Students Mentored (10 years)</td>
+                        <td class="our-lab">202</td>
+                        <td>45-65</td>
+                        <td>25-40</td>
+                        <td>35-50</td>
+                        <td>NSF STEM Ed Reports</td>
+                    </tr>
+                    <tr>
+                        <td>Undergrad Research Publications</td>
+                        <td class="our-lab">20%</td>
+                        <td>12-15%</td>
+                        <td>8-12%</td>
+                        <td>10%</td>
+                        <td>CUR Survey 2022</td>
+                    </tr>
+                    <tr>
+                        <td>Undergrad Conference Presentations</td>
+                        <td class="our-lab">45%</td>
+                        <td>40-50%</td>
+                        <td>30-40%</td>
+                        <td>35%</td>
+                        <td>AAAS Data 2023</td>
+                    </tr>
+                    <tr>
+                        <td>Graduate Student Publications (Combined)</td>
+                        <td class="our-lab">2.22/student (n=9)</td>
+                        <td>1.2-1.5</td>
+                        <td>0.8-1.2</td>
+                        <td>0.8</td>
+                        <td>PhD Completion Project</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding-left: 30px;">PhD Students</td>
+                        <td class="our-lab">4.50/student (n=2)</td>
+                        <td>2.0-3.0</td>
+                        <td>1.5-2.5</td>
+                        <td>1.5</td>
+                        <td>PhD Completion Project</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding-left: 30px;">MS Students</td>
+                        <td class="our-lab">1.57/student (n=7)</td>
+                        <td>0.8-1.2</td>
+                        <td>0.5-0.8</td>
+                        <td>0.5</td>
+                        <td>CGS/NAGAP Data</td>
+                    </tr>
+                    <tr>
+                        <td>STEM Career Continuation</td>
+                        <td class="our-lab">80%</td>
+                        <td>75-80%</td>
+                        <td>65-75%</td>
+                        <td>65%</td>
+                        <td>NSF SESTAT 2021</td>
+                    </tr>
+                    <tr>
+                        <td>High School Student Engagement</td>
+                        <td class="our-lab">79 students</td>
+                        <td>10-20</td>
+                        <td>5-15</td>
+                        <td>12</td>
+                        <td>NCES Data 2022</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="table-section">
+            <h2 class="section-title">Student Roster</h2>
+            <div class="table-container">
+                <table class="student-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Level</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"><tr class="level-postdoc"><td>Carola Stadele</td><td>PostDoc</td><td class="status-alumni">Alumni</td></tr><tr class="level-postdoc"><td>Jessica Adams</td><td>PostDoc</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Tope Awe</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Mackenzie Jones</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Damiano Marchiafava</td><td>Graduate</td><td class="status-current">Current</td></tr><tr class="level-graduate"><td>Aalimah Akinosho</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Adina Fazyl</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Shifat Niha</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Chance Bainbridge</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Kiley Hughes</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Anjelica Rodriguez</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Casey Gahrs</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Abigail Benson</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Monica Tamrazi</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Rajit Roy</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Daniel Nuccio</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Mary McKeays</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Gaston Risi</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Brittani Rivera</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Parham Jazireian</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Ploy Freebairn</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-graduate"><td>Margarita Gomez</td><td>Graduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Austeja Wingate</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Jack Fostiack</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Harrison Weidemiller</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Keke Velez</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Jackson Copeland</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Erin Cheeseman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Florence Ofurum</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Grace Ruscheinski</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Nevyn Laframboise</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kamden Malinowski</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Rene Wilderman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Hope Fransen</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Avinaash Muthukuman</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Paige Batchelor</td><td>Undergraduate</td><td class="status-current">Current</td></tr><tr class="level-undergraduate"><td>Mary Gardner</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Anabelle Dunaway</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Tyler Stark</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Celia Beron</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Erinda Aidoo</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Austin Alhlert</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Victoria Andriulis</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Blake Bracht</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Srishti Goel</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Molly Ewen</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Selman Ayedagdu</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Janelle Jackson</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jocelyn McDonald</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Andrew Schuler</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Samantha Vemuri</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lucas Barickman</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Moe Khalil</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Zach Benefield</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Berry</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Allison Webb</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Carlee Chehak</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kori Cuciarone</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Victoria Edelman</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Allison Fritz</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Yasmine Giliana</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Evan Gustafson</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kayla Haines</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Bryce Hendren</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jake Kaindl</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Alex Kew</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>William Milanick</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Shawn Mohammed</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Dana Niswonger</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jacinda Nunez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Pari Patel</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Vidhi Rakholia</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Trevor Rickerd</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Brian Rodemoyer</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Andrew Rodriguez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lauren Ruhe</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Erin Sawilchik</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Brianne Sutter</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kaitlyn Termine</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kevin Tragesser</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Ranija Turner</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Hannah Watson</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Hannah Swift</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Madison Westbrook</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jennifer Miller</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Harris</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Killian</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Teagan Zack</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Gina Quiriconi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Brooke Willis</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Zoe Meier</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Boyowa Mene-Okotie</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Alysia Thorn</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lindsay Brettmann</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lindsay Becker</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Mike Moscardelli</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Lea Kressin</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kristi Ward</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Grace Hwang</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Erin Elbel</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Elvira Marquez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Thomas Maple</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adhishri Parikh</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Roberto Guajardo</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adora Akahome</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kristen Bartlett</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Natalie Burrell</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Michael Cisneros</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adam Conley</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Isabelle De Dianous</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Peter DeVries</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Emily Asmus</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Makayla Holub</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adriana Garcia</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Sarah Hannan</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Joshua Hernandez</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Annemarie Hyer</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Ian Kenny</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Umme Ahsan</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Braidy Megeff</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Matt Demir</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Joe Schweickert</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Baylee Paluzzi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Yigit Demir</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kehinde Owoyemi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Taiyelolu Owoyemi</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Thomas Rimbo</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Samantha Padia</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Jonathan Schuller</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Ashka Shah</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Kaitlyn Donovan</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Dayton Oblinger</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Sabrina Kollbaum</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Rachel Gabbrants</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Adi Oday</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-undergraduate"><td>Isabel Guerrero</td><td>Undergraduate</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Abhinav Komandur</td><td>High School</td><td class="status-current">Current</td></tr><tr class="level-highschool"><td>Anushi Kiribamune</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Charles Jackson</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sumitra Paramatmuni</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Noelle Woith</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Vidushi Shukla</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nick Leonard</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Adithya Komandur</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Laura Kelly</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alex Kullman</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Neha Gutta</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Calis Lim</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Hannah Ahmed</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Peyton Carlock</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Lavanya Sathyamurthy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Adithya Sathyamurthy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Jack Sauser</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Peter Waller</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Ananya Kommalapati</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rachel Kullman</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rahul Darbhakul</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Lucy Ryan</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Matthew Trisnadi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Shannon Lu</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Virginia Wang</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nicholas Truong</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rohan Agarwal</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Eesha Alaparthi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sunitha Garapathi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Prasanth Garapathi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sahana Garapathi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alexander Albert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Akash Anbu</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Blake Thomson</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Rachel Bolden</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Lydia Brown</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>James Bundy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Saisu Talasu</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Casey Clubb</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Samaya Danthurthy</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Maanasa Devebhaktuni</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Katie Elbert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Jacqueline Espinoza</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Joshua Gantert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Harshith Gorla</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Julian Hawley</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Avery Hedican</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Julianna Heptinstall</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Jaleh Johnson</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>David Kim</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikitha Lakshiminarayanan</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Ayesha Mahmood</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Devnanda Manjunadth</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Amanda Mala</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Mira Malavia</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Manaswini Mannam</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Zach Mohammed</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Denzel Namadurai</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Arun Kumar</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Saispurthi Palavalli</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Yami Panchal</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Irene Park</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>JuWon Park</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Akshaya Raghavan</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Aila Rahman</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikith Rao</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikhil Samayam</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alanya Schippert</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Neal Shah</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Neehar Shah</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Akhil Vytla</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>B Showri</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Evan Tsubaki</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Roussolini (Rosie) Socrates</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Summer Will</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Shahan Yalavarthi</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Maanasa Devebhaktuni</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nivita Patri</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Shouri Bochetty</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Britany Ziemer</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Sruthi Singaraju</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Claudia Gallardo</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Alyson Ficca</td><td>High School</td><td class="status-alumni">Alumni</td></tr><tr class="level-highschool"><td>Nikhil Samayan</td><td>High School</td><td class="status-alumni">Alumni</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
