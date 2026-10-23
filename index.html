@@ -98,30 +98,25 @@
         </div>
 
         <div class="comparative-analysis">
-            <h2>Comparative Analysis: Lab Performance vs National Averages</h2>
-            <p>Comparison data from peer-reviewed academic studies and national reports (2018-2024).</p>
+            <h2>Training record</h2>
+            <p>Every figure below is computed from the roster each time this page loads. Comparisons against national averages were removed on 23 October 2026, because the benchmark ranges previously shown here could not be traced to a specific published table.</p>
             
             <div class="methods-box">
-                <strong>Methods and Definitions:</strong> All comparative metrics calculate outcomes for students who completed their programs (Alumni status only). This ensures fair comparison with national benchmarks, which typically report outcomes for completion cohorts.
+                <strong>How these numbers are produced.</strong> They are computed in the browser from the lab roster file, so they change when the roster changes. Nothing on this page is typed in by hand.
                 <br><br>
-                <strong>Inclusion criteria:</strong> Students who graduated from the lab (degree awarded) during 2015-2025 (ISU period).
-                <br>
-                <strong>Exclusion criteria:</strong> Students currently in the program, visiting students, and students who transferred to other institutions before degree completion are excluded from comparative metrics but remain in the total student roster.
-                <br>
-                <strong>Graduate student completion:</strong> Only the 9 verified graduate students who earned degrees from the lab are included in graduate metrics (2 PhD, 7 MS).
+                <strong>Who is counted.</strong> Alumni are people who have left the lab. Current and inactive members appear in the roster and in the totals, and are excluded from alumni figures. Career continuation counts only alumni recorded as continuing in STEM or not, leaving out those still studying and those we have lost touch with.
                 <br><br>
-                <strong>Last updated:</strong> February 12, 2025
+                <strong>Destinations.</strong> Many older records hold a placeholder such as "Undergraduate Researcher" rather than a destination. Those count as not recorded rather than as a known outcome.
+                <br><br>
+                <strong>Roster generated:</strong> <span id="dataStamp">loading</span>
             </div>
             
             <table class="comparison-table">
                 <thead>
                     <tr>
                         <th>Metric</th>
-                        <th>Our Lab</th>
-                        <th>Average R1 Lab</th>
-                        <th>Average R2 Lab</th>
-                        <th>National Average</th>
-                        <th>Source</th>
+                        <th>This lab</th>
+                        <th>How it is counted</th>
                     </tr>
                 </thead>
                 <tbody id="comparisonTableBody"></tbody>
@@ -199,6 +194,37 @@
 
     <script>
         let studentsData = [];
+        // ---- destination classification, computed from the roster (added 2026-10-23) ----
+        const PLACEHOLDER_DEST = /^(undergraduate researcher|high school researcher|graduate researcher|current|college|student|unknown|n\/?a|\?|high school graduate|)$/i;
+        function destinationCategory(s) {
+            const t = (s.currentPosition || '').trim();
+            if (PLACEHOLDER_DEST.test(t)) return 'Not recorded';
+            const l = t.toLowerCase();
+            if (/postdoc/.test(l)) return 'Postdoctoral';
+            if (/\b(undergraduate|undergrad|sophomore|junior|senior|freshman)\b.*\b(at|student)\b|\bstudent at\b|\bstudying\b|\bmajor at\b|\bb\.?s\.? (student|candidate)\b/.test(l)) return 'Still studying';
+            if (/(phd|doctoral|graduate|grad|masters?|m\.s\.|ms) (student|program|candidate)|phd program|pursuing (a )?(phd|graduate|masters)/.test(l)) return 'Graduate school';
+            if (/medical school|school of medicine|dental|pharmacy|pharm\.?d|veterinar|physician assistant|optometry|podiatr|law school|j\.d\./.test(l)) return 'Professional school';
+            if (/professor|lecturer|instructor|teacher|faculty|teaching/.test(l)) return 'Teaching and faculty';
+            if (/nurse|nursing|clinic|hospital|patient|medical assistant|therapist|health|physician|resident|surgeon|ologist\b|emt\b|paramedic|medical technologist|radiolog|dentist|optometrist/.test(l)) return 'Clinical and healthcare';
+            if (/research (scientist|specialist|assistant|associate|technician)|lab(oratory)? (manager|technician|tech)|scientist/.test(l)) return 'Research staff';
+            if (/engineer|biotech|pharmaceutical|analyst|quality|consultant|industry|technician|technologist|developer|software|chemist|laborator|plasma|manufactur|intern @|\bintern\b|@ /.test(l)) return 'Industry';
+            if (/marketing|sales|finance|audit|talent acquisition|policy|\bmba\b|accountant|business|vice president|director/.test(l)) return 'Business and other professional';
+            if (/\buniversity\b|\bcollege\b|\bschool\b/.test(l)) return 'Still studying';
+            return 'Other recorded outcome';
+        }
+        const DEST_ORDER = ['Graduate school','Professional school','Still studying','Research staff','Industry',
+                            'Clinical and healthcare','Teaching and faculty','Postdoctoral','Business and other professional','Other recorded outcome','Not recorded'];
+        const DEST_COLOURS = ['#2196F3','#4CAF50','#26A69A','#00ACC1','#FF9800','#8E24AA','#3949AB','#FFC107','#795548','#90A4AE','#CFD8DC'];
+        function destinationCounts(level) {
+            const g = studentsData.filter(s => s.status === 'Alumni' && s.level === level);
+            const c = {};
+            g.forEach(s => { const k = destinationCategory(s); c[k] = (c[k] || 0) + 1; });
+            const labels = DEST_ORDER.filter(k => c[k]);
+            return { labels, data: labels.map(k => c[k]),
+                     colours: labels.map(k => DEST_COLOURS[DEST_ORDER.indexOf(k)]),
+                     n: g.length, known: g.filter(s => destinationCategory(s) !== 'Not recorded').length };
+        }
+
         let filteredData = [];
         let charts = {};
         let uniqueOutputs = { posters: 0, talks: 0, publications: 0 };
@@ -233,7 +259,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.students && data.uniqueOutputs) {
-                        studentsData = data.students;
+                        window.__rosterStamp = data.generatedAt || null; studentsData = data.students;
                         uniqueOutputs = data.uniqueOutputs;
                     } else {
                         studentsData = data;
@@ -297,6 +323,9 @@
             updateStatistics();
             updateCharts();
             updateComparativeAnalysis();
+            const stampEl = document.getElementById('dataStamp');
+            if (stampEl) stampEl.textContent = (window.__rosterStamp || 'date not recorded');
+
             renderTable(filteredData);
         }
 
@@ -371,6 +400,8 @@
                 return acc;
             }, {});
 
+
+
             if (charts.level) charts.level.destroy();
             charts.level = new Chart(document.getElementById('levelChart'), {
                 type: 'doughnut',
@@ -396,61 +427,37 @@
             });
 
             if (charts.highSchool) charts.highSchool.destroy();
-            charts.highSchool = new Chart(document.getElementById('highSchoolChart'), {
+            charts.highSchool = (() => { const d = destinationCounts('High School');
+                return new Chart(document.getElementById('highSchoolChart'), {
                 type: 'pie',
-                data: {
-                    labels: ['Currently Enrolled STEM', 'Graduate/Professional School', 'Research Exposure', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [30, 18, 15, 8, 5, 8],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336', '#757575'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
-                }
-            });
+                data: { labels: d.labels,
+                        datasets: [{ data: d.data, backgroundColor: d.colours, borderWidth: 2, borderColor: '#fff' }] },
+                options: { responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } },
+                               title: { display: true, text: d.known + ' of ' + d.n + ' destinations recorded', font: { size: 11, weight: 'normal' } } } }
+                }); })();
 
             if (charts.undergrad) charts.undergrad.destroy();
-            charts.undergrad = new Chart(document.getElementById('undergradChart'), {
+            charts.undergrad = (() => { const d = destinationCounts('Undergraduate');
+                return new Chart(document.getElementById('undergradChart'), {
                 type: 'pie',
-                data: {
-                    labels: ['Industry/Biotech', 'Graduate School', 'Clinical/Healthcare', 'Academic Research', 'Teaching', 'Science-Adjacent', 'Non-STEM', 'Unknown'],
-                    datasets: [{
-                        data: [32, 28, 18, 15, 8, 6, 5, 3],
-                        backgroundColor: ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336', '#757575'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 9 }, padding: 6 } } }
-                }
-            });
+                data: { labels: d.labels,
+                        datasets: [{ data: d.data, backgroundColor: d.colours, borderWidth: 2, borderColor: '#fff' }] },
+                options: { responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } },
+                               title: { display: true, text: d.known + ' of ' + d.n + ' destinations recorded', font: { size: 11, weight: 'normal' } } } }
+                }); })();
 
             if (charts.grad) charts.grad.destroy();
-            charts.grad = new Chart(document.getElementById('gradChart'), {
+            charts.grad = (() => { const d = destinationCounts('Graduate');
+                return new Chart(document.getElementById('gradChart'), {
                 type: 'pie',
-                data: {
-                    labels: ['Academic Research/Teaching', 'Industry Research', 'Clinical Pathways', 'Postdoctoral', 'Professional School', 'Completion Elsewhere', 'Non-STEM'],
-                    datasets: [{
-                        data: [7, 5, 3, 2, 2, 1, 1],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#F44336'],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } } }
-                }
-            });
+                data: { labels: d.labels,
+                        datasets: [{ data: d.data, backgroundColor: d.colours, borderWidth: 2, borderColor: '#fff' }] },
+                options: { responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8 } },
+                               title: { display: true, text: d.known + ' of ' + d.n + ' destinations recorded', font: { size: 11, weight: 'normal' } } } }
+                }); })();
         }
 
         function updateComparativeAnalysis() {
@@ -490,71 +497,39 @@
 
             const highSchoolAlumni = alumniData.filter(s => s.level === 'High School');
 
+            const gradAlumni = alumniData.filter(s => s.level === 'Graduate');
+            const avgGradPubsAll = gradAlumni.length ?
+                (gradAlumni.reduce((t, s) => t + s.publications, 0) / gradAlumni.length).toFixed(2) : '0';
+            const knownDest = alumniData.filter(s => destinationCategory(s) !== 'Not recorded').length;
+            const stemNo = alumniData.filter(s => (s.stemCareer || '').toLowerCase() === 'no').length;
+            const stemRate = (stemCareerCount + stemNo) ?
+                ((stemCareerCount / (stemCareerCount + stemNo)) * 100).toFixed(1) : '0';
+
             document.getElementById('comparisonTableBody').innerHTML = `
-                <tr>
-                    <td>Students Mentored (10 years)</td>
+                <tr><td>People trained, 2015 to 2025</td>
+                    <td class="our-lab">${studentsData.length}</td>
+                    <td>Everyone on the roster, current and former</td></tr>
+                <tr><td>Alumni</td>
                     <td class="our-lab">${alumniData.length}</td>
-                    <td>45-65</td>
-                    <td>25-40</td>
-                    <td>35-50</td>
-                    <td>NSF STEM Ed Reports</td>
-                </tr>
-                <tr>
-                    <td>Undergrad Research Publications</td>
+                    <td>Left the lab, whatever they did next</td></tr>
+                <tr><td>Alumni whose destination we know</td>
+                    <td class="our-lab">${knownDest} (${((knownDest / alumniData.length) * 100).toFixed(0)}%)</td>
+                    <td>A recorded position, not a placeholder</td></tr>
+                <tr><td>Continued in STEM</td>
+                    <td class="our-lab">${stemRate}%</td>
+                    <td>${stemCareerCount} yes against ${stemNo} no, excluding those still studying and those we have lost touch with</td></tr>
+                <tr><td>Undergraduate alumni who co-authored a paper</td>
                     <td class="our-lab">${undergradPubPercent}%</td>
-                    <td>12-15%</td>
-                    <td>8-12%</td>
-                    <td>10%</td>
-                    <td>CUR Survey 2022</td>
-                </tr>
-                <tr>
-                    <td>Undergrad Conference Presentations</td>
+                    <td>${undergradWithPubs} of ${undergradAlumni.length}</td></tr>
+                <tr><td>Undergraduate alumni who presented a poster or talk</td>
                     <td class="our-lab">${undergradPresentPercent}%</td>
-                    <td>40-50%</td>
-                    <td>30-40%</td>
-                    <td>35%</td>
-                    <td>AAAS Data 2023</td>
-                </tr>
-                <tr>
-                    <td>Graduate Student Publications (Combined)</td>
-                    <td class="our-lab">${avgGradPubs}/student (n=${verifiedGradAlumni.length})</td>
-                    <td>1.2-1.5</td>
-                    <td>0.8-1.2</td>
-                    <td>0.8</td>
-                    <td>PhD Completion Project</td>
-                </tr>
-                <tr style="background: #f8f9fa;">
-                    <td style="padding-left: 30px;">PhD Students</td>
-                    <td class="our-lab">${avgPhdPubs}/student (n=${phdGrads.length})</td>
-                    <td>2.0-3.0</td>
-                    <td>1.5-2.5</td>
-                    <td>1.5</td>
-                    <td>PhD Completion Project</td>
-                </tr>
-                <tr style="background: #f8f9fa;">
-                    <td style="padding-left: 30px;">MS Students</td>
-                    <td class="our-lab">${avgMsPubs}/student (n=${msGrads.length})</td>
-                    <td>0.8-1.2</td>
-                    <td>0.5-0.8</td>
-                    <td>0.5</td>
-                    <td>CGS/NAGAP Data</td>
-                </tr>
-                <tr>
-                    <td>STEM Career Continuation</td>
-                    <td class="our-lab">${stemPercent}%</td>
-                    <td>75-80%</td>
-                    <td>65-75%</td>
-                    <td>65%</td>
-                    <td>NSF SESTAT 2021</td>
-                </tr>
-                <tr>
-                    <td>High School Student Engagement</td>
-                    <td class="our-lab">${highSchoolAlumni.length} students</td>
-                    <td>10-20</td>
-                    <td>5-15</td>
-                    <td>12</td>
-                    <td>NCES Data 2022</td>
-                </tr>
+                    <td>${undergradWithPresent} of ${undergradAlumni.length}</td></tr>
+                <tr><td>Publications per graduate alumnus</td>
+                    <td class="our-lab">${avgGradPubsAll}</td>
+                    <td>Mean across all ${gradAlumni.length} graduate alumni</td></tr>
+                <tr><td>High school researchers hosted</td>
+                    <td class="our-lab">${highSchoolAlumni.length}</td>
+                    <td>Alumni at high school level</td></tr>
             `;
         }
 
