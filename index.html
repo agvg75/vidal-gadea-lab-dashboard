@@ -255,7 +255,7 @@
         });
 
         function loadStudentData() {
-            fetch('students.json')
+            fetch('students.json', {cache: 'no-store'})
                 .then(response => response.json())
                 .then(data => {
                     if (data.students && data.uniqueOutputs) {
